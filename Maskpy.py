@@ -37,6 +37,11 @@ def save_file(code, filename):
 
 
 if __name__ == "__main__":
+    if sys.platform != "linux":
+        print("\033[91mError: \033[0mThis script must be run on a Linux system!")
+        print("The obfuscated file can be run on any system.")
+        sys.exit()
+
     a = len(sys.argv)
     if a == 1:
         filename = gui()

