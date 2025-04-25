@@ -1,3 +1,4 @@
 - RUNTIME OBFUSCATION ON THE BYTECODE
 - VM
 - Nanomites
+- remove pycryptodome and blake imports
