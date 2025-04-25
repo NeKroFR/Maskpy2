@@ -111,7 +111,12 @@ def strip_childs(node, env):
         elif isinstance(child, ast.FunctionDef):
             var = env.get(child.name)
             if var:
-                child.name = var.mask        
+                child.name = var.mask
+        # Handle function calls
+        elif isinstance(child, ast.Call) and isinstance(child.func, ast.Name):
+            var = env.get(child.func.id)
+            if var:
+                child.func.id = var.mask
         strip_childs(child, env)
 
 def strip(code):
@@ -137,6 +142,14 @@ def strip(code):
     strip_imports(tree)
     env = Env(file.getAll())
     
+    # Process top-level function definitions first
+    for node in tree.body:
+        if isinstance(node, ast.FunctionDef):
+            var = env.get(node.name)
+            if var:
+                node.name = var.mask
+    
+    # Then process all nodes normally
     for node in tree.body:
         strip_childs(node, env)
 
