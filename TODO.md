@@ -1,4 +1,4 @@
-- RUNTIME OBFUSCATION ON THE BYTECODE
-- VM
-- Nanomites
-- remove pycryptodome and blake imports
+- OPAQUE PREDICATES + MBA
+- Control Flow Flattening
+- JIT obfuscation (bytecode)
+- VM 

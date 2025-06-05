@@ -1,59 +1,47 @@
-import py_compile
-from blake3 import blake3
-from Crypto.Cipher import ChaCha20_Poly1305
-from Crypto.Random import get_random_bytes
+import ast
 from strip import strip
-import os
 
-def get_code(filename):
-    # return the code from a python script
+def todo(fun_code):
+    # TODO: obfuscate (look at TODO.md)
+    return fun_code
+
+def obfuscate(filename, functions_to_obfuscate=[]):
     with open(filename, 'r') as f:
         code = f.read()
-    return code
 
-def get_bytecode(code):
-    # Return bytecode from a python script
-    i = 0
-    tmp = '.tmp.py'
-    while os.path.exists(tmp):
-        tmp = f'.tmp{i}.py'
-        i += 1
-
-    tmpfilename = tmp + 'c'
+    extracted = 0
+    functions = []
+    function_codes = []
     try:
-        with open(tmp, 'w') as f:
-            f.write(code)
-        with open(py_compile.compile(tmp, cfile=tmpfilename), "rb") as f:
-            bytecode = f.read()
-        return bytecode
-    finally:
-        if os.path.exists(tmp):
-            os.remove(tmp)
-        if os.path.exists(tmpfilename):
-            os.remove(tmpfilename)
+        tree = ast.parse(code)
+    except SyntaxError as e:
+        raise ValueError(f"Invalid Python code: {e}")
 
-def crypto_checksum(bytecode):
-    # Return a python script which performs a Blake3 checksum
-    # of the bytecode and encrypts it with ChaCha20-Poly1305
-    checksum = blake3(bytecode).hexdigest()
-    key = get_random_bytes(32)
-    nonce = get_random_bytes(24)
-    cipher = ChaCha20_Poly1305.new(key=key, nonce=nonce)
-    ciphertext, tag = cipher.encrypt_and_digest(bytecode)
-    code = f"""import marshal
-from blake3 import blake3
-from Crypto.Cipher import ChaCha20_Poly1305
+    nodes_to_remove = []
+    for node in tree.body:
+        if isinstance(node, ast.FunctionDef) and node.name in functions_to_obfuscate:
+            func_code = ast.get_source_segment(code, node)
+            function_codes.append(func_code)
+            functions.append(node.name)
+            nodes_to_remove.append(node)
+            extracted += 1
 
-plaintext = ChaCha20_Poly1305.new(key={key}, nonce={nonce}).decrypt_and_verify({ciphertext}, {tag})
-if blake3(plaintext).hexdigest() == '{checksum}':
-    exec(marshal.loads(plaintext[16:]))
-"""
-    return code
+    for node in nodes_to_remove:
+        tree.body.remove(node)
 
-def obfuscate(filename):
-    code = get_code(filename)
-    code = strip(code)
-    bytecode = get_bytecode(code)
-    code = crypto_checksum(bytecode)
-    code = strip(code)
-    return code
+    if extracted < len(functions_to_obfuscate):
+        raise ValueError(f"Some functions were not found: {set(functions_to_obfuscate) - set(functions)}")
+
+    insert_pos = 0
+    for idx, node in enumerate(tree.body):
+        if isinstance(node, (ast.Import, ast.ImportFrom)):
+            insert_pos = idx + 1
+
+    for func_code in function_codes:
+        func = todo(func_code)
+        func_ast = ast.parse(func)
+        tree.body.insert(insert_pos, func_ast.body[0])
+        insert_pos += 1
+
+    code = ast.unparse(tree)
+    return strip(code)
