@@ -1,3 +1,3 @@
-- Control Flow Flattening
+- Remove multiple lines comments
 - JIT obfuscation (bytecode)
 - VM 

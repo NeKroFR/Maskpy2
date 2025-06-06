@@ -4,6 +4,14 @@ class CFFTransformer(ast.NodeTransformer):
     def visit_FunctionDef(self, node):
         self.generic_visit(node)
         transformer = CFFHelper()
+        param_names = [arg.arg for arg in node.args.args]
+        assigned_vars = set()
+        for stmt in ast.walk(node):
+            if isinstance(stmt, ast.Name) and isinstance(stmt.ctx, ast.Store):
+                assigned_vars.add(stmt.id)
+        # Exclude parameters and state variables from initialization
+        local_vars_to_init = assigned_vars - set(param_names) - {transformer.state_var, transformer.return_value_var}
+        init_assigns = [ast.Assign(targets=[ast.Name(id=var, ctx=ast.Store())], value=ast.Constant(value=0)) for var in local_vars_to_init]
         start_state = transformer.process_statements(node.body, transformer.exit_state)
         state_var = transformer.state_var
         return_value_var = transformer.return_value_var
@@ -12,16 +20,29 @@ class CFFTransformer(ast.NodeTransformer):
             body=[],
             orelse=[]
         )
+
+        # Collect state blocks
+        state_blocks = []
         for block_state, block_code, handles_transition in transformer.keys:
             condition = ast.Compare(left=ast.Name(id=state_var, ctx=ast.Load()), ops=[ast.Eq()], comparators=[ast.Num(block_state)])
-            # If the block handles transitions, we don't need to set the state again
             if not handles_transition:
                 block_code.append(ast.Assign(targets=[ast.Name(id=state_var, ctx=ast.Store())], value=ast.Num(transformer.exit_state)))
-            if_stmt = ast.If(test=condition, body=block_code, orelse=[])
-            while_loop.body.append(if_stmt)
-        init_state = ast.Assign(targets=[ast.Name(id=state_var, ctx=ast.Store())], value=ast.Num(start_state))
-        init_return = ast.Assign(targets=[ast.Name(id=return_value_var, ctx=ast.Store())], value=ast.Constant(value=None))
-        node.body = [init_state, init_return, while_loop, ast.Return(value=ast.Name(id=return_value_var, ctx=ast.Load()))]
+            state_blocks.append((condition, block_code))
+        initial_state = transformer.new_state()
+        initial_block = [ast.Assign(targets=[ast.Name(id=state_var, ctx=ast.Store())], value=ast.Num(start_state))]
+        state_blocks.append((ast.Compare(left=ast.Name(id=state_var, ctx=ast.Load()), ops=[ast.Eq()], comparators=[ast.Num(initial_state)]), initial_block))
+
+        # if-elif chain
+        chain = []
+        for condition, block in state_blocks:
+            if_stmt = ast.If(test=condition, body=block, orelse=chain)
+            chain = [if_stmt]
+        while_loop.body = chain
+        init_state = ast.Assign(targets=[ast.Name(id=state_var, ctx=ast.Store())], value=ast.Num(initial_state))
+        init_return = ast.Assign(targets=[ast.Name(id=return_value_var, ctx=ast.Store())], value=ast.Constant(value=0))
+
+        # Combine all parts into the new function body
+        node.body = init_assigns + [init_state, init_return, while_loop, ast.Return(value=ast.Name(id=return_value_var, ctx=ast.Load()))]
         return node
 
 class CFFHelper:
