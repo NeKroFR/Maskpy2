@@ -1,4 +1,3 @@
-- OPAQUE PREDICATES + MBA
 - Control Flow Flattening
 - JIT obfuscation (bytecode)
 - VM 

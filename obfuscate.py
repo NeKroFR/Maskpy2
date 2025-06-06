@@ -1,9 +1,35 @@
 import ast
+import astunparse
 from strip import strip
+from opaque_mba import MBATransformer, OpaquePredicateTransformer
 
-def todo(fun_code):
-    # TODO: obfuscate (look at TODO.md)
-    return fun_code
+def obfuscate_function(fun_code, dbg=False):
+    """Obfuscate a function using MBA expressions and opaque predicates with parameters."""
+    tree = ast.parse(fun_code)
+    param_names = [arg.arg for arg in tree.body[0].args.args]
+    if dbg:
+        print("Original code:")
+        print(astunparse.unparse(tree).strip())
+        print("\n\n")
+    
+    # MBA transformation with parameters
+    mba_transformer = MBATransformer(param_names)
+    tree = mba_transformer.visit(tree)
+    if dbg:
+        print("After MBA transformation:")
+        print(astunparse.unparse(tree).strip())
+        print("\n\n")
+
+    # Opaque predicate with parameters
+    opaque_transformer = OpaquePredicateTransformer(param_names)
+    tree = opaque_transformer.visit(tree)
+    if dbg:
+        print("After opaque predicate transformation:")
+        print(astunparse.unparse(tree).strip())
+        print("\n\n")
+    
+    ast.fix_missing_locations(tree)
+    return astunparse.unparse(tree).strip()
 
 def obfuscate(filename, functions_to_obfuscate=[]):
     with open(filename, 'r') as f:
@@ -38,7 +64,7 @@ def obfuscate(filename, functions_to_obfuscate=[]):
             insert_pos = idx + 1
 
     for func_code in function_codes:
-        func = todo(func_code)
+        func = obfuscate_function(func_code)
         func_ast = ast.parse(func)
         tree.body.insert(insert_pos, func_ast.body[0])
         insert_pos += 1

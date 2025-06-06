@@ -93,11 +93,11 @@ def strip(code):
 
     mask_bank = {}
     for var in global_vars:
-        mask_bank[("global", var)] = f"X{counter:06d}"
+        mask_bank[("global", var)] = f"X{counter}"
         counter += 1
     for func_name, local_vars in function_local_vars.items():
         for var in local_vars:
-            mask_bank[(func_name, var)] = f"X{counter:06d}"
+            mask_bank[(func_name, var)] = f"X{counter}"
             counter += 1
 
     strip_imports(tree, mask_bank)
