@@ -2,138 +2,107 @@ import ast
 import astunparse
 
 counter = 1
-maskBank = {}
 
-class Variable:
-    def __init__(self, name, mask):
-        self.name = name
-        self.mask = mask
+class RenameTransformer(ast.NodeTransformer):
+    def __init__(self, mask_bank, function_local_vars):
+        self.mask_bank = mask_bank
+        self.function_local_vars = function_local_vars
+        self.current_function = None
 
-class Env:
-    def __init__(self, variables):
-        self.variables = variables
+    def visit_FunctionDef(self, node):
+        original_name = node.name
+        node.name = self.mask_bank[("global", original_name)]
+        for arg in node.args.args:
+            arg.arg = self.mask_bank[(original_name, arg.arg)]
+        self.current_function = original_name
+        self.generic_visit(node)
+        self.current_function = None
+        return node
 
-    def get(self, name):
-        for var in self.variables:
-            if var.name == name:
-                return var
-        return None
+    def visit_Name(self, node):
+        if self.current_function:
+            local_key = (self.current_function, node.id)
+            global_key = ("global", node.id)
+            if local_key in self.mask_bank:
+                node.id = self.mask_bank[local_key]
+            elif global_key in self.mask_bank:
+                node.id = self.mask_bank[global_key]
+        else:
+            global_key = ("global", node.id)
+            if global_key in self.mask_bank:
+                node.id = self.mask_bank[global_key]
+        return node
 
-class File:
-    def __init__(self, tree, file_name):
-        self.tree = tree
-        self.file_name = file_name
-        self.imports = []
-        self.import_from = []
-        self.variables = []
+    def visit_Call(self, node):
+        self.generic_visit(node)
+        return node
 
-    def getAll(self):
-        return self.variables + self.imports + self.import_from
-
-def mask_name():
-    global counter
-    name = f"X{counter:06d}"
-    counter += 1
-    return name
-
-def mask_module(file):
-    global maskBank
-    for node in ast.walk(file.tree):
-        if isinstance(node, ast.Import):
+def collect_global_variables(tree):
+    global_vars = set()
+    for node in tree.body:
+        if isinstance(node, ast.FunctionDef):
+            global_vars.add(node.name)
+        elif isinstance(node, ast.Assign):
+            for target in node.targets:
+                if isinstance(target, ast.Name):
+                    global_vars.add(target.id)
+        elif isinstance(node, ast.Import):
             for name in node.names:
-                module_name = name.name.split('.')[0]
-                if module_name not in maskBank:
-                    maskBank[module_name] = mask_name()
-                file.imports.append(Variable(module_name, maskBank[module_name]))
-                if name.asname:
-                    if name.asname not in maskBank:
-                        maskBank[name.asname] = mask_name()
-                    file.imports.append(Variable(name.asname, maskBank[name.asname]))
+                var_name = name.asname or name.name.split('.')[0]
+                global_vars.add(var_name)
         elif isinstance(node, ast.ImportFrom):
-            module_name = node.module.split('.')[0] if node.module else ""
-            if module_name and module_name not in maskBank:
-                maskBank[module_name] = mask_name()
-                file.imports.append(Variable(module_name, maskBank[module_name]))
             for name in node.names:
-                item_name = name.name
-                if item_name not in maskBank:
-                    maskBank[item_name] = mask_name()
-                alias = name.asname if name.asname else item_name
-                if alias not in maskBank:
-                    maskBank[alias] = mask_name()
-                file.import_from.append(Variable(alias, maskBank[alias]))
-        elif isinstance(node, ast.FunctionDef):
-            if node.name not in maskBank:
-                maskBank[node.name] = mask_name()
-            file.variables.append(Variable(node.name, maskBank[node.name]))
-        elif isinstance(node, ast.Name) and isinstance(node.ctx, ast.Store):
-            if node.id not in maskBank:
-                maskBank[node.id] = mask_name()
-            file.variables.append(Variable(node.id, maskBank[node.id]))
+                var_name = name.asname or name.name
+                global_vars.add(var_name)
+    return global_vars
 
-def strip_imports(tree):
-    """
-    Transform all import statements to use aliases
-    - import module -> import module as X000001
-    - from module import item -> from module import item as X000002
-    - from module import item1, item2 -> from module import item1 as X000003, item2 as X000004
-    """
+def collect_local_variables(func_node):
+    local_vars = set(arg.arg for arg in func_node.args.args)
+    for node in ast.walk(func_node):
+        if isinstance(node, ast.Name) and isinstance(node.ctx, ast.Store):
+            local_vars.add(node.id)
+    return local_vars
+
+def strip_imports(tree, mask_bank):
     for node in ast.walk(tree):
         if isinstance(node, ast.Import):
             for name in node.names:
-                module_name = name.name.split('.')[0]
-                if module_name in maskBank:
-                    name.asname = maskBank[module_name]
+                var_name = name.asname or name.name.split('.')[0]
+                if ("global", var_name) in mask_bank:
+                    name.asname = mask_bank[("global", var_name)]
         elif isinstance(node, ast.ImportFrom):
             for name in node.names:
-                item_name = name.name
-                if item_name in maskBank:
-                    name.asname = maskBank[item_name]
-
-def strip_childs(node, env):
-    for child in ast.iter_child_nodes(node):
-        if isinstance(child, ast.Name):
-            var = env.get(child.id)
-            if var:
-                child.id = var.mask
-        elif isinstance(child, ast.FunctionDef):
-            var = env.get(child.name)
-            if var:
-                child.name = var.mask
-        elif isinstance(child, ast.Call) and isinstance(child.func, ast.Name):
-            var = env.get(child.func.id)
-            if var:
-                child.func.id = var.mask
-        strip_childs(child, env)
+                var_name = name.asname or name.name
+                if ("global", var_name) in mask_bank:
+                    name.asname = mask_bank[("global", var_name)]
 
 def strip(code):
-    """
-    Obfuscate the input Python code string by:
-    1. Removing comments (handled by ast.parse).
-    2. Obfuscating imports (e.g., 'import os' -> 'import os as X...').
-    3. Renaming variables and function names.
-    Returns the obfuscated code as a string.
-    """
-    global counter, maskBank
+    global counter
     counter = 1
-    maskBank = {}
 
     try:
         tree = ast.parse(code)
     except SyntaxError as e:
         raise ValueError(f"Invalid Python code: {e}")
 
-    file = File(tree, "code.py")
-    mask_module(file)
-    strip_imports(tree)
-    env = Env(file.getAll())
+    global_vars = collect_global_variables(tree)
+    function_local_vars = {}
     for node in tree.body:
         if isinstance(node, ast.FunctionDef):
-            var = env.get(node.name)
-            if var:
-                node.name = var.mask
-    for node in tree.body:
-        strip_childs(node, env)
+            function_local_vars[node.name] = collect_local_variables(node)
 
-    stripped_code = astunparse.unparse(tree).strip()
-    return stripped_code
+    mask_bank = {}
+    for var in global_vars:
+        mask_bank[("global", var)] = f"X{counter:06d}"
+        counter += 1
+    for func_name, local_vars in function_local_vars.items():
+        for var in local_vars:
+            mask_bank[(func_name, var)] = f"X{counter:06d}"
+            counter += 1
+
+    strip_imports(tree, mask_bank)
+
+    transformer = RenameTransformer(mask_bank, function_local_vars)
+    tree = transformer.visit(tree)
+    ast.fix_missing_locations(tree)
+    return astunparse.unparse(tree).strip()
