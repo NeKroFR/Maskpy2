@@ -2,6 +2,7 @@ import ast
 import astunparse
 from strip import strip
 from opaque_mba import MBATransformer, OpaquePredicateTransformer
+from cff import CFFTransformer
 
 def obfuscate_function(fun_code, dbg=False):
     """Obfuscate a function using MBA expressions and opaque predicates with parameters."""
@@ -11,8 +12,18 @@ def obfuscate_function(fun_code, dbg=False):
         print("Original code:")
         print(astunparse.unparse(tree).strip())
         print("\n\n")
+
+    # Control Flow Flattening
+    cff_transformer = CFFTransformer()
+    tree = cff_transformer.visit(tree)
+    if dbg:
+        print("After control flow flattening:")
+        print(astunparse.unparse(tree).strip())
+        print("\n\n")
     
-    # MBA transformation with parameters
+    ast.fix_missing_locations(tree)
+
+    # Mixed Boolean Arithmetic
     mba_transformer = MBATransformer(param_names)
     tree = mba_transformer.visit(tree)
     if dbg:
@@ -20,15 +31,13 @@ def obfuscate_function(fun_code, dbg=False):
         print(astunparse.unparse(tree).strip())
         print("\n\n")
 
-    # Opaque predicate with parameters
+    # Opaque Predicate
     opaque_transformer = OpaquePredicateTransformer(param_names)
     tree = opaque_transformer.visit(tree)
     if dbg:
         print("After opaque predicate transformation:")
         print(astunparse.unparse(tree).strip())
         print("\n\n")
-    
-    ast.fix_missing_locations(tree)
     return astunparse.unparse(tree).strip()
 
 def obfuscate(filename, functions_to_obfuscate=[]):
