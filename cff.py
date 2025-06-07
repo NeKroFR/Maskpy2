@@ -9,8 +9,8 @@ class CFFTransformer(ast.NodeTransformer):
         for stmt in ast.walk(node):
             if isinstance(stmt, ast.Name) and isinstance(stmt.ctx, ast.Store):
                 assigned_vars.add(stmt.id)
-        # Exclude parameters and state variables from initialization
-        local_vars_to_init = assigned_vars - set(param_names) - {transformer.state_var, transformer.return_value_var}
+        # Exclude encoded variables from initialization to preserve their values
+        local_vars_to_init = {var for var in assigned_vars if not var.startswith('encoded_')} - set(param_names) - {transformer.state_var, transformer.return_value_var}
         init_assigns = [ast.Assign(targets=[ast.Name(id=var, ctx=ast.Store())], value=ast.Constant(value=0)) for var in local_vars_to_init]
         start_state = transformer.process_statements(node.body, transformer.exit_state)
         state_var = transformer.state_var

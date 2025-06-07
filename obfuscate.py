@@ -1,41 +1,59 @@
 import ast
 import astunparse
 from strip import strip
-from opaque_mba import MBATransformer, OpaquePredicateTransformer
 from cff import CFFTransformer
+from opaque_mba import MBATransformer, OpaquePredicateTransformer
+from encode_types import encode_value, decode_value, get_type_annotation, inject_helpers
 
 def obfuscate_function(fun_code, dbg=False):
-    """Obfuscate a function using Opaque Predicates, MBA expressions, and Control Flow Flattening."""
     tree = ast.parse(fun_code)
-    param_names = [arg.arg for arg in tree.body[0].args.args]
-    if dbg:
-        print("Original code:")
-        print(astunparse.unparse(tree).strip())
-        print("\n\n")
+    func_def = tree.body[0]
+    param_names = [arg.arg for arg in func_def.args.args]
+    param_types = {arg.arg: get_type_annotation(arg.annotation) for arg in func_def.args.args if arg.annotation}
+
+    # Add dummy integer
+    dummy_int_assign = ast.Assign(
+        targets=[ast.Name(id='dummy_int', ctx=ast.Store())],
+        value=ast.Constant(value=42)
+    )
+    func_def.body.insert(0, dummy_int_assign)
+
+    # Encode parameters
+    encoded_assigns = []
+    encoded_names = []
+    for arg in func_def.args.args:
+        param_name = arg.arg
+        encoded_name = f"encoded_{param_name}"
+        encoded_names.append(encoded_name)
+        encoded_value = encode_value(ast.Name(id=param_name, ctx=ast.Load()))
+        encoded_assigns.append(
+            ast.Assign(
+                targets=[ast.Name(id=encoded_name, ctx=ast.Store())],
+                value=encoded_value
+            )
+        )
+    func_def.body = encoded_assigns + func_def.body
 
     # Opaque Predicate Transformation
-    opaque_transformer = OpaquePredicateTransformer(param_names)
+    opaque_transformer = OpaquePredicateTransformer(encoded_names)
     tree = opaque_transformer.visit(tree)
-    if dbg:
-        print("After opaque predicate transformation:")
-        print(astunparse.unparse(tree).strip())
-        print("\n\n")
 
     # Mixed Boolean Arithmetic Transformation
-    mba_transformer = MBATransformer(param_names)
+    mba_transformer = MBATransformer(param_names, param_types)
     tree = mba_transformer.visit(tree)
-    if dbg:
-        print("After MBA transformation:")
-        print(astunparse.unparse(tree).strip())
-        print("\n\n")
-
+    
     # Control Flow Flattening
     cff_transformer = CFFTransformer()
     tree = cff_transformer.visit(tree)
-    if dbg:
-        print("After control flow flattening:")
-        print(astunparse.unparse(tree).strip())
-        print("\n\n")
+
+    # Handle return value decoding
+    return_type = get_type_annotation(func_def.returns)
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Return):
+            if (isinstance(node.value, ast.Name) and 
+                node.value.id in encoded_names and 
+                return_type in ('str', 'bytes')):
+                node.value = decode_value(node.value, return_type)
 
     ast.fix_missing_locations(tree)
     return astunparse.unparse(tree).strip()
@@ -66,6 +84,9 @@ def obfuscate(filename, functions_to_obfuscate=[]):
 
     if extracted < len(functions_to_obfuscate):
         raise ValueError(f"Some functions were not found: {set(functions_to_obfuscate) - set(functions)}")
+
+    # Inject helper functions
+    tree = inject_helpers(tree)
 
     insert_pos = 0
     for idx, node in enumerate(tree.body):
