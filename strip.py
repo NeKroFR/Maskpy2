@@ -3,6 +3,12 @@ import astunparse
 
 counter = 1
 
+class CommentRemover(ast.NodeTransformer):
+    def visit(self, node):
+        if hasattr(node, 'body') and isinstance(node.body, list):
+            node.body = [stmt for stmt in node.body if not (isinstance(stmt, ast.Expr) and isinstance(stmt.value, ast.Str))]
+        return super().visit(node)
+
 class RenameTransformer(ast.NodeTransformer):
     def __init__(self, mask_bank, function_local_vars):
         self.mask_bank = mask_bank
@@ -84,6 +90,9 @@ def strip(code):
         tree = ast.parse(code)
     except SyntaxError as e:
         raise ValueError(f"Invalid Python code: {e}")
+
+    comment_remover = CommentRemover()
+    tree = comment_remover.visit(tree)
 
     global_vars = collect_global_variables(tree)
     function_local_vars = {}

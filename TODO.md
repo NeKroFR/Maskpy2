@@ -1,4 +1,3 @@
-- Encode types such as bytes strings etc.. so we can do the opaque predicates and mba on it
-- Remove multiple lines comments
+- Encode all types (more than just str and bytes lol)
 - JIT obfuscation (bytecode)
 - VM 
