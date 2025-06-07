@@ -1,38 +1,61 @@
-def X2(X10: str, X6: bytes) -> str:
-    X9 = 0
+def X1(X5: str, X11: bytes) -> str:
+    X3 = 0
     X4 = 0
-    X5 = 0
-    X3 = 7
-    X11 = 0
-    while (X3 != (- 1)):
-        if (X3 == 7):
-            X3 = 6
-        elif (X3 == 6):
-            X8 = X10
-            X3 = 5
-        elif (X3 == 5):
-            X7 = X6
-            X3 = 4
-        elif (X3 == 4):
+    X8 = 0
+    X6 = 14
+    X7 = 0
+    while (X6 != (- 1)):
+        if (X6 == 14):
+            X6 = 13
+        elif (X6 == 13):
+            X9 = X5
+            X6 = 12
+        elif (X6 == 12):
+            X10 = X11
+            X6 = 11
+        elif (X6 == 11):
             X4 = 42
-            X3 = 3
-        elif (X3 == 3):
-            X9 = X6.decode('utf-8')
-            X3 = 2
-        elif (X3 == 2):
-            if ((((((X4 & 970071477) | (X4 & (~ 970071477))) == X4) or ((X4 & 4294967295) == X4)) and (((X4 & 4082411376) | (X4 & (~ 4082411376))) == X4)) and (((((X4 & 1463618901) | (X4 & (~ 1463618901))) == X4) or ((X4 & 4294967295) == X4)) or ((X4 & 4294967295) == X4))):
-                X3 = 0
+            X6 = 10
+        elif (X6 == 10):
+            X8 = X11.decode('utf-8')
+            X6 = 9
+        elif (X6 == 9):
+            if ((X4 | (X4 & 2880989662)) == X4):
+                X6 = 0
             else:
-                X3 = 1
-        elif (X3 == 1):
-            X5 = (X4 + 294384078)
-            X3 = (- 1)
-        elif (X3 == 0):
-            X11 = ((X10 + ' ') + X9)
-            X3 = (- 1)
-    return X11
+                X6 = 8
+        elif (X6 == 8):
+            X3 = (X4 & (X4 - 68))
+            X6 = 7
+        elif (X6 == 7):
+            X3 = (X3 - (X3 & 11))
+            X6 = 6
+        elif (X6 == 6):
+            X3 = (X3 * 38030)
+            X6 = 5
+        elif (X6 == 5):
+            X3 = (X3 ^ 58237)
+            X6 = 4
+        elif (X6 == 4):
+            X3 = (X3 & (X3 - 224))
+            X6 = 3
+        elif (X6 == 3):
+            if (((X4 + 3) - 3) == X4):
+                X6 = 1
+            else:
+                X6 = 2
+        elif (X6 == 2):
+            pass
+            X6 = (- 1)
+        elif (X6 == 1):
+            pass
+            X6 = (- 1)
+        elif (X6 == 0):
+            X7 = ((X5 + ' ') + X8)
+            X6 = (- 1)
+    return X7
 
-def X1(X13):
+def X2(X13):
     if (X13 == 0):
         return b'\x00'
     X12 = bytearray()
@@ -40,4 +63,4 @@ def X1(X13):
         X12.append((X13 & 255))
         X13 >>= 8
     return bytes(X12[::(- 1)])
-print('Hello, my name is', (X2('John', b'Doe') + '.'))
+print('Hello, my name is', (X1('John', b'Doe') + '.'))
