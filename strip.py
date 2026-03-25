@@ -16,12 +16,22 @@ class RenameTransformer(ast.NodeTransformer):
 
     def visit_FunctionDef(self, node):
         original_name = node.name
-        node.name = self.mask_bank[("global", original_name)]
-        for arg in node.args.args:
-            arg.arg = self.mask_bank[(original_name, arg.arg)]
-        self.current_function = original_name
-        self.generic_visit(node)
-        self.current_function = None
+        if self.current_function:
+            # nested function: rename via parent scope, stay in parent scope
+            key = (self.current_function, original_name)
+            node.name = self.mask_bank.get(key, original_name)
+            for arg in node.args.args:
+                arg_key = (self.current_function, arg.arg)
+                if arg_key in self.mask_bank:
+                    arg.arg = self.mask_bank[arg_key]
+            self.generic_visit(node)
+        else:
+            node.name = self.mask_bank[("global", original_name)]
+            for arg in node.args.args:
+                arg.arg = self.mask_bank[(original_name, arg.arg)]
+            self.current_function = original_name
+            self.generic_visit(node)
+            self.current_function = None
         return node
 
     def visit_Name(self, node):

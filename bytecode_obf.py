@@ -41,6 +41,15 @@ def encrypt_function(func_source, func_name):
     if func_code is None:
         return func_source
 
+    # extract default value expressions from source
+    func_ast = ast.parse(func_source)
+    func_def = func_ast.body[0]
+    pos_defaults = [ast.unparse(d) for d in func_def.args.defaults]
+    kw_defaults = {}
+    for arg, d in zip(func_def.args.kwonlyargs, func_def.args.kw_defaults):
+        if d is not None:
+            kw_defaults[arg.arg] = ast.unparse(d)
+
     func_code = _inject_dead_recursive(func_code)
     func_code = _strip_code_metadata(func_code)
     marshalled = marshal.dumps(func_code)
@@ -64,7 +73,7 @@ def encrypt_function(func_source, func_name):
         # pcg xor only, no permutation
         encrypted = _pcg_xor(marshalled, pcg_seed, pcg_inc)
 
-    return _build_trampoline(func_name, encrypted, salt, variant)
+    return _build_trampoline(func_name, encrypted, salt, variant, pos_defaults, kw_defaults)
 
 
 def _strip_code_metadata(code_obj):
@@ -209,7 +218,7 @@ def _gen_pcg_xor_for(v, src, dst):
     ]
 
 
-def _build_trampoline(func_name, encrypted, salt, variant):
+def _build_trampoline(func_name, encrypted, salt, variant, pos_defaults=None, kw_defaults=None):
     expected_hash = _fnv1a(encrypted)
     decoy = random.choice(['MemoryError', 'RecursionError', 'RuntimeError', 'OSError'])
 
@@ -315,7 +324,21 @@ def _build_trampoline(func_name, encrypted, salt, variant):
         f"    {v['kw']} = {{'co_filename': '<>', 'co_name': '<>'}}",
         f"    if hasattr({v['co']}, {str_qn}): {v['kw']}[{str_qn}] = '<>'",
         f"    {v['co']} = {v['co']}.replace(**{v['kw']})",
-        f"    {v['f']} = getattr(_t, {str_ft})({v['co']}, globals())",
+    ])
+
+    # build defaults from source expressions (evaluated at runtime)
+    if pos_defaults:
+        defs_expr = '(' + ', '.join(pos_defaults) + ',)'
+    else:
+        defs_expr = 'None'
+    if kw_defaults:
+        kwdefs_expr = '{' + ', '.join(f'"{k}": {v}' for k, v in kw_defaults.items()) + '}'
+    else:
+        kwdefs_expr = 'None'
+
+    lines.extend([
+        f"    {v['f']} = getattr(_t, {str_ft})({v['co']}, globals(), None, {defs_expr})",
+        f"    {v['f']}.__kwdefaults__ = {kwdefs_expr}",
         f"    {fk[3]} = {fk[2]} + {fk[0]}",
         f"    {v['d']} = b'\\x00'",
     ])
