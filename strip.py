@@ -1,5 +1,4 @@
 import ast
-import astunparse
 
 counter = 1
 
@@ -114,4 +113,4 @@ def strip(code):
     transformer = RenameTransformer(mask_bank, function_local_vars)
     tree = transformer.visit(tree)
     ast.fix_missing_locations(tree)
-    return astunparse.unparse(tree).strip()
+    return ast.unparse(tree).strip()
