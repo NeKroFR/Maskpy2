@@ -42,20 +42,26 @@ def obfuscate_function(fun_code, dbg=False):
     )
     func_def.body.insert(0, anchor_assign)
 
-    # Encode parameters
+    # Encode parameters (all types → int for opaque predicates)
+    xor_key = random.randint(1, 0xFFFFFFFF)
     encoded_assigns = []
     encoded_names = []
+    encoded_int_names = []
     for arg in func_def.args.args:
         param_name = arg.arg
+        param_type = param_types.get(param_name)
         encoded_name = f"encoded_{param_name}"
         encoded_names.append(encoded_name)
-        encoded_value = encode_value(ast.Name(id=param_name, ctx=ast.Load()))
+        encoded_value = encode_value(
+            ast.Name(id=param_name, ctx=ast.Load()), param_type, xor_key)
         encoded_assigns.append(
             ast.Assign(
                 targets=[ast.Name(id=encoded_name, ctx=ast.Store())],
                 value=encoded_value
             )
         )
+        if param_type is not None:
+            encoded_int_names.append(encoded_name)
     func_def.body = encoded_assigns + func_def.body
 
     # String encryption
@@ -63,7 +69,7 @@ def obfuscate_function(fun_code, dbg=False):
     tree = string_enc.visit(tree)
 
     # Opaque Predicate Transformation
-    opaque_transformer = OpaquePredicateTransformer(encoded_names, anchor_name, anchor_value)
+    opaque_transformer = OpaquePredicateTransformer(encoded_int_names, anchor_name, anchor_value)
     tree = opaque_transformer.visit(tree)
 
     # Mixed Boolean Arithmetic — pass 1
@@ -83,12 +89,12 @@ def obfuscate_function(fun_code, dbg=False):
 
     # Handle return value decoding (before CFF flattens returns)
     return_type = get_type_annotation(func_def.returns)
-    for node in ast.walk(tree):
-        if isinstance(node, ast.Return):
-            if (isinstance(node.value, ast.Name) and
-                    node.value.id in encoded_names and
-                    return_type in ('str', 'bytes')):
-                node.value = decode_value(node.value, return_type)
+    if return_type:
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Return):
+                if (isinstance(node.value, ast.Name) and
+                        node.value.id in encoded_names):
+                    node.value = decode_value(node.value, return_type, xor_key)
 
     # Control Flow Flattening
     cff_transformer = CFFTransformer()

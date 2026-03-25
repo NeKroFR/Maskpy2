@@ -1,3 +1,2 @@
-- Encode all types (more than just str and bytes lol)
 - JIT obfuscation (bytecode)
 - VM 

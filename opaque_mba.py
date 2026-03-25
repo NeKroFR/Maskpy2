@@ -24,11 +24,10 @@ def _maybe_commute(left, op, right):
 
 
 class OpaquePredicateTransformer(ast.NodeTransformer):
-    def __init__(self, encoded_param_names, anchor_name='_anc', anchor_value=42):
-        int_params = [name for name in encoded_param_names if 'int' in name]
+    def __init__(self, int_param_names, anchor_name='_anc', anchor_value=42):
         self.anchor_name = anchor_name
         self.anchor_value = anchor_value
-        self.int_vars = [anchor_name] + int_params
+        self.int_vars = [anchor_name] + list(int_param_names)
 
     def _var(self, name=None):
         name = name or random.choice(self.int_vars)
