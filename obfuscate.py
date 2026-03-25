@@ -128,6 +128,11 @@ def obfuscate(filename, functions_to_obfuscate=[]):
     except SyntaxError as e:
         raise ValueError(f"Invalid Python code: {e}")
 
+    # no -f flag = obfuscate all functions
+    if not functions_to_obfuscate:
+        functions_to_obfuscate = [
+            node.name for node in tree.body if isinstance(node, ast.FunctionDef)]
+
     nodes_to_remove = []
     for node in tree.body:
         if isinstance(node, ast.FunctionDef) and node.name in functions_to_obfuscate:

@@ -10,7 +10,7 @@ def get_sol(a, b):
     shuffle(arr)
     return arr[0] + arr[1] - arr[2] - arr[3] % (a + b)
 
-a = randint(1, 10)
-
-print("Hello,", end=" ")
-print(f"the solution is {get_sol(randint(40,140), randint(40,140)) + a}.")
+if __name__ == "__main__":
+    a = randint(1, 10)
+    print("Hello,", end=" ")
+    print(f"the solution is {get_sol(randint(40,140), randint(40,140)) + a}.")

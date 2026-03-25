@@ -11,7 +11,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Obfuscate Python code.")
     parser.add_argument("input_file", help="The Python file to obfuscate.")
     parser.add_argument("-o", "--output", help="The output file name. Defaults to input_file_obfuscated.py")
-    parser.add_argument("-f", "--functions", nargs="*", help="Functions to obfuscate. If not provided or empty, obfuscates everything.")
+    parser.add_argument("-f", "--functions", nargs="*", help="Functions to obfuscate. Without -f, all functions are obfuscated.")
     args = parser.parse_args()
     filename = args.input_file
     if not filename.endswith(".py"):
