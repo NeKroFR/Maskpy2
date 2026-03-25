@@ -7,6 +7,7 @@ from opaque_mba import MBATransformer, OpaquePredicateTransformer
 from encode_types import encode_value, decode_value, get_type_annotation, inject_helpers
 from string_encrypt import StringEncryptTransformer, get_string_decrypt_helper
 from const_unfold import ConstantUnfolder
+from bytecode_obf import inject_anti_debug, encrypt_function
 
 sys.setrecursionlimit(10000)
 
@@ -33,7 +34,10 @@ def obfuscate_function(fun_code, dbg=False):
     param_names = [arg.arg for arg in func_def.args.args]
     param_types = {arg.arg: get_type_annotation(arg.annotation) for arg in func_def.args.args if arg.annotation}
 
-    # Random anchor variable (replaces constant dummy_int = 42)
+    # anti-debug
+    inject_anti_debug(func_def)
+
+    # anchor variable
     anchor_name = f'_a{random.randint(1000, 9999)}'
     anchor_value = random.randint(100, 0xFFFFFF)
     anchor_assign = ast.Assign(
@@ -42,7 +46,7 @@ def obfuscate_function(fun_code, dbg=False):
     )
     func_def.body.insert(0, anchor_assign)
 
-    # Encode parameters (all types → int for opaque predicates)
+    # encode parameters
     xor_key = random.randint(1, 0xFFFFFFFF)
     encoded_assigns = []
     encoded_names = []
@@ -72,22 +76,18 @@ def obfuscate_function(fun_code, dbg=False):
     opaque_transformer = OpaquePredicateTransformer(encoded_int_names, anchor_name, anchor_value)
     tree = opaque_transformer.visit(tree)
 
-    # Mixed Boolean Arithmetic — pass 1
-    known_int = {anchor_name}
-    mba1 = MBATransformer(param_names, param_types, known_int)
+    # MBA (2 passes)
+    mba1 = MBATransformer(param_names, param_types)
     tree = mba1.visit(tree)
-
-    # Mixed Boolean Arithmetic — pass 2
-    mba2 = MBATransformer(param_names, param_types, known_int)
+    mba2 = MBATransformer(param_names, param_types)
     tree = mba2.visit(tree)
 
-    # Constant unfolding (after MBA, before CFF)
-    # Break AST node sharing from MBA to prevent exponential re-visiting
+    # constant unfolding
     tree = _break_sharing(tree)
     unfolder = ConstantUnfolder(probability=0.6)
     tree = unfolder.visit(tree)
 
-    # Handle return value decoding (before CFF flattens returns)
+    # return value decoding
     return_type = get_type_annotation(func_def.returns)
     if return_type:
         for node in ast.walk(tree):
@@ -96,12 +96,24 @@ def obfuscate_function(fun_code, dbg=False):
                         node.value.id in encoded_names):
                     node.value = decode_value(node.value, return_type, xor_key)
 
-    # Control Flow Flattening
+    # CFF
     cff_transformer = CFFTransformer()
     tree = cff_transformer.visit(tree)
 
     ast.fix_missing_locations(tree)
     return ast.unparse(tree).strip()
+
+
+def _encrypt_all_functions(source):
+    tree = ast.parse(source)
+    parts = []
+    for node in tree.body:
+        if isinstance(node, ast.FunctionDef):
+            func_src = ast.unparse(node)
+            parts.append(encrypt_function(func_src, node.name))
+        else:
+            parts.append(ast.unparse(node))
+    return '\n'.join(parts)
 
 
 def obfuscate(filename, functions_to_obfuscate=[]):
@@ -131,7 +143,7 @@ def obfuscate(filename, functions_to_obfuscate=[]):
     if extracted < len(functions_to_obfuscate):
         raise ValueError(f"Some functions were not found: {set(functions_to_obfuscate) - set(functions)}")
 
-    # Inject helper functions
+    # inject helpers
     tree = inject_helpers(tree)
     tree.body.insert(0, get_string_decrypt_helper())
 
@@ -147,4 +159,7 @@ def obfuscate(filename, functions_to_obfuscate=[]):
         insert_pos += 1
 
     code = ast.unparse(tree)
-    return strip(code)
+    stripped = strip(code)
+
+    # bytecode encryption (post-strip)
+    return _encrypt_all_functions(stripped)

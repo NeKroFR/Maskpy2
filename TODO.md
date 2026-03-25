@@ -1,2 +1,1 @@
-- JIT obfuscation (bytecode)
 - VM 

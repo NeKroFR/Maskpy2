@@ -8,7 +8,7 @@ class CFFTransformer(ast.NodeTransformer):
         helper = CFFHelper()
         param_names = [arg.arg for arg in node.args.args]
 
-        # Collect assigned variables from original body for pre-initialization
+        # collect assigned vars for pre-init
         assigned_vars = set()
         for n in ast.walk(node):
             if isinstance(n, ast.Name) and isinstance(n.ctx, ast.Store):
@@ -28,12 +28,11 @@ class CFFTransformer(ast.NodeTransformer):
             for v in local_vars_to_init
         ]
 
-        # Process function body into state machine
+        # process body into state machine
         start_state = helper.process_statements(node.body, helper.exit_state)
 
-        # Build handler blocks with raw state tracking
-        handler_info = []  # [(code, raw_state)]
-        dispatch_entries = []  # [(encoded_key, handler_index)]
+        handler_info = []
+        dispatch_entries = []
         real_state_ids = [s for s, _, _ in helper.keys]
 
         for idx, (block_state, block_code, handles_transition) in enumerate(helper.keys):
@@ -43,7 +42,7 @@ class CFFTransformer(ast.NodeTransformer):
             handler_info.append((block_code, block_state))
             dispatch_entries.append((encoded, idx))
 
-        # Initial state handler
+        # initial state
         initial_state = helper.new_state()
         real_state_ids.append(initial_state)
         initial_encoded = helper.encode_state(initial_state)
@@ -51,7 +50,7 @@ class CFFTransformer(ast.NodeTransformer):
         handler_info.append((helper.assign_state(start_state), initial_state))
         dispatch_entries.append((initial_encoded, initial_idx))
 
-        # Bogus dead states
+        # bogus states
         for _ in range(random.randint(2, 5)):
             bogus_raw = helper.new_state()
             bogus_encoded = helper.encode_state(bogus_raw)
@@ -59,7 +58,7 @@ class CFFTransformer(ast.NodeTransformer):
             handler_info.append((helper.generate_bogus_code(real_state_ids), bogus_raw))
             dispatch_entries.append((bogus_encoded, bogus_idx))
 
-        # Shuffle handler indices
+        # shuffle handlers
         n = len(handler_info)
         perm = list(range(n))
         random.shuffle(perm)
@@ -70,15 +69,14 @@ class CFFTransformer(ast.NodeTransformer):
         shuffled_info = [handler_info[perm[i]] for i in range(n)]
         shuffled_entries = [(enc, inv_perm[idx]) for enc, idx in dispatch_entries]
 
-        # --- Dynamic dispatch table from interleaved list ---
-        # _p = [key0, val0^vm, key1, val1^vm, ...]
+        # build dispatch table from interleaved list
         vm = helper.val_mask
         interleaved = []
         for enc_key, shuf_idx in shuffled_entries:
             interleaved.append(enc_key)
             interleaved.append(shuf_idx)  # raw; masked by dict comprehension
 
-        # Shuffle the interleaved pairs to break ordering
+        # shuffle pairs
         pairs = [(interleaved[i], interleaved[i + 1]) for i in range(0, len(interleaved), 2)]
         random.shuffle(pairs)
         interleaved = []
@@ -124,7 +122,7 @@ class CFFTransformer(ast.NodeTransformer):
                         keywords=[]),
                     ifs=[], is_async=0)]))
 
-        # While loop
+        # while loop
         encoded_exit = helper.encode_state(helper.exit_state)
         while_test = ast.Compare(
             left=_name(helper.state_var), ops=[ast.NotEq()],
@@ -146,7 +144,7 @@ class CFFTransformer(ast.NodeTransformer):
                 op=ast.BitXor(),
                 right=_name(helper.mask_var)))
 
-        # Build if-elif chain with sub-state guards
+        # if-elif chain
         elif_order = list(range(n))
         random.shuffle(elif_order)
         chain = []
@@ -155,7 +153,7 @@ class CFFTransformer(ast.NodeTransformer):
             if not code:
                 continue
 
-            # Wrap ~40% of handlers with sub-state guard
+            # sub-state guard (~40%)
             if random.random() < 0.4:
                 code = helper.wrap_guard(code, raw_state, real_state_ids)
 
@@ -170,7 +168,7 @@ class CFFTransformer(ast.NodeTransformer):
             body=[hi_lookup] + chain,
             orelse=[])
 
-        # Sentinel for for-loop conversion
+        # sentinel for for-loops
         sentinel_stmts = []
         if helper.needs_sentinel:
             sentinel_stmts.append(ast.Assign(
@@ -210,7 +208,7 @@ class CFFHelper:
         self.needs_sentinel = False
         self.sentinel_var = f'_sn{random.randint(10, 99)}'
 
-        # 3-key state cipher (affine with pre-XOR)
+        # 3-key state cipher
         self.k1 = random.randint(1, 0xFFFFFFFF)
         self.k2 = random.randrange(1, 0xFFFFFFFF, 2)  # odd → bijective mod 2^32
         self.k3 = random.randint(1, 0xFFFFFFFF)
