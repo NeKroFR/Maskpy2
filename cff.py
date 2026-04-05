@@ -7,6 +7,10 @@ class CFFTransformer(ast.NodeTransformer):
         self.generic_visit(node)
         helper = CFFHelper()
         param_names = [arg.arg for arg in node.args.args]
+        if node.args.vararg:
+            param_names.append(node.args.vararg.arg)
+        if node.args.kwarg:
+            param_names.append(node.args.kwarg.arg)
 
         # collect assigned vars for pre-init
         assigned_vars = set()
@@ -144,24 +148,29 @@ class CFFTransformer(ast.NodeTransformer):
                 op=ast.BitXor(),
                 right=_name(helper.mask_var)))
 
-        # if-elif chain
-        elif_order = list(range(n))
-        random.shuffle(elif_order)
-        chain = []
-        for i in elif_order:
-            code, raw_state = shuffled_info[i]
-            if not code:
-                continue
+        # polymorphic handler dispatch: randomly choose style per function
+        cff_dispatch_style = random.choice(['elif', 'tree'])
 
-            # sub-state guard (~40%)
-            if random.random() < 0.4:
-                code = helper.wrap_guard(code, raw_state, real_state_ids)
-
-            cond = ast.Compare(
-                left=_name(helper.handler_var), ops=[ast.Eq()],
-                comparators=[ast.Constant(value=i)])
-            if_stmt = ast.If(test=cond, body=code, orelse=chain)
-            chain = [if_stmt]
+        if cff_dispatch_style == 'tree':
+            # binary search tree dispatch on handler index
+            chain = _build_tree_dispatch(
+                shuffled_info, helper, real_state_ids, n)
+        else:
+            # standard if/elif chain (shuffled order)
+            elif_order = list(range(n))
+            random.shuffle(elif_order)
+            chain = []
+            for i in elif_order:
+                code, raw_state = shuffled_info[i]
+                if not code:
+                    continue
+                if random.random() < 0.4:
+                    code = helper.wrap_guard(code, raw_state, real_state_ids)
+                cond = ast.Compare(
+                    left=_name(helper.handler_var), ops=[ast.Eq()],
+                    comparators=[ast.Constant(value=i)])
+                if_stmt = ast.If(test=cond, body=code, orelse=chain)
+                chain = [if_stmt]
 
         while_loop = ast.While(
             test=while_test,
@@ -193,6 +202,47 @@ class CFFTransformer(ast.NodeTransformer):
                       init_state, init_sub, init_return,
                       while_loop, return_stmt])
         return node
+
+
+def _build_tree_dispatch(shuffled_info, helper, real_state_ids, n):
+    # collect valid handlers
+    handlers = []
+    for i in range(n):
+        code, raw_state = shuffled_info[i]
+        if not code:
+            continue
+        if random.random() < 0.4:
+            code = helper.wrap_guard(code, raw_state, real_state_ids)
+        handlers.append((i, code))
+
+    if not handlers:
+        return [ast.Pass()]
+
+    def build_tree(items):
+        if not items:
+            return [ast.Pass()]
+        if len(items) == 1:
+            idx, code = items[0]
+            return [ast.If(
+                test=ast.Compare(
+                    left=_name(helper.handler_var), ops=[ast.Eq()],
+                    comparators=[ast.Constant(value=idx)]),
+                body=code,
+                orelse=[ast.Pass()])]
+        mid = len(items) // 2
+        mid_val = items[mid][0]
+        left_items = items[:mid]
+        right_items = items[mid:]
+        return [ast.If(
+            test=ast.Compare(
+                left=_name(helper.handler_var), ops=[ast.Lt()],
+                comparators=[ast.Constant(value=mid_val)]),
+            body=build_tree(left_items),
+            orelse=build_tree(right_items))]
+
+    # sort by handler index for balanced tree
+    handlers.sort(key=lambda x: x[0])
+    return build_tree(handlers)
 
 
 def _name(id, store=False):

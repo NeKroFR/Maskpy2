@@ -34,6 +34,15 @@ class RenameTransformer(ast.NodeTransformer):
             self.current_function = None
         return node
 
+    def visit_Global(self, node):
+        node.names = [self.mask_bank.get(("global", n), n) for n in node.names]
+        return node
+
+    def visit_Nonlocal(self, node):
+        if self.current_function:
+            node.names = [self.mask_bank.get((self.current_function, n), n) for n in node.names]
+        return node
+
     def visit_Name(self, node):
         if self.current_function:
             local_key = (self.current_function, node.id)
@@ -54,6 +63,10 @@ class RenameTransformer(ast.NodeTransformer):
 
 def collect_global_variables(tree):
     global_vars = set()
+    # collect globals declared inside functions via 'global' statement
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Global):
+            global_vars.update(node.names)
     for node in tree.body:
         if isinstance(node, ast.FunctionDef):
             global_vars.add(node.name)
@@ -72,10 +85,15 @@ def collect_global_variables(tree):
     return global_vars
 
 def collect_local_variables(func_node):
+    global_names = set()
+    for node in ast.walk(func_node):
+        if isinstance(node, ast.Global):
+            global_names.update(node.names)
     local_vars = set(arg.arg for arg in func_node.args.args)
     for node in ast.walk(func_node):
         if isinstance(node, ast.Name) and isinstance(node.ctx, ast.Store):
-            local_vars.add(node.id)
+            if node.id not in global_names:
+                local_vars.add(node.id)
     return local_vars
 
 def strip_imports(tree, mask_bank):

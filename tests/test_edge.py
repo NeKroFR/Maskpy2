@@ -1,4 +1,3 @@
-
 def with_defaults(a: int, b: int = 10, c: str = "hello") -> str:
     return c * a + str(b)
 

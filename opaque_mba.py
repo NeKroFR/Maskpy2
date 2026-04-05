@@ -183,13 +183,12 @@ class MBATransformer(ast.NodeTransformer):
         left = self.visit(node.left)
         right = self.visit(node.right)
         is_int = self.is_integer_expr(node.left) and self.is_integer_expr(node.right)
-        param = ast.Name(id=random.choice(self.param_names), ctx=ast.Load()) if self.param_names else None
 
         if is_int:
             if isinstance(node.op, ast.Add):
-                return _identity_wrap(mba_add(left, right, param))
+                return _identity_wrap(mba_add(left, right))
             elif isinstance(node.op, ast.Sub):
-                return _identity_wrap(mba_sub(left, right, param))
+                return _identity_wrap(mba_sub(left, right))
             elif isinstance(node.op, ast.BitXor) and random.random() < 0.5:
                 return _identity_wrap(mba_xor(left, right))
             elif isinstance(node.op, ast.BitAnd) and random.random() < 0.5:
@@ -200,7 +199,7 @@ class MBATransformer(ast.NodeTransformer):
         return ast.BinOp(left=left, op=node.op, right=right)
 
 
-def mba_add(left, right, param=None):
+def mba_add(left, right):
     transforms = [
         # (a ^ b) + 2 * (a & b)
         lambda l, r: _maybe_commute(
@@ -225,36 +224,11 @@ def mba_add(left, right, param=None):
                 right=ast.BinOp(left=l, op=ast.BitOr(), right=r)),
             op=ast.Sub(),
             right=ast.BinOp(left=l, op=ast.BitXor(), right=r)),
-        # ((a | b) + (a & b)) + ((a ^ b) - (a | b))
-        lambda l, r: ast.BinOp(
-            left=ast.BinOp(
-                left=ast.BinOp(left=l, op=ast.BitOr(), right=r),
-                op=ast.Add(),
-                right=ast.BinOp(left=l, op=ast.BitAnd(), right=r)),
-            op=ast.Add(),
-            right=ast.BinOp(
-                left=ast.BinOp(left=l, op=ast.BitXor(), right=r),
-                op=ast.Sub(),
-                right=ast.BinOp(left=l, op=ast.BitOr(), right=r))),
     ]
-    if param:
-        transforms.append(
-            lambda l, r: ast.BinOp(
-                left=ast.BinOp(
-                    left=ast.BinOp(left=l, op=ast.Add(), right=param),
-                    op=ast.BitXor(),
-                    right=ast.BinOp(left=r, op=ast.Sub(), right=param)),
-                op=ast.Add(),
-                right=ast.BinOp(
-                    left=ast.Constant(value=2), op=ast.Mult(),
-                    right=ast.BinOp(
-                        left=ast.BinOp(left=l, op=ast.Add(), right=param),
-                        op=ast.BitAnd(),
-                        right=ast.BinOp(left=r, op=ast.Sub(), right=param)))))
     return random.choice(transforms)(left, right)
 
 
-def mba_sub(left, right, param=None):
+def mba_sub(left, right):
     transforms = [
         # (a ^ b) - 2 * (b & ~a)
         lambda l, r: ast.BinOp(
@@ -292,15 +266,6 @@ def mba_sub(left, right, param=None):
             op=ast.Sub(),
             right=ast.BinOp(left=l, op=ast.BitOr(), right=r)),
     ]
-    if param:
-        transforms.append(
-            lambda l, r: ast.BinOp(
-                left=ast.BinOp(
-                    left=ast.BinOp(left=l, op=ast.Add(), right=param),
-                    op=ast.Sub(),
-                    right=ast.BinOp(left=r, op=ast.Add(), right=param)),
-                op=ast.Add(),
-                right=ast.BinOp(left=param, op=ast.BitXor(), right=param)))
     return random.choice(transforms)(left, right)
 
 

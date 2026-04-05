@@ -1,218 +1,1223 @@
-def X5(*_a, **_k):
-    if getattr(__import__(bytes([c ^ 197 for c in [182, 188, 182]]).decode()), bytes([c ^ 10 for c in [109, 111, 126, 126, 120, 107, 105, 111]]).decode())() or getattr(__import__(bytes([c ^ 197 for c in [182, 188, 182]]).decode()), bytes([c ^ 230 for c in [129, 131, 146, 150, 148, 137, 128, 143, 138, 131]]).decode())(): raise RecursionError()
-    _ks86 = 17999939209573595805 ^ 12155321912723009544
-    _q128 = 6166804
-    _sf258 = 2366711030008108447
-    _fp75 = 2092168227 ^ 2108945840
-    _kb53 = 1578021669923078217 ^ 9218767552339937601
-    _cm86 = 17316131697727026392 ^ 12114320320026102773
-    _d19 = b"W\x98\x19[\xf0'Q\xc19)\xe9\xd0\xa1j\x90W\xf6\xc29:>\x01\xdb\xc7k\x06\x10\xd4\xce/Z\xccm~\xfa\x9c\n\xc0\\@o\xb7\x7f\xf1\xc1M{T\x1a\x83\xeb\xee\x85j\x8c,\x8f\x00}\xf6=\xe6\xe0J\xac\x11\xbd[\xd2\xad\xe0\xb5\xbdrl\x94\xc7\xc9U^\x16\xcd\xa7\x19w\x1d\xe9\x07\xf6\x11\xb4V\x1cs\xb1\x81=r\xce\xb0\x9cuRd/\xa9\x97k\x8d#\\\x83{\xc2\x9a2H\xca\x1f\xf8\xae\x11\xf7\x1e\x80E\xe3\x9afS\x0b\x9a\x86\xa9{\xbdm\xedm\xadUlT?\xc6\xb6`\x04\xec\xdf\x91\x18z\xb4\x9d\x1b\x11\x05\xeb/\xe6\x82\x16W\xd4\x89\xb9\x057\xf4\x815\xbd\xe7T|\xd3l\xa8\xd7\xe9\xc4\xba\xfb\x86\xac.\xf7Z\xdb\xdd\x8173\xa9/\xa8:'\xdf|\x03\x92\xdeG\x05<\xeccM?\x0c:\xef\xa1hK>/^\xa6\xeb\xb1!1\x90\x06\xdc\xf3<a_O7mI\t\xc63It\xc6\xbbqu)|\x1bl\x0b\x82\xa7\xaa\x8a\xb4m*\x80\x05\xbc\xfa,\xabH\x935s:\n&\xc4U("
-    _kg51 = 8202730580591989243 ^ 17285534148515147246
-    _sf138 = 11703172315821010891
-    _fo96 = 2967258322 ^ 834689303
-    _salt36 = _sf138 ^ _sf258
-    _n93 = len(_d19)
-    _s179 = (_salt36 * _kg51 + _n93) & 18446744073709551615
-    _s280 = (_salt36 ^ (_n93 * _ks86)) & 18446744073709551615
-    _s334 = (_s179 ^ _s280 ^ _kb53) & 18446744073709551615
-    _q291 = _s179 & 0xFF
-    _hv48 = _fo96
-    for _bi86 in _d19:
-        _hv48 = ((_hv48 ^ _bi86) * _fp75) & 0xFFFFFFFF
-    if _hv48 != 3411502761:
-        _d19 = b'\x00'
-        raise RecursionError()
-    _pm43 = list(range(_n93))
-    _st10 = _s334
-    _ic83 = (_s334 >> 32) | 1
-    for _j83 in range(_n93 - 1, 0, -1):
-        _o83 = _st10
-        _st10 = (_o83 * _cm86 + _ic83) & 18446744073709551615
-        _x72 = (((_o83 >> 18) ^ _o83) >> 27) & 0xFFFFFFFF
-        _r11 = (_o83 >> 59) & 0x1F
-        _idx27 = ((_x72 >> _r11) | (_x72 << (32 - _r11))) & 0xFFFFFFFF
-        _idx27 = _idx27 % (_j83 + 1)
-        _pm43[_j83], _pm43[_idx27] = _pm43[_idx27], _pm43[_j83]
-    _up21 = bytearray(_n93)
-    for _j83 in range(_n93):
-        _up21[_j83] = _d19[_pm43[_j83]]
-    _q353 = _pm43[0] ^ _q291
-    _out31 = bytearray(_n93)
-    _st10 = _s179
-    _ic83 = _s280 | 1
-    for _pos91 in range(0, _n93, 4):
-        _o83 = _st10
-        _st10 = (_o83 * _cm86 + _ic83) & 18446744073709551615
-        _x72 = (((_o83 >> 18) ^ _o83) >> 27) & 0xFFFFFFFF
-        _r11 = (_o83 >> 59) & 0x1F
-        _val71 = ((_x72 >> _r11) | (_x72 << (32 - _r11))) & 0xFFFFFFFF
-        for _sh78 in range(min(4, _n93 - _pos91)):
-            _out31[_pos91 + _sh78] = _up21[_pos91 + _sh78] ^ ((_val71 >> (_sh78 * 8)) & 0xFF)
-    _m = __import__(bytes([c ^ 94 for c in [51, 63, 44, 45, 54, 63, 50]]).decode())
-    _t = __import__(bytes([c ^ 120 for c in [12, 1, 8, 29, 11]]).decode())
-    _co87 = _m.loads(bytes(_out31))
-    _kw80 = {'co_filename': '<>', 'co_name': '<>'}
-    if hasattr(_co87, bytes([c ^ 121 for c in [26, 22, 38, 8, 12, 24, 21, 23, 24, 20, 28]]).decode()): _kw80[bytes([c ^ 121 for c in [26, 22, 38, 8, 12, 24, 21, 23, 24, 20, 28]]).decode()] = '<>'
-    _co87 = _co87.replace(**_kw80)
-    _f13 = getattr(_t, bytes([c ^ 40 for c in [110, 93, 70, 75, 92, 65, 71, 70, 124, 81, 88, 77]]).decode())(_co87, globals())
-    _q434 = _q353 + _q128
-    _d19 = b'\x00'
-    _up21 = b'\x00'
-    _out31 = b'\x00'
-    _ak42 = bytes([c ^ 159 for c in [192, 192, 252, 240, 251, 250, 192, 192]]).decode()
-    setattr(X5, _ak42, getattr(_f13, _ak42))
-    _ak42 = bytes([c ^ 220 for c in [131, 131, 184, 185, 186, 189, 169, 176, 168, 175, 131, 131]]).decode()
-    setattr(X5, _ak42, getattr(_f13, _ak42))
-    _ak42 = bytes([c ^ 30 for c in [65, 65, 117, 105, 122, 123, 120, 127, 107, 114, 106, 109, 65, 65]]).decode()
-    setattr(X5, _ak42, getattr(_f13, _ak42))
-    _q572 = _q434 ^ len(_ak42)
-    return _f13(*_a, **_k)
-def X3(*_a, **_k):
-    if getattr(__import__(bytes([c ^ 201 for c in [186, 176, 186]]).decode()), bytes([c ^ 221 for c in [186, 184, 169, 169, 175, 188, 190, 184]]).decode())() or getattr(__import__(bytes([c ^ 201 for c in [186, 176, 186]]).decode()), bytes([c ^ 215 for c in [176, 178, 163, 167, 165, 184, 177, 190, 187, 178]]).decode())(): raise RuntimeError()
-    _sf214 = 1061798975327313990
-    _d25 = b'I\xd4\xc6m\x07y\x1b\xfe\xb2\x17WY\x9f\xee\xf3\xde\xb7@\x13Ra\xc5?\xcb\xcd\xc8\xa6\xa9\x1b><\xa3\xa4j\xe7\xe7\xe1U \xb9?;\x91P,\x11V5\xe3\xa2\x10Y\x83\xc6\xb2\x956HwIN\xdd\x14\xb5\x8cU\xc7\xcb\x8e\xc9\xc1\xa1\xd41v\x01,\xe9\xf3\xb3\xd0*\xd3gX\xcf\xb5b\xfdI0\xb3\x86\xa5\xa4W~\xd9\x0c1$\xe8\x13\xe7\xc3\xaa\xcd\x87\x18j\xff#\xb6b\x11\x1d\x0c9\xb3\x1b*b\x15s\xear*:v\xedmT)c\x97C\xf7O+\x1d\xb4\xe8z\x9a\xc3\x14\xb7]b\x80\x045\xe5"kH\x16\xe5\xa4+\xadz\\\xf6\x9f\xf7\xf7b-t\xc2\xaf\xa2=s\xc9Y\xf5\xaf\xa5\x1c\xe6#\xc50\xe9L\xc5\xa5\x82\x0e{\xd5\x90\x17\xc1\x90\x1b\x18\xdc\x7f\xa2\xd3\xe8\x96\x0f\xcf\xa2\xe2\xfeasyI\xcd\x8c\xc9\x80K\x90\x027K\xcb\x12\xd1\xe2U\xb1\xc9\xb6@\xd7#\x1c\xbb\xe8s`7\xd7":?hl\xa68p\xd4\xdc\xf3\xf0\x92\x00\xc9\xec^Q\xf0fH\x11\xa0*\x0bC0}\xe8\xc5\x9a\xcf\x12:\x89\x04\xa9\x96\x93W\x8eR\xe1\xf4u\x0c\xc7\xcc1\xc7k\xcf\xfc$\x18\xf3\x1eU\xacrVJ\xb2\xfa\xb0\x89\x1fy\x81zb\x1eUh]\xdb^Z\xccN\xfb4\xcdi\xd3;\x02\xfa\xb7?\xdb\x80\xa8+\xa7\x15\xbai\xd1\xa9i\xa6\xfc2\x9e\xd5k\x9d'
-    _sf138 = 15113075907706552766
-    _q179 = 11603639
-    _ks98 = 10278123643820614944 ^ 16131888679812247477
-    _fo68 = 194145560 ^ 2324623581
-    _kb54 = 1737378091560918453 ^ 8220633154716964029
-    _kg30 = 10240420372544628486 ^ 1164798067887069971
-    _cm90 = 14036807463321729877 ^ 11141120606316168312
-    _fp34 = 526725896 ^ 509948571
-    _salt32 = _sf138 ^ _sf214
-    _n54 = len(_d25)
-    _s134 = (_salt32 * _kg30 + _n54) & 18446744073709551615
-    _s249 = (_salt32 ^ (_n54 * _ks98)) & 18446744073709551615
-    _s338 = (_s134 ^ _s249 ^ _kb54) & 18446744073709551615
-    _q249 = _s134 & 0xFF
-    _hv88 = _fo68
-    for _bi20 in _d25:
-        _hv88 = ((_hv88 ^ _bi20) * _fp34) & 0xFFFFFFFF
-    if _hv88 != 1421116268:
-        _d25 = b'\x00'
-        raise RuntimeError()
-    _pm38 = list(range(_n54))
-    _st19 = _s338
-    _ic47 = (_s338 >> 32) | 1
-    for _j45 in range(_n54 - 1, 0, -1):
-        _o53 = _st19
-        _st19 = (_o53 * _cm90 + _ic47) & 18446744073709551615
-        _x32 = (((_o53 >> 18) ^ _o53) >> 27) & 0xFFFFFFFF
-        _r80 = (_o53 >> 59) & 0x1F
-        _idx70 = ((_x32 >> _r80) | (_x32 << (32 - _r80))) & 0xFFFFFFFF
-        _idx70 = _idx70 % (_j45 + 1)
-        _pm38[_j45], _pm38[_idx70] = _pm38[_idx70], _pm38[_j45]
-    _up73 = bytearray(_n54)
-    for _j45 in range(_n54):
-        _up73[_j45] = _d25[_pm38[_j45]]
-    _q373 = _pm38[0] ^ _q249
-    _out51 = bytearray(_n54)
-    _st19 = _s134
-    _ic47 = _s249 | 1
-    _pos23 = 0
-    while _pos23 < _n54:
-        _o53 = _st19
-        _st19 = (_o53 * _cm90 + _ic47) & 18446744073709551615
-        _x32 = (((_o53 >> 18) ^ _o53) >> 27) & 0xFFFFFFFF
-        _r80 = (_o53 >> 59) & 0x1F
-        _val71 = ((_x32 >> _r80) | (_x32 << (32 - _r80))) & 0xFFFFFFFF
-        for _sh23 in (0, 8, 16, 24):
-            if _pos23 >= _n54: break
-            _out51[_pos23] = _up73[_pos23] ^ ((_val71 >> _sh23) & 0xFF)
-            _pos23 += 1
-    _m = __import__(bytes([c ^ 226 for c in [143, 131, 144, 145, 138, 131, 142]]).decode())
-    _t = __import__(bytes([c ^ 61 for c in [73, 68, 77, 88, 78]]).decode())
-    _co72 = _m.loads(bytes(_out51))
-    _kw66 = {'co_filename': '<>', 'co_name': '<>'}
-    if hasattr(_co72, bytes([c ^ 132 for c in [231, 235, 219, 245, 241, 229, 232, 234, 229, 233, 225]]).decode()): _kw66[bytes([c ^ 132 for c in [231, 235, 219, 245, 241, 229, 232, 234, 229, 233, 225]]).decode()] = '<>'
-    _co72 = _co72.replace(**_kw66)
-    _f94 = getattr(_t, bytes([c ^ 62 for c in [120, 75, 80, 93, 74, 87, 81, 80, 106, 71, 78, 91]]).decode())(_co72, globals())
-    _q423 = _q373 + _q179
-    _d25 = b'\x00'
-    _up73 = b'\x00'
-    _out51 = b'\x00'
-    _ak17 = bytes([c ^ 134 for c in [217, 217, 229, 233, 226, 227, 217, 217]]).decode()
-    setattr(X3, _ak17, getattr(_f94, _ak17))
-    _ak17 = bytes([c ^ 39 for c in [120, 120, 67, 66, 65, 70, 82, 75, 83, 84, 120, 120]]).decode()
-    setattr(X3, _ak17, getattr(_f94, _ak17))
-    _ak17 = bytes([c ^ 58 for c in [101, 101, 81, 77, 94, 95, 92, 91, 79, 86, 78, 73, 101, 101]]).decode()
-    setattr(X3, _ak17, getattr(_f94, _ak17))
-    _q591 = _q423 ^ len(_ak17)
-    return _f94(*_a, **_k)
-from random import randint as X1, shuffle as X4
 def X2(*_a, **_k):
-    if getattr(__import__(bytes([c ^ 193 for c in [178, 184, 178]]).decode()), bytes([c ^ 245 for c in [146, 144, 129, 129, 135, 148, 150, 144]]).decode())() or getattr(__import__(bytes([c ^ 193 for c in [178, 184, 178]]).decode()), bytes([c ^ 107 for c in [12, 14, 31, 27, 25, 4, 13, 2, 7, 14]]).decode())(): raise RuntimeError()
-    _sf178 = 12432055894884187799
-    _d56 = b'\x08\xf4\xb0\xb8\xcd\x97?\xd9\xed\xe7\xd7\xe0\xd8\x96\xfb\xbd\x86\xa0\xfd\x0b\xcb!\t\x14^ckf\xab\x17"\x18\xdf\xe6\xa1\x18\xd8\x9eu\xef\x0f\x02\xc9\xcct\xd6\xdd*\xb9\x88\xa9\xc5\xcc\xd8\x8a\xbe-]tv*\x9c\xe1\xd6Y\xa3\xe3x\xf1\xa8B\x00)\xf5\xe5\xf2\xcd\x8e\xf1*\x85\xaemPj\x1a\xed\x15qa\xd4 \xedGb\xdd\xb3\xf9\x16)\xb2_?\x03\x8e\xc3\x16E\xb7Jcj\x15\xb1R\x9d\xf6\xb8\x1f6\x86"J\xfdi\xff\xe8\x01\x8f\x88\xed\x8b\xf9]f\'\xb6X\xb7\x80*\x89\x98)\\,\x1ak\xcdip\xa9d\xcf\xef\xb9\xbe^\x7fX:\xef\xed\xael\x19\xba\xf9\xefyS\x97\xad%\xbd#6\xdc\x1a\xbf\xb2},\xfc\x81v\xd2~y.\xb7\xa0c\x01\xe4\x19E\xb2\x1e\xfa;\xc9 \x82\x8bn.-\xfd.\x0e\xf6\xee\xdcbc\n\x06\xbe\x04\x1f\x93\xbew\xb1\x95\rHV\x1aAd\x9cE\xde\xffA\xfd\x85\xdb\xdd\xf2\xef\xeb\xa2NfWHQ\xd9\x88M\xaaoN\xb2\x87\xda\xed8eyFTX(\x12@,\x88\xcb\x16\x9a\xc2\x91\xa4\xeb4D\x9d*.\xf0Yg\x80:\xfc@x\x01\xe60$\xc8\x11_:x\xac\xa5("\x0b\x99\t\xb1\x1c\xb1Bv!4|\xcf\xe3\xf1\xf8\x88\xf7;\x12\xf6\r\xb7\xd2\x80E3\xfb\x90i#N\r\xdf\x9e\x88\x0c\xde\xfe\x10"\x88>\x82\xc8\x80_\xbfI.\xef\xcf\x9e\xfd\xb5b\xc4\xc9\x0170t\xf6\xd26+\x81]\xb4\xb5\xefX=\xae8E)\x17\xc3-\x1fM\x9c\xc4\xe8\xa9\xac)\xe4\x93\xdb\xdd\x08YHES\xcc\xa3\xeaV-\x94\x1b\xc1)\xda\x1b\x0c\xc0\x99\r\xa3n\x03\xdc\xb7\xe9\xb4\xee\x073\xc4t\xb0"\x87\xac\xe0\x17\x0b\x93\x07j\xac\xd2\x86\xdbKL\xf9\xcdq\xdb\xf6&\x9e\x07\x11g\xfbD\xf4H\n~>\xe7\x15\xcfl\x91d\x82\xd2\x8dv\xca\xb8\xb8\xdc\xc1N\xb4\xfd\x87\xe6I7\xb3K8X\x1e\xee\xf5]q\xf6S\x97\xd9gx\xf0\x1b\x0b\x92\x01\xa3O\xfb\xb3\x11Z\xe1_3/\x83\xf6\xaf\x8bl\x0f\xc1\'|\xdaR\x81\xb6\xfe\x90\xb0\xb4&\x90w\xd6\x1d\xce\xd6yq4YAN\x97\x1f\x0fG\xa0\x8f6\xad\x90\xa2\xdek}kdS\x93\x9b\xa9\xbbNX[\xdb\xac\xcb\xad\x05\x90)\xac\x01\x05\x80\x9a\x18\x98\x80J\x06\x1b\xeeO\xe9m\xfe&\xf6\xe1q\x9c\x925J<\x0f\xf0Z\x99\x8b\x99\xe9\x90\n\xd42\xd3C-w\xde\xf4\xa5\xd1\xd3L\xa8\xfe\xc84\x83\xf7\xde\x8b\xcbk\xac\x94\xaa\xce\x93\xc6j\x8bw\xc5.\xe4\x838?w\xb8\xa3S\xac\xd3B\xe4\x05A\x80\xf0Hf\xff\xc7\x08\'\xb4\x1b\xf1\x11\xcd\xcc--\xc6\xd7\xec{(\xd0\xd0\xac\xb0@;x\x838\xe3^@\xc9?\x04\xcf4Y2\xf3G\xda\xae\xee\xe1\xd6\x84\xb2\x80\xd1|\t\xfd9\xa0\xb0\xc1f\x12\x08\xae\x16\xe9\xf9\x96\xdfA\xdbT\xfe\xbc&\xb8<?\xfa\x13\xeb\x10\xdc`Kf\xd5\xd1\xb3R\xaa-p\xce\x94\x7f\xc8\xd2$\'\xae\x14P:@\x16\x92\x8f##\xdbY\xfcQc\'\\\x07+j\xf43\x15\xc1J\x8br\x0c\xc0At\xb3K\x1e,\x8d\x0eXn\x1a=J\xe4\x0b\xe0\x95\t\xb97\x8b\xbb\xfdU\x89J\x95\xe0\x9b\xe9G\x0ce\'\xd4\x15\x08\xc5\x10\xee\x8c=\xcdb\'7\xefN\xf2"\xbfu\x0f.\xa3\xff\xa3\xdd\xcd\x96\xe4\xa4\xc06Zdz\xc4\x1e?\xb5=\xab\x03\xf6\xa7m*\xab8G\x80\xa1L\xb6\xa5\x10\x9b\x13\x07c\x04\xc7\x04g\x871\xb2?\x91\x90\x89\xabuFj\x91\xff\x1c\x84\x9d\xa7.\xe1\xc4f\x83\x10)\xf2\xfb\xab \x1a\xbf\x8aT\x08\x94\xd1?\x06\x17\xeb\x7f!\x90sf\xe5\xc6\xab\x7f;\x98\xc0\x1b\x15\x87;T@\xa1iI\xeew\xadSS5\x0e\x17\x83\xb7\xb6\x1f\xe8\xb7\x8b\\\xbe\xa8N_\xc7R\xa0\xbfD\x80)\xef\xa5\xb1\xbf\x98/p\n\xee\x99HBs\xb0\r\x9a\x911\xd8\x80d\xed\xfa\xcb\x0c8\xf3\xd7\\\'\xef\xaa\x89\xa64\x8a\x95\x80$:\xd6=8/\xb4\xfc\xee\x16\x0f\x8fH\x0b\xfex\xff\xad@_\x05\xc4\x89:\xfcs\xff\x96/\xb5^ \xef\xa0\xc3#\xd0\xf45A+\xc3dF3\xe8\xb0\xfb\x9e\xbdg\xd2hd\xc30\xf9\xc0\xe9^X\xacp\xf5\xbc\xdbo|&\xb4l\x96W\xb4fw\xdcb\xf3\xe1\xb9\x88iV\x97\xa1\x03\xee\xb7\x88>u\xea\xbb\x85\xe8!5\xcd\x10\xd7\xfc\xb2\xb6\x9b\nfEB\xd4\xc3$\xfa\\\xf9RH\x0b\x7f\x97\x9c\x0e\xe6\xa6\xdd\x9e\xe0\xf1\xda\xd4\xf9\xa5aJ\xa0\xdfw \xa5\x81R\x9e\x81\xf3\x1c)6\xd8\xe6t\xf9P\xd0\xfe\x1d\xc4E!\xb8\x81\x0ev\x01\xdas\xa8\xa3\x1a\x19GJ\r\xaf}\xbdl\xb5\x8dD\xe1\x92vXTF<*\x9d\x8d7\xd1\xfb\xe6\x82\xb3\xa9m?\x90\xcb\x1a\xbc\x1fA\xa3w\\\xee\xa5\x1b\xfa&\x92`\xbaN#w,\xf7\x06;\xf5\x89\xc3.\tA\xe1w>\x0c\x12\x8bB,\x10\xdc\xb8\x14\x9c\xca\xc8\xe4\xcf\xc4\xf1\x18\xa4\xeehy0\xda\x01\xb4\x1fI\xb4\xdaz\xbb\x9f\xbby\xbc\xdaQ.Q\x1e"@\x8f\xb4V\xf6\xf7\xc9\xfe\x06\x9c\x19fyh9K\xe8\x80=+ \xf9\x93\x06\x9d\x03\xe2\xa3Kn:TF\x08\xfb}\x1f\x85\x85\xc2;J\xac\xe7\x9e\x8f\xb6\x04\x01\xb8:\x8c\xf5\xde\xf6\xac\xa9&\x0f\xa82\x024[\xb4\x95u\x81\x90$]\xcf\xdd\x86BgB\x82v\xfe\xc3x\x1c>\x9f\xa2\xbd\xe7/cp6\xeb\'\xa3\xbc\xd0g\xda\x08\x82\x9b\xe4\x01\xef_/1,~\xc4{\xe2F\x1c\xa8\xb2\xf1\xf7w\xea\xc9\x17\x95e\xdfQ3q\xa8ld\x0f0\x87\xdc\x1a\x95\xe9Y\xda\xc5\xe6X\x84\xfcj\xee90\x83\n\xecHn@\xeb\x00\x91\xf5h\xe7`$,\xa7\xc8\x14\xdb<\x10\xce\xc9\xc7\xd8\xf5\xc6\x94\x7fwc\xd0A}\xac\xf5\xb1g{@\xf3\xfe,\x0c\x1c\xeb:\x1d&\x99}\x96\x98U%\x04,\x95\xcc\xa9\xf9\xd8\xb6\xcd\x9fj\xc8\xec\x85\x88}\x0c\x99@g\xf0\x81~\x84\xdc\x1a\x12\xe7h\xf3\x11L\xbe\xbd\x9c\xa5p8\xcf*\xc8\xdf~\xfam\x99{\xc1\\*\xbco\xc4A\xfa\xa1\x1a#\xc4\xffT%k\x19f&V\xc8\x84,Q\xfe\xf8\x1bW\xfbq1\xc4w\x03!\xb5.\x9f\x94R\x1f\xf2gOj\xdf\xeb\x1f\\;A\x84\x9c\xbb\xd5\xff\x12P+\x861`\x88\x04F\'\x9a#a\xb30\xbcbl\x05i\xab\t<|~\x08\xc5\xae\x0f\x07G\xe4\xdaQd\x07 om\x9757=\xad\xc0\xe74\x8ei\x08\xbd\x17\x82}\xff\xcf\x98\xa8@k\x03\x80`\x838}\xe0XC\xba\x81J\xe8n\x14\xff\xbc\x92\x1c\xf0\xea\x8c\xed\x97\xa6\x06\x93\xa7\x1f7G\xe8\xce\xdd\x8e\x0b\x81Y]C\xaaJ\xd5\xf85\x0c\xf1\xbeM\x01C\xcc\x9a\xc3%\xe3\x1cW\xf4(\xd0\xa3+H\x17\xf6hz\xf2@\xd2\x06\xee\xdb2\xe4)s\x9b\xd1\x00\xb4\xba\xd6z\xbd\x0c\x8dA%8$\xc7\xfe\x00^\xa4\xc4gmZJ\r\xc6\xd1\x1b\xf6\x9b\x17\xb9\xc1\xddb\xa8\x97\xa76\xec\x8c;\x854\xe2"\xa7\x14\xf4\xf8\x87=W\xc8 \x93?5%:\xb7k\xdd]@5\xb7\xbb\xa8\xc5{FWm9\xd6\xf9\xabpY\x9cX\xcc\xc7i\xb8\x98\xe5\x97d\xc2PCA\xd1\x0f\x97\xa9\xc4\xf8\xda\xbe\x8cq\xf1\xcc\x91\xeb\xdeO\x94oC\x96\xe8C\x02\x16\xc6\xe9"\xbdy\xac3\xb6\x9a\xbfR\xf9[`\x02\xdc|\x81\xddl\xc2\xfc\x04(\xaaW=\xf2\xa1\x1b\xea\x8a\xd2\xb7\x00\x14\x8f\xcd\xc8\x16$\x03\n\x9e\xaf2\x9d\xa0\x8e\xac\x19\xb0\xf4\xc06}\x95{\x1flj\xcc\x80\t\xd6\xe6\x05E\xcf\x03\x14,\xa1\xe5\xcd\x05\xf6\x1c\x9fJ\xdc \x86X\x9f\xa2>\x88\xad\xb2);\xec"{XR\x9ea\x8cq\xe2\xb5`\x9e\xca\xces"\xfa\xab\x02\xc2q)I\xd6\xee4\xfb\xdc}\xc1"\xceO\xfeGm\xecH7\xcd\xd2\xe32\xde6\x95m=\xaap\x9f\x97w\xd4\xd7\x95vV\x96\xc0\x93\x8drgMKD\xc7J\xc3l\xbe\x87\xe6\xd3N\xc1\xe6Ks\x88]\x9f\x9f\xf9A\xde\xec B\x80\xcbj\n\xd3\xf6\x17\xeb\x89\xb3^>j\xdf\x0e\t\x1a\x9d\xfd@\xa2\x99\x02\xf0\x0b\xd0H\xa0\x8a\x7f>$\xea\xdf\xbd\xa4\xc54]\xf8\xb45\x17\x1e\xe0Rdn\xf5]%+\xd3&\x11\x97\xa8n\xfb\x9c<\xd8)Kh7\x7f\x0b\xb7\xa4V\xc7\x84\x11\nu\xfb\xf7\x02\x1d``\x91\xc2\xc4\xb7\xcb\x05\x8aL/\xa0y\xe1\xf2k\x0c \x08.\xd4\xbf\x9bR\xc0\xf2\xf2\x805\xdb\x9a\x93\xe9\x87\xea%\x9a2nw\xad\xbaE\x97\xffbN\xf8\xc7\xee\xf8u\x8d\xdb\xb5\x00:\x06J\xdb\xda\x94Ez2\x00\x8bf\x05\x90\xa9\x0f\x89\xa3\x1a\x18>\nj\x87\xf8\xa9Z\x17dS\xdc/@r\x10\xfd\xae\x00\xaeL\xa7\xbd\xa7~ld\x18\xa5\xc2*\xe4\xe9\x10U\xad\x0b\xd15|\x90\xbcs\x16JI\xd12\x8f!\x02\xfe{H]qN\x80\xca[\x13\xc7_>\x93\xed\x1cUx\xad\xcc?J]M$v\xcd-\rj\x0eyw\xd0\xd8\x9a)\x8cp\x13\x90x\t\xa1\x18,i\xe0\x87\xe2F]h\xa0\x10\xfcae\x85=\x02d\xd1\xe7\\/t\x90\xdc\xce\x12\x8f\x17\xafA\xe8\xd0\xe4go\xa1<\rk[R\xf7\xe1\xa8\xcb\xc59\x7f\n\x03f\xdcDr\xa1(w\x05x\x98\x06\xe1eHD\'\xe7\xd2b\x14\xd2\xa0\x0cs\x1f\x92\x04\x1e\xaf\xb1\xc5\xa8\x18\xc5\xcb\xfbSY~\x82v/\xd3\xfc\xb3\xec\x0f\xc3*W\xfb.\xe8\xf9$L\x8b\xeb\xd3Y\xa6\xa5\xef\xc9u\xcd\x8e\xafR\x06,\xb8\x0b\n\xfe\x1e<\xcaJ\xf3!\xc1Y\x82\xed:\x03\xb2Es^\xbb\xb0D\xdd\xe2\x0b\x8d\xd6\xce\x89Q\xa8K\xbc\x18\x9f\xcc1i\x89w]\xb0.\x0br\'\xd9\xf4\x06\x999p\xe0\xf9\x10\xa7\xa1\xbbN\x12\xf7\xb9\xdb*O*[\xfe\x0f\xa3\x9f.E\xe2\xa4\xd0\xe8\x11\x1d\x1d\xcd_\'\xfc\x91\xd5\x1b8\x94\'?>\xd9iv$p2\xbd8\xbb\xc46\xa2\x1c\x10wz\x8e\xc1\xbanp.3\xad0;\xc1\t\x99Pea\xff\x91K\xd8\xb8Pw\xce\x90o\xf1\xb9\x7f9\x1d\xfc\xd2\xfd\xe1\x04S\x8e\x93\xad@\xb9n\xc6zp\xee\x81\xe3\xfa\xe4\xcd\xb7\'\xf2\x9eH%\xf8\xd3\xcb\x01w\x1f\xf7\xbf@f]\x06/\x10\xdfpx%\xc9J\x0e=s\x87T*\x97\xe3\xa7\xf1\xb3\xfb\x1b\xb0|\x91f\xba\xce0\xbd[\xd3s\xaf\xa5 pJ\xe5)\xa9\t\x8f\xb4\x8agVS\xc9\xae\xf3YT\x07t\x07\xfd\xbc\xa6\xb2X\x04\x96\xa2\xce\x1el\xc6\xf2m\xfc0i\x8c\'\xd0m\xb5\x90,\xa7\x9bzMW\xd3\xf7\xf1\xach\x1b\na\xf8q\x15>\xc2^\xdd\xd0\x8f\xab\x07\xe4\x8e\x8c\xad\xbd\x97\\\x99Z\xd2\xd2\x8e\x82`f\xe5?}B\x8d\xf0}\xda\x1c\xc3\xe9|\xe6`\xf8\xb6WW\x9e\xed\x90-\x81\x1b\xdf\xc2N` \xe2\xb7\xe0\xed\x01\xeb\xaf5\x1f\x7f{\xe9n\x19\x98%2\x86\xc6\',=g\x1e%\x0b\x1do\xa7\xdf\xf2e\'\xc1P\x1d\xc9\xc8\x91\xf7n\x939\x98i1\x96\xe3\x05\xf6?\xbeH(\xa5\xe6\xcd\xd3\x99]C\xf1B\xf5\xc8\x91\xa5\x19\xb8T\x12\xc6C:e\xe4\x059\xe7=\xc5\r\x86\x9a\x0cW\xa2\x1fxB\xda$\xdbQ\x11y\xf8\xc2:\xcf\xdc]\x14hln\xcbs3\xca\xa5\x9e\xae\xf5\xa8\xcc\x85A\x80I\xb6\xedd\xdb:w\x9f\xe9\x9d\xbe\x9e\x9b\xd0M\xa3\x1f\xefO]c\xcb\xf7\xca\xaf\x1f\x08Z[\xed\xd2GX\xa5\xbe\x8d\xd7\xb2S\xf0\xa2\x9d\xa3\x10\xd9\xbc\xa3\xcb\n\xf8\'Sl\x85r\xac\xcf\x1f\r\xa9\x0b\x0b\xe8\x9aN\xbf\x0cc#L\xafm\xe6\x18\xc5\x17\xf3\x91E\xaa\xb9\xd1\xc1\xa0sS\x9fS\xd4\xd6\xfb0\x96h\xd4\x1c\xd2\x13g\x93\xdf\x85\xf8-JH\xc1-\xcf\xf0\xdf\xc6\xe4\x87\xf2\xcb\xafZ\x8d\xbe\x99\x93y\x08t\xec\x8f\xb5\xbf\xee\xed\xec\xb7\x03\xbfIq=\xfdw\x94!<\xc8\x02\x02\x92\x0e;\x94\xf4\xe0\xcb\x9e\x069\xf3\x1b: 4m\xe8\xd1j\xc5u\xbb\x86\x85}\x0c@\xeee-\xf9\xb4\x99\xcb)\x92\xdb"\xdb\xa5\xec\x00\xb3\x92\xc3\x91)Wh\r\x8eb\xedMY=m\xb8jR\x148\x01\xc0\x8b{"\x04\x9f1\xf6\x07?\x803~\xac\xdd\xb9\x88\x04@s\xcbx\x03\xff\xcd3\xd9"\xf9\xe5\xfa\xacq\xe2_\x05\xf6/R\x85\xaf\x04X5_\xfcl\xa6\x07\xbd\xcf\xdf\xbd\x8e\xbadh\x83XRb\xc6\x03./u\x9c\xee\xb7\x83\x82\xdd\xeb\xbf\xeb \x1d\xbf\x9bS\x86@\xcb\xdcj=7\xde\x84\x91\x06(\x08E\x80k\x9b\xbe\xbf\xbd\x1d\xc94\xcdPGU\xd3\xd3_\x1f\xa0\xf5y\xf9\xd8Y\xa8\xd477}\xd1\x06\xe0r\xbf\x19q`\x87Xw\x07\xb9\x11B\x80]\xcbkh\x8b\x03\xd1\x0elq1\xb8\xae\xf4\xf4\x1a\x9f\x07\xfa^\x85\x08\r]\x03W\xe6\x1d\xba};G\xd1\xe0\xc3w\xe0\xe6\x03\xc9%)\xc5B\x19\xc8\xb9\x03\xf0F\x9e\xb1_\xdai\xcdh\x81\t\xd93\x8d\x11\x1c\xe2b:\x83o?\xe30P<\xcd\xe9\xb1\x17<\xf7\xf6\x99\xef\xfd\xf5\xe4\xfa\x08\x02v\',\\\xb3\xe9\x9f \x00\xf0r\xc9\xb6\xd4\xfbM\xd3&\xdf\x00Ni\x8b_Wd\xcb(\xef\xd3~\x15\x12\xed[\x85\xa8\xb2\x110N\xc4\x98C%#9!mE\xd2y\xef\xc5Q\xe2\x1b\xf7\xf1\xbc\xe9/\x15\xb3K\xc3\x9e\x04+\xa0\xba\xdc\xda\x1c2\x08\x04\xac\xfe\xd6jO+l1n\x1aF\x1c\xea\xcb\xe1L\x8a\xa4\xe3j\xfe\xaeQ*\x97Q3\xa3\xf7\xa7\x85O\xb1\xdb\x8c\xa6n\x91G\xb30\xec\xe8\xd3 \xaeF\x93\xfe\x17\xd8l<\x1c\xf9\x8e;I\x0b\xa4\xe1j\x04\xfe\x8c\xc4\xa1\x9c\x181\xb2SI&\xc9q|0\xab\xe9\x95A\xdf\x18\x04\xc0MbX\xa9\xde\x84\x89\x11\x123\x9bx\xd6\x1e\xbc\x03\xe0\xb8?\xde\xfa+\xbc\r\xba\xa5\xb6\x1e<}\xf4\xb1(\xe9Z\x93\xa3\xcc\x1e\x1f9\xb6*\x9c,r\xbd\xd7/\x0eJ\x19fo\x8f\xb1\xe3\x94\xb3\xec\x8c\xe6\xc2\xfdiG\x0b\xf3\x18 T\xe3^\x9f\xceW\x116\xd6\xff\x8e*\xa2\x9e\xccL\xa3jdq\x1e\x95Y\xd2\x9a\x97Mc\xb9m\xd8y\xca.\x10\xadc\xf2\xb5\xc57\xcd\x0c\x83\xba\xa8\x1a7|\x90Z\x02\xe4\xc3\xe4\xadNX\xc3\xd6\xed7\xa5\xba\xe3\x88\x14\x9b"\xe3\\hcs\xa2h\xc61S\x00\x14\x1dS\xfaS\xa1QZ\xdc*\x16`^]\xcdYb\x07X5\xfe\xfaU\xfc&J\xb5\x1c\xc0\xe8\xb7\x9d\t\xa2\x98\x8b\xe3\xcd\xbc`f\xb8I\x9c\x19\x02\x9dC\xb7WI\xd3\n\xfc\x07\xbc\xb1/\xd9\xa91\xc5E5\xe8\xc0O\rb\x0fx\x87\xb4\xad\xc1\x11\x17\x95\x88\x96\x1c\x9d\xd0\x16 \rG0\n\xff\xb6\xdc\xae\xe8e[9F\x19\xa1_\xa0\x05s[\xb3\x9d\x00\x18{$\x8c?\xae\xea\xd3K?D\xaa\x86\xa9<\xc0X\xc0\xc4\xae\x90m\xe0\x12\xad\x1e\xbcQ\x9b\xe3\xdb\xc5%i\xd2\x0ejg\xfdR\x9d\xc62\xd5[\xc3\xe4\xdf]\xd2J\x08=\x00u\x84W\xb7\x8c\x12\x15\x9d\\\xac\xe3\x83\xd8\x01\xe6\xc1\xf4\xb1(\xb7\t\x1b\xa5\xab%\xbc\x17Z\x1cA\xba\xb1\x0f\x0f)\x98?\x89\x8c\xcc\xd7X\xf9\x8cq\xb4\x0bn\xd5\xe6\xdcb\x04\x06;j4\xe8n\x9b`\xc6\x01\xcaF<\x8e\xad{\xf5)-\xc0\x91?Y\xcf\x07#\xfb\xa8\xb41\xe7tj\xf8\xf7\x97\xac\xcaR<\x1bh\xf8\x81M\x0c\xa6C\x11b\x17\xdec\xb9Y\xf6d\x80\xb5\x19~\xc9\xd0\xabq\xf4E\x80\xca\xa7\xce\xaa\x1f\x16\xc9\x8b\xc0\xd6p\xd8 \xd4\x80a\x97V\xef{i-\x17\xc7\xe2Fx\xe3\xfc\xf5C\xb1\xf6\xa8\xa4\xe5r\x003`W\x96\xaaQU\x82Le\xa6\x90\x05\xda\xa8\xcaf!52(\x1c\xb4V\x7fr\xc9\x0e|\xdf4EV\xc8\xf2rl\x8e1\x15\xe9\xc0\x85\x96\xdc:\xf7\xd6\xde\x88\x11\x82\xfcay\xb7\x95^\x82q\xa0`\xfe\x8fS\x08D]@n{\x19t\xa59\x9a\x8cO\xa4\reR\x8d.\xce\x93\x05\x9a~3\xe0\x14}>:\xb0\x7f\xf0Q\x17\x1ej\xf8<\xe4\x1e\xe2Mhf\x01+\xa3$~E\xc0\x8cp2\x7f\x92v\xf4\n\xf1\x1a\xb5\x90\x14+jN\xb7\x91x{\x8bz\x86\xe6;\x1et\xf0\r\x1e\x9b\x1b\xbd\xd7\xbd\xae\x036\xda\xfa\x01\xcb_.\xd9Z\xcf\x01\xdbF\x9dv\x8a\xbc\x0c\x81IW\x8enY\xff\x03C\xb6\x8d#\xdbr\xe44%\x9e\x05\xea\xfc\xe7\x1ajA\x81\xf1\xf1V\xd1o\xfa\x94\xbb*b\xee\x0b\xcc\xfc2\xc1\x10\xb2{6\xb0\xae\xb9A\xa9\x88\xb1A\xa7+J\xb2\xe6h1\'`H\xbeh\xb4w\xfbE\xb4\xcd\x1ah\xa3f\xe0\t\xdd\x0c\xae|@\x80\n\xbdT\xf4\x04\xf5\x0bn\xd8d\xb6\x03H\xa6!^U,\xbd\x8fP\x9b|u\x16\xf06\x96\x80\xb8\xc8\xae/\\\x196\x80Sh\xa4\x18M\r\xd0\xb1\xb9\xd4)+\xce\xc2QG\xfb7k5\xd2\xc7k\x93P+\xbf\x9b\x8bdRv\xd3\xd7f\t?\xc5\x11\xd9\xb1\x82_\xcb.\xb0f\xf9\x1f\x12\x0c\x043\x97:\xf9I;\x05K\x17(\xb7\x0c\x19U:5Pi\xd4\xf3C\xab\xaeL\xdf\x89\xcf}v\x1d\x97\x93=~A-\xa4\xf7\x92\x86\x95\xbf\xf7T\x17\xe1G)Z3r\xc8.\xdeCf\xf9Z!\xdd\xef\t\xec\xa0?2j\xe1\x07\xd6\xd5*\x18\xe9\x8e\xb2\xb9\xca}\xd5\x10,4\x88,\x97\xb69\x91\xa9XF"[\xd6bc\xfb\xcf\x86\x85\xf1)\xdb\x13\r\xa2\x01/\x1a\xd3\xdd\xa9\xd2\xb2\xf7\xff\x9dc\x9c\xe1\xe5v\r\xcdV"3\xf7\x88B\xf3\x1b\xd70\xbb\x92D/\x98\x1e|By\xc2\x9c\x80\x93hn@\xb9\x1fh\x87\xf2\xd2\xd1\xb8\xf21|>\xc3\xdbU\xa3\x86\x8d\x10X\xf59\xc6YOB]\xd8T\xec\x83W\xf3\xcdB\xcf\x84:\'Z\xa5\x0f\xc1\xa7 \xd9[P\xec\xd4\x08\xbae\x98\x84\x97P\x81\x7f\x1bgg\x93]?\xe6\\\xb8\xa3\xdd\xe11\x8dpCz\xec\xbe\x18\x91\xc7iO`c\x80a\xc7Z<\xb8\x19\x95\xbf\x0e\xf8U\x9f\x8a\xedi\x0b\x85H\xcb4\x8aU\xdd\x9cJ\xd2\x93j<C\xb4\xc6\x02 \xa3\xda\xb1N\xd9aF)\x85\r\xb8 \x18\x00\xc8\x17\x0bC\x9e\xbaoUq\xb3\xef7\xcc\xc0 \xba\xad"\xf0\xc2\x95\xd1\xe9b\x06\'\x03X\x11]\xfc\x0ck\xa7\xf3\x9f5\x8e"=\xa2\xc5\xa4\xf2\xac}\xf0ox?\x89\x17\xd9\x8fmlAF\xedG\xf8w\xf3\xfdRy\x162\x922})\x872\xb4\xbcp\xb8";\xf9s\x14Q\x06\xd1\xe0\xdb\x803]\x89\xe5\x9b\xc1\x03\xd3\xd4\xc4{G\xc1\xa5c}{$\x00\xd4\xb1o\x0c\xce\xc9=&\x8aA9 <f\x11-\xa0\xc6\xae\xc4W"7\x10\xbd8\x12\x01\xc0\xc4\xe1\xd3\x8b\xa5I;E\xbe\x1c\x13\x0f[\xd9\xf9\xf3U28\xc1\xa0G\to\x8e\\\x9b+tu\x92\xce%`Ff.\x13\x11\xb2\xb2\xf7$\xda\xaf@u\xd9\xdd\x86\xb0bnW\xab\xbb2/\xf18\xe1\x86y\x07kf\x10\x02\xe8H\xfe\xaf\x1e\xf1\x18Cz\xd9V\xee\xb9\xffGk\xed\xba\xd5k\x1blb\xf5\x7fBv\x120\x0fT\xc9\x1d\x03\xd3}zKO\xc8\x98\xe7c\xf5"\xc8T\xd9\x1bbO\x0f\x9eyCn\xec\xf4|\x91\xf91\xfaG\xa6\\\xbb\xdaf\xd9@\x9a\xc2\xdaf\x9b\x98\'\xdc\xd5\xc3\xf9x"]\x8c\x00\xf8\x9b\xb9\xae6\xe4\t\x12\xd7-\x1d\xa2\xd4\xb3\xf3,Y\x89\xac\xdf\x92\xf2\n\xda\x85\xe1\x9e\xd1\x9cG\x15\xd2\xb4\x1ey\xca\xe0\xa6\xe1\xf9\x9f!8\xca<\x07\xb2_3j\x8ei\xc4@$`\xf6\xdel,\xda\xfb~\xd4\xcb\x1e/\x07V\xe3\xfe\\f\xb7_a\xfaE\x83\xa3p\xe9\xe8q\xcei\x03\xc2\xb8\n\xb4x\xba\x17\x93{\xd9\xaf\x025\xfb\xd0\xc8\x13\xac\xa1\xb0\xb5Jt\xccG\xd8=\xd6\x84\x16L\xcc\xe4\xb2M69u\x8a\x85\xb7\xba\xda\xcf\xd8uE\xb1d-\xb9\xab\xaa\xd0L\x0c\xbf\x07j\x9a\xef\xa7\xaa\x18\'\xabV[\t~r\x0b\xff\xb9\xed\x11\xa8\xc7\x80\xff9\xf4\xdeH\x8f#\xf04\xdd\x15\x1f`\xe0\xb5\x9d@\x0f\xaa\x97W\xc7;L6\xe0\xb7\x93-\xe13FA\xd5\xddh\x9d\x08\x08\xb7\xb8+\xbc;\x02\xad`np\xadDq13d<\xb8\xf2\xe6\x90@\xa0+a$Q\xc3\xd0\x94/\x81\xc8\xc0\x95\xec\\\x88\x08C\x1b\xd9q\x06Sp\x87o\xf8\x96\x83H\x84\xac\x16\x8a\xec\xb1\xb0Q\xef^\xc1\xc9\x84\xd3\xfb\x15\xab\x9d\xf1\xfa\xd6:\x01\x89\x8d\xe6\x9fm\xd1\x94\xb2\x9f\xee\xf1L\xb6\x14b\xd3rMG#Ue\x965\xa9\x1b\xa0\xb2\x12\x02D\xae\x98IE\xabCo\xc6\xaf\xe5x\x0c\xe9\x81PT\x98%\xab\xe7D\x96\xd1\xecE\xcc\xcf\xba\x80\xad\x0b\xc0X\xea*\xb5\x87\x7f\xf7\x9e\xd5\xa2\x07tO\xb9\xf5\xe4\xaeR*\x07x>2\x0c\xcf\\I\x8d\x86\x17=\xfd\xabT\xa8H"\xa0\x8e\x8b\x136\x8b,<\x10\xa8\xa5k\xce\xe6\n\xd2\x19,\x19\x0f\xdb\x86\xb2\x11\xa9\xb6\x86U\x07\x18\xcb\xf3\x83\x8c}\x96q\x95\xc2 \xa0\xe3Z\x19\xe0\xa4\xd7\xa7(p\xb37\xb1\xc0\x19v\xa07o6\xbc\x9d\xb2\xc2u\xbe\xa7\xb8\x12JKO\xe1\x10\xf0\\aU\xfeG\xce\x0e\x0b\x1f\x1bBS\x0f\xd2\\OYN>\xa2T\x04d\xde\x1e+f \xbd\x91\x96;\xa2\x18\xa0\xea&\xa5!\xae\xa2\r\xb2\xb6\xd7E&`\xe2\r\xc6\x84\x85D\xb1\x8d\xa5PlX\xc6\xbb$M"_p7\xb5\xb9/\x8a\x95\x88O\xb1\xdbF\xee\xbcPys/\xe6S\x9d\xc4,\xd8\xc8\x8f\xbc\xacA\x84\x94$\xfb\x1dcv\xe1\xbai\xad5vg>\xb1\xfcE\xa5y\xb7\xd0\x8eQ5z\x05\xab\xe7\x94y\x11\xc8\x0b<iGM+\xa8W\x1e1v\xb0\x0f\xa9\x16\x17C\n\x94\xb6\xc5n\xbd\xf1\x19\xcf*\xfb+#6\x12@\xf8C6,\x90?\x8aYI:n)\xb43q~\xf8r\'\x93\x14\xdc\x0bA\xb4\x8e\xa5\xae\xc1|\x8c\xfbB([\xc3\x9ef\xdaQ\x8d\xce\x0b\n\xb3}K\x12\xe0\xf3\xf23f\xc6-\x0bO.\x9b\xdf<\xdd\xf5+|\xc2\x9a\xba\xb9a\xd2n\xf1_\x08\xed\xfad\xba\xbf7\xdd\x95\xb0\x89`\x064\x02\xf9\xdd\xe9\xb3L-\xd7\xa0]\x0c\xd3\x11\xe2\xe2\x14\xf9>\x8bZ"\xcc\xf6\x00\x14\xf0\x1f\xef\x94\x96\x9d\xe1}\xb9J\xe4\'\xd6\x8a\x0e!\x1fB\r\xda&\xc42\xb9\xdb\x12kl\x85\x1a\xad\xdd\t\x0c\x1c\xd7*6\xe3\xcf\xe4\xacUU\xec\xff\xef\x1a0\xf5\xa0\x95\xf1M6\x16\xbd\xdb\xd8\xc2\xe8"s\xb0j\xae5\x121%\xb7\xaf\xd3\x9f\xe1\x01\xce5\xb4\x85\xf1\xae\xd9ND\'\x96EE\xf6\xc4\xc12CL\xde\xad\xdf \xf9\xf5G\xea\xb9\xc3\x99\x16\xc8Q\xf3\xb1\xf8\xc4\xdc\xb4\xf7\xc1\x03\xbc\xe4$\xf3=\xbd\x9b\xed\xbdR>\xb8a\xb5\xfc\xaf\xa4(jv\xfc\xad\x9f\xaaFI2\xa0\xf6V\x91\xe6f\x19\xc8\x11a|\x9bK\xa1\xc8W\xc1\xcf\x13th\x8b\xd8\xe4\x03\xdd\xf9\xbe\\\xa4/\x1d\x93\xa0\xcf\x88:\xfd\xf0H\x19/\x05\x9e\xccM\xda~$\xa3\xe0\xd3A.a\xad7\x12\xba6c\x00Q\xbf\x11^\x8a\xe8D\x96\xf6q\x19:\x03\x1b\xb4\x988_}\x9c\x1a\xf9\x9f\xbapR\x88\xb5\xc5\x9ai\x8c\xa0\xe4:\x8ds\x7f\x10\x11\xdc4{\x05\x95\xe0\xc5\'\x10n\x83\xfc\x90m\x0c\xd5\xde\xf7q\xfc\xd1 V\xf8y.\xed\x8a_\xfa9\x8e\xe0ReV\xd5o\xdd2\xd6!>f.\xd2nsU\x98\xab\xcb\xc2\xa4\xa1<\xcb\xa1 \x19\xb3\x19\x1b3\x05HH\xba\x8e\xe0\xda\xdc\xf6Q\xe80\x8c8n\xd5X\xbeZ7\xb4a-\xa9\x89\xb3T\xa5\xaf\x16M\xc9D\xbdO]\x96\x16\x96|c\xaa\xb2\xf0\xba:M\xc9\xc0\xb2\x06\x01)\xb6\xdd\xc5\xe52F\xe8;@C\xea\x96^\x88\xa3?;\x0eo}\x80\x8b\xed\x1a\x91\xd2\x11\xe3n\xda>\xf9*\x8a\xa8\xf9\x11+\x15,\xd6\tSU:\xf27\x8a\t\xc6;\xed\x0e\xe4I.\xce4\x81\xf8l6\xdbW\xf3\xa3,^\xfds\xcd{\xd5\x9a\x0f\x9dT7D\x1a\xf5\xb6\x8bTU\xd5\r\xe0\x9a\x89)\xd7]t\xdc\xab3\xb6\xa2\x10y\xee9\xd8ph\xa0\x15\x9c\xe9\x81\x8b:\xe6\xb3\x18\x9c<\xbf\xe0\xa9\x00\x89\x8d\xd6\x0b\x1d\x02\xbd\xb8\xddW\xf2\xcd\xd2\x9f\x9e\xd5\xb4\xc0\x8a\x98\x18\x94\xda%\xecr\x0e\xd7\xdb\xfe\x10\xca\xb2\x1a\x130e\x15T\xdbb\xbf\xa3\n\x8dv\xdb\x82\xa3\xc1\x8b\xe5\xa1\x846\xa7q\x9e\x8f4\xaa\x87\xa7\x92\xe7\xe6w`\'%>\xca?\xce\x05\x15\x97\xc9\xf4G\xdf^\x8dF\xbe\xdc4[\x01t;\xbeS\xb7\xdb\xb2\xf53\xfb\x83F4\x95\xf8\x8c\x07\x83\x89\xfd\x13\x05as\x88p\x05\x88\xf5\xdanK\x04\xa1>\xbe}\xf8\x08{\xd4\xc9\xd45\xeaS\x00\x9ca\xfazA>\x15\xec\xb6p)\xe3\x1c\x80\xec\x9c2\xf1\x91\x92~\x9am\x11r\x8f\xcaB\x88\xbcWx\x8a\x8a(;\xb4%w\xf6\xec\xb4\xfc\xa6\xe3~\xbf{J\xad \xfb\x80I\x90H\xd5w\x99\xd1\xe1\x8d\x80\xbe\xd4+\xfcO\xddA\x13\x8bs\xae\x94\xa0HR\xa5\x18Z;\xfbX\xf8X{3\x9bE\xe1\r\xe6s\x05{~\x90O\xa67\x05\xfd\x1e\x18D\xeb\xa8?\x97xm\t\xcb\x03\x9c\xf7\xe2\x02b\xd2X\x02\xf4\x06\xc3\x91\\\x95\x8e-\xeb]\xc8\xbf\xc8\x84\xecZ\x0b\\\xee|\xc5\xf6\x89\xce\x00\xf0\xff\xcf8\xc8E\xd0^\xcd\xd5\x84\x1b81b\x92\xb9\xf9\x00\x19\xf4\x1a\xdc\xc1\xe5\xbc\xe5A\x01\x81\nPB\x81eu\xe0dqG\xe6\xfaU\xee\xfe\x9dC\xa3\xd2\xc4g_\xf7\x96qm\\\x05\x18\x1fIy4\x10\xac\xb1\x8a\xf0\x02\x94\xe7B`&Y\x91\x99\x0c%\x95\xa6\xb0\x1d\xa6\xf1E\n\x7f\xc0i\x0f\xba\x9f\n\xd5#\x9e\x83!\xd0\x95\xea\x01\xd4\xd2\xb2\xa3./\xd9\xef\x91\xa6%\x9eJ\xc1\r\xe0\xac\xabB\xa1\xf8&\xb9\xf4W\xa6I\xffR^n\x0e|\xf8\x08a\xa6\x1d\x8f\x1c\xf7[\x9a\x8e\xc6\x17\x8d\xc4k<G\xeda\x8c\x08oV3\x0f\xdd{\x19e\x99\xd8bYOG\xca\xee}\xac5\xdd\xdea\xc5\x7f\xa3\xa8\x17\xa7\xf2#\xd7\xd6\x11W\xcf\xc6\x81\x0f\x84\xa7Q\x14\xfc\x99&\xa3[`a\xa8\xa1\xeb\x9c,\xf2\xff\xda\x83+\xfe\x08\x9c\x08\xdd\x8a\xc1\x85.\xeb\xc1h\x85C V$\xd4\x14\x9d\x0f\x7f\x8bg\x18/>y\xb7\xa6`\xd8\xc4\xa6S\x9b\xfd\xdd\x974\x1bg\x15\x9b\xed\x9ah\x99\x11\x97\xb9/HK\xc2\xa40@*j=\x08j\x0f\xbb\xa6\xc0\xdf\xb5d[o3\x7f\xcb\xe0\x0bh\x9f\xc9e>\x06\xc5\xfb\n\x95\xca\x9b\xdd#b\xd0q\x1f\x83OD]\x01\xa7p\xab\x12\x87!\xd5\xe3\x12f\xd5\x95\x8a\xd7\x93wB\x86b[c\xbe\x98\xf3\xb1\x0f\xb0W\x9dQ\xc2\n\xafU{;\xa6\x88t\x9dx"^\x82r\xd1\x10\xafV\x19\x8b\xc8\xfbv\x1b\x16T%\xb8h~X\x1f\x00\x8ey-\x8f\xdd\x0f\t\xff\xd1-d`E\xe3\xf6\xf5wO[ \x02Z2\xb6Gn\xde\xe9\xac\xe8\x0e\xcccN\xa5\x11\x05\x84\xca\xbd\x1ft\xb1]\xe5w\xb7\xee\x04\x99\xea=>\x92\x11v\x1f\xbe\x16\x06P\x96\xbfr\x11\x82\xdc\x13\xf8#\xde\xe7\xdd\x97\x03Ha`\x19\x02\x80\xfe\xfb\xac\xda\xf9d\x9dl\x8aF\x16Pw\xcey\xe6C<7\xbe\x8f>!T\x1aH-:\xa5g\x14\xbc>e\xe0\xa1u\x97\x10\x9ecGA\x12NT\xa5\xa6q\xb7\xf8\xcb\xbek\xda\xad\x0b%\x00\x0b\xb5\xf59\n[B\'\x9f\x01\xdc+\xa9\\\x8at\xae\x83Tn\x80\xea\x87@V\xcf\x8e\x8a\x84\x01\r\x82*\x0e\xa68\xaa\xa3\x18P\x0brI6\xcb\xe1F\x0e\xe3c\x8b\x9a6\xfe\xe1o\xf9\xe6\xe5\x16T\xbe\xear\xb5\x1f\xd4\x08}\x18\xfb\x01\xa3\x03\x93\x17?\xda0\x0f\x94$\x99\xa9\x06\x07\x14\x06K\xa2V\x14\xdd\x03\x85(\xd5%^\\\xf2Jv \xb2\x07%\x99\xc1\x05\xf4T\xff\x99\x02-\x80\xb3K\xe1\xd4\x97Kq_\xbd\xd7`\xea+X\xca\xff\x005\xd7\xd9\x87\x87,\xbd/>\x81\x05\xce\xb7\x1fG\x10b\x07U\xb8S:pW\x91\xf9\x0fs\x8f\xbc\xdawx\xb8S\xf8@\xd2\xb4\x16#{\xc3\x89\x97\xa1\xa3(\x0b\n\xd0~\xfe\xfc\xf0\xf8\x91_\xbc,n\x85\x1c\xbbH#\xe9Ch\x07\x91\x13C\xb8\xbf*g!#\x800q\xa1m\xd2\x88y\xc2\x041\xa4\xb5\xa2\x82#\xe4\xd2^\xc2h\\[\xfd<1X\xc3:(4\xab\x83\x8e\x91\xbe\xb3/\xa8\xf4\xf9\xcf\x05@\xb9\xd6|\x9cAT\xae%%\xd0\x18h\xf3j\xa8\xc7\xfa\xc8(\x0e8\xa6s\x01\x1e\x94\xed\xe8\xb8\xe3X\xfc\xc2 j\t\x18\xb8\xd6\xaa\xde=Z,\x1f\xa3\x1d\x0fcA`"\x87\xb0cl\xd9\x0e\x1c\xa1\xd4\xed\xeb\xb5\xe6\xd7\xf3\x13\x1e\x08@4\x9a=\x9b5\xc1uC\xab\x07\x83&_w\x85\x13::\x1a\x8d\xb1i\n\x90\xb4\x9f\x9a\xbcI\x14\xbd\x8d\xe3\\\x99`\x18P\x80\xd7\xe4\x121g\xb8\rGR=5\x01g\xc0$\x8cg1\x07?rtZ\x02\xa0a\xa0\xd7\xbf\xb0,\x97\xa5g\xee|\x9d\xba\xdd\x94\x9d\xd8\x1c\xba^\x9a\x9e\xd1\x19u\xda\xec\xde\x80X\x94c\xc6|(\xd67$\xf3$\x18\xbd\x15\xe8Hh/\xfc`\xb5\x06\x99\x1e\xbelg\x1e\x1b\x91\xc5\x97\x96\xfc\xd0v\xa6\x1f[\xfe\x81\xf6\xaaGR\xffq\xfe\xce\x95K\x1a\x182\xa3\npD\xb7\xc1\x04\xf23\xe6Ma\x13\xff\xf7\x91\xc4\x19Wa\x05\x94\xb7a+\x00\xd85V\xf6\x1f^\xbaz\x11r|K\x00u-\x11\x95\xc6\xdc\xa3\xd6D0\x18\xcfr\x16\xb2\xf9fH=\xc2+\x14\x0fuu\xfe\xd1\x07N\xe5\xe3\x91W\x1a\xc68\\s\xddn\xf6\xef\x1e\x98\xcaa-\xde\x07\x0f9:\xffcE8i\x8d\xa7Pp\xcd\x8e\xf2\xbcK_X\x16j\xbf\xe37SZ\xd9\xbc\x07 ]G\xc1\x16\x13\r\xab\xf8&\xcf\xe1\x85\xd6\xee\xd3s\xdae\xc7\n\xbc\x9eyf\x94\xa9\xe3\xd2\xb3\x1ee\xccv\xa2\xbf\x94X<w\x81\x0f\xc4\xbeO2!\xd7\x85\xf6<\x8c02{?\xd9%\xd7m\x117\x8d\x88\x04\xff\xbe\xf5C\x9bR3b\x01\x14\xd9Y*sGe\x85\x86\xea!\x87\xb7\xdb\x15\xae\x85\x0f\xf0\x9d\xc9\xcds\xed\xc9\x9f\xe9\xa5\r\x18\xba\xcf\xea\x89\xedF\xb9v&\x9eEB_\x8d\xac\xbc^\xb7\x98\x04\xa4@\x08\x81\x16\x03\xc5\xa3wO\x04\x14\xa4=D\x8d\xee%\x98H\x864/\x1a\x90|x\xed\xbe\xd0\xcb\xdd\xbd0J\x0b O\xc4\xec\x96\x1dh\x0c\xf1\xb3\x9c3G;\x0e\xd1(\xf0}\xce.\xc4E^\x96J~\x16@\x02\xe9-\xd6\x90\xeb>\xd4y\xc7\x17\xe8o`\xfd\x9b\xd4\xd2\x82]Y\x94\xfa<\xf4XW\xbf\xbb\xea\x8a(4\x9f\x86\xcd\x90\x91\xfc\xde)2(X\xac\xcf\x8b\xb35\x97G(\xeb_\xb3`\\\x9fY\x0b\x97Kj\xff\x8d\x03\xa1\x8d\xdc\xd9G\x1d\x1bD\x8d\x96\xd9t\xfd\xe4B*\x00\xd1\xf3\rc\xe5ada{\xf0\xa9/\x12+\x8a\xa1\xa1I\xe2\x05\x16\xa0\xf8_\x1e\xbc\xda\xba\xff\x9e\xb67\xa0D\xa1\x96?B\x8c\xe9\xad\x856v\xc7\x83\xb5\x87\xb96\\\x13\xb7)/\x8b\x19\x1d\xf6\xa0@\xd5*\x99\xd1\xa8\xc0\x06j\xc2J\x83|\x12\xe7\xda\xbb\xac\xd7V\x875\xd9\xe5#E\xdfd \x00\x08\xcc\xe3\x87\xcd\xb3\x17\xe4\xb1\xc3j\x8dS\xaa\x92&\xb9?CI\xc4\x95G\xa9pVwl\xee_\x12\xd5\x015\x87\xb1d\xe5\xac\xb0\x14\x9e\xc3\x96\xda\x8b\xc5\xe9!1\x87\xe0\xb8%\x97n\xa4X;\x80\xcf\x9f \xb8\x81\x0c\x8e\xb1DB\x80\xf3\x82\xffo\x8d\xb1\xe9\xd0t\x1b\x06\xdcC\xc7Qd\xafy\xdbaQVV+\xb12\x00\x1c\x93\xe6T\xf8\xdde\x17h;*\xb1\x8f\x83\xc9\xc9}\x82\x86\x80\x91\x0c\xd2p\xbf*\x8b\x08;\xdaC\x91+Q\x04\xe1\x83T\x11"\xde2\xc1\xea\xe3\xce\xcd\xe5O\xfb2\xd6\xc8\xbd\xe7\rC$\x05\xc84\xe0\xdfkay(:\xa2x8\x15z8\x98\xecf\xe9\xd1\x9d\xf7\x93\xa1\xa4g\'5\xf4k\x8c\xa55\x14i\x95\xa63\x08\xd79\x82\xe6Y\xcf\x1d\x8a\xfe\x9f\xa1\xca\x91\xa3\x10.\xab!\xea\x7f=\x9f\xe7\xbc_c\xa4\x08b\x11Q\xe9\x86\xb7\x95\x99f2nJn&Fs`\x15pA\x94^\xc5+M6\xf2\x85\xba\x12\x8d&\xfe\xf4\xc7H\xd3P\xfe\x0e0\xbd\xc9\x8d\xf4B\xedS\\\'\xe9\xc8\'\xf1*\x1d,F\x17\xf2G&\xe4\xc6\x0c\xd8%\xf5{\xb1\xbaE\xa6\xa0\x0f^\xba\xaf"\x1bP=\xf3a\xd4\xa3\x00p\x9b}vUbq\xdc8\x0e".=_^\xb2]$\x90\xd0\x9e\x93\xb8\x98+}\xc3OM{\xe4\xd7\x1e4\x87\xab>\xe3\xb87Mp\x00\xcf\x824\xba\xa2\xe0\xbeV\xd9\x85\x85\xc3\x10x\xab\x1a\xbe\xdb\xa0\x86\xe9\x8d\xfelx\x1d\xe9\xf1\x9bR\x0e\rx\x9eGG\x19\xc3W*\xf6\\\xb2\xbee `\x8b\x1c\x0b\xe6\xc4E\xd8\x0b\x83\xe0\xba\x06\xca\x19|y\xc9<I;q\xe5\xef\xf9\xb8.\xb6\xc5\xda\x0f\xe1\xae\xc0\xba]\n\xf0\r\x15lej\x89e\xc6\xc5\xd5\xa05\x1a\xebl%\xcd\x05\x1d\xbe^Tq\x7f:\x15ag\xef\x9f\x1a\xf5\xfbU4\xb5\xfa\xe2\xedY\\\x8e\xd1)\xe57\xab\x0b\x05\xe9\xea\x07 \xa90\x15!\x16\xffW\x13\xb3\xde|\xa7\xa5\r\xc5\x0e\xf9\xbd\xba\xb6\xf2\xfdn<\x0b\xecQ\xce\x89\x85\x0cB2B\xe8\xf4\xc5\x8a\xd0\xe1\x0b(M\xa3\x0e80\xae\x94\xab\xc8\xf7\xa9\x06\xb4\x90p\x84\xc5\xb0\x93\xe4\xec#APe\xb7\xb0\xd1\xf2\x04\xb4\xd6v\xbe\xbc<\xe2\xb4"\x92\x1fv\xe4\xf7\x86y2\xbc\x83Z!\x84\xbf&\xfc\xb0\xcd\x06\x1f\x0fW\xaf\xb2\x8e\xaf\xa9R\xfdf)\xa9\xee\xac\x19\xd4\xbdc9\xf1\x88`|\xee\xbe\x13\xf8\xe8h\x05#\xbd\xa4E\xd6A\xdcB9g8!j\xc2\xf0\x1a\x9d\xd2\xd9\x87^\x86\xb3\xe8\xd8\xfe\xdfQ\xb0\xbb\x03\x84eo\x06ta\x7f)\xe9\x91\x14E\xfa\x88C\x15\xb1\xd9\xfd\n\xaf\xc99U\x95s\x1b\x05\n\xe4\xaf\xd34S\xfc\xc5\xda\xf20\x00\xd8\xe3\xa99\xda\'\xf1{\x9f\xca2(\xee\xcf\r\x16\xc9\x10\xa3\x1cvm\x9d\xe2\x80\xf7/\xb7>\x8aO\x7f\x865\x17\xad+\xb0r\xf0\x88\x0f}\x9d\x8a\xdf\x0bl\xba3d\xb3\x99\xe8\x0f\r\xe6\xea4\x0c\x14\x0c\xda\x00\xe4\xde-\xc4-\xf3\xd8\xe0V\xdb\xd1\x8d\xe2^~\xeb\x02^\xf9wJ\xa0}\xc2#\x92\xcbX\xa1\xb2"\xa1\x03\x91\xe1\x91w\xd9t\xd4\xd4\xaa\x98\xdf,LK\x08\xe3\x83\xf3\x0cX\nJw\xac\xa6\xa7>\xb1\x1b\xa5\xb9S\xeeP\x89\xdb<]\xdc\xcc\x95.\x89\xcc\x16\xcb\x04*Z[f\xc7X\xcdEl\xc2\xc6\xdc\x19\xbc\x97\x14\xc7\xe4\xc4\xd9\x18\xfb\xb0\x96Zu\x90d{\xe4d-U@,x\x0e~\x94\x0e)e\x8d\x8cv_\xa9\xee\x00^\xfc\x18\x9a\x90\xb7\xb2\xdb\nu<\x1b\xb8U}\xfc\xddV\xba_\x19\x8dsE{\x98\xaa\x9bc\x9fLk\xe9\xf1\xc5\rV?S\xd9G\xd3*D(~9wMP\xcc\xcf\xc2\x08Yb\x96\t\xd00\xd6\x13\x12K\x8a\xdb\xddu\x15\xa3\x163\x84\xeb+\xca\xf0\x89\xf5\xb2\x15N\xc2sr=\xfe\xe8\x97l\x15\x9f\xcc\x9ek\xad\xb9\x960A\xe3\xda\x17\xb3\xa41_~YT\x8d\xd8\x126Jw\xb2`\xe6\xe3\xe9q\xc3\x80\n,)\xd9*7>\xac@\xb0\xc9\x8d\xcd\x13\xee$D\xc0\xb4\x16}\x02\x19\x93\xca\x06\xaf\x17\xff\x1a\xb5\x80C\xb8\x16\xeb\x10/g\xf6\xad\xb7\x1d\x8ag\tw\xde\xf9|\xb6P\xbeY\xeb\n\x9c\xd0{U(\x9bNK[\xda\xed\x8dG\xe4\xf8mDQoy\x85\xaf)"\x8e\xf9\xe9\x94\xf6K[^\xb0\x08H\xed\x82D\xa8\xd7\xd3>\x9f<X6N\xe0\x9f]\n\xd4\x0f\xc6X\xd5\x05|\x9eE#\x03\xe5\x96\xdb\xf8\x06\x12*\xadm\xc7\x87\xe0\x0c\xc2\xe3\x80\x03pZ\\c)\xd93\xf0\x91\x06i\xfa\x9a\xe6\x17WML\xf5\x9e\t\x0e\xd3\x1a\xdf\xc9&\x1c<k\x1bS\xa6\x80^\xd8\x05\xd4owo\xd9\x06\x97\x80\x00\x808\xaet\xdb\xbd\xa0\xca\xf1|d\xc7wi\x90|\xd0\x89\x17\xa9FV\xa3\xc7\xd9u\x1e\x91\xf5\x86ej\xd9O\xe6\x88\xb8.\xd0B\x14\x9d\xaen\xb4\xceLW\x0e\x9b\x9f\xadfh\x85\xfdd\xdb\xc1\xb8\xe9\x89m\xac\x94?\xdbu\x1b\xcb\xb9\x15\xe9\xfe`\x19\xcb/\xfd\xf3\xaa \xcf\xfea\xe8\x08i[\xdd\x15y\x12\x15\x16\xfd\xa3\xa0djW\xc2\xfbO\x15/i\'\x9dl\xa5yJ\xd3\xf1n \x98\x93k\xde@\x13\x91\xe89\xf1\x8d\xad4.C3\xa8ow\xe5\x0e{f\xa4\xd6I\xf7E\x82\xf8\xf7\x01\xff\x15:h\x15\xfb~\xd0of\xea\xef\xa2\xb3f\xbe\xbaIsqHF\x05\xb2\x05\n\xb9\x83\x1dkQ\x1d\x1e\x8e\x83\x9d\xb7.#`\xe5\x93\x14\x7f\xf4NJ\xd0\xf0\xa4J\xb7\x1f^\xca\xf5H\x1a\xed>\x10\xd4\x8a\xbcroz\xc8\xcc\xd3\xe5K\xaf/\xa4\xff\x9d]*\xf8\xdc\x83\xe7\xa8\xaf\x87,\x0b\xfb\xf7k\xec\x04l\x15 \xfb~IC\xea\xa3\xa1=E\xe4\xe1\xb1N\xd4\xad@F2\xb0\xdb\xfe\xbc\xb8@\xe2\x88Z\x83\xfd\x1fPP\xad\xf6tzs\xd3\xc8\xef\x072\xa2*\xfdv%\xafR\xb09 l\x01F\x18&q\x04fV\x10Q\x91\xb7\xa3\x14%\xb9\xaa\x11\tI\x1d\x00R\x17\xab!\xbf\xa4\xad8\xe8\xadAAM\x16\xc3\x8d\x9e\x9e\x0c\xc5\nHQ]\xe4\xf93\x05\xd21\xe9\xce\x1b$\xbd\xe2|\xb9o+\xbeA7\xec|\xe3ya\x0cm\x06=\xcd\x80d)\xd2\x13\xad\x85\xc0\x81`\x7f6E\xb5\'|\x91)\xe7\x95W\x01\xder\x9dE\r\xa41\x12\xed\xb8\xc58W\x82\x81\xfe\xca\x81C\xbf\xb1\xac\x8e\xe0\xd5\xdf\x96`\x8b\xdd\xa5bD\xde\xc33\xa5\x8c\xfan\xb4\x11\xcb\xe7\n\r\r\xb6\x13\xb3\x8bV\x17\xa6q\xc8\xfaj=q\xd4\xa2\x02\n\xf1!\xff\xaf92c\xa2\x0b\x12Zx E;\x12\x9d\xd9MO\xa4\xabq\xb3\xcfc\xd9\xdb,y\x1dt}\\I\xad\x04H\x00\x88\xd9c\xce\x17:\xb4\x9c}\xe9\x94\x07_[\xeaU|\xf2\x86\x8eQ.j\x00\xa9\x8c^\r>\xa7[\xb3O\xeb\\\xe2\xa3\xccO\xf4\xa6\x06\x7fP\x8d\xb56\x03\xc8\xf9E\r\xe7P3A\x00\xc1\x8aW\xf7Ax\x93\x0e\x06\x19\xb9\xc3\xe9\xe1\rLp\xee"\xf5\x9f^Le\xf3\x99,\x9e*Cu\xd6\x8d\x12_\xd0\xd2\xe3\xc4\r\x08\x14\x9f&5\x92f\x13\xbbU\x9d\x8d\xc9\xeeW\x1f.\x97C\xb4\xaf<Y\x9b\xcc\xe3\xb3\x9a\xae"q\x1c\x0f\xbca+`\x85\x18\x174\xec?\xbb)\xf98\x1a\x9d<\xb0\xa4_\x05\xaf\xa3-\xc2U\xfd[\xf9\x01\xa8,\xe2\xd85y\xbc\xc4\xc6\xd3\x0b\xe7\xb4\x88}\xe0\xf1\xaf\x16\xc8e\x9bcE\x12\x97\xfe\xab\x9a\xfb\xb6\x02\x12}|\x8d\xf6_l,~\x80T\x0b\xff\xb2\x83\xcdT\x96y\xf8\xdaQ\x90\xac\x92\x90\xfe\xe5Bq\xbfy\xfb\xe5E\\\xa1\xadb\x84J\xf3\xb6\x8d\xa0\x17O\xf3Wb\xb4\xbb\xd9\xebD\xfb}MPoA\x88k\x96!wn\x90\x9d\x1b\x08h\xb2\xb88Q!\xe9\xb6\xa8\x00Dl\xb5y\xfb\x97\xea\xbdkq\xbae\xfb\xc0\xf7\x93\xc2\x06k0\xf9$\xd5,g\r\x9bz\x8b\xfa*h`\xfb\t\x8e\x04m\xd6\xfek\xa2*\xa3\xd8k\x82\xc0b\xbf\x81\t\x12\xce\xbc\x05\x90\xdc\x1e\x8d{\xe7A\xf0\xc0\x1b1\x8d\xa7\xae\xd6.\xfe\x99\x86\x94aZ\x05\xbb17\xac\xe9h\xea\x8f<lB\x02\xfbjCM\xe1\xec\xa4\xa5\xfb|\xec\\\x15\xb0\xec)*\x8b*3\xe0\x8b\xcc\xbar3\x14\x93K\x10\xc1\xbd\x93`\x98G\xbd|*\x8f\xd0\xdb\x8f\xf0X\'\x01e\xad{T\xad\x99\x92\xb3r\xda\xf44\xb5*\xf8\x1b\xf35\xfc\x80E+\x8daf\xbf~U\xba\x9f_\xa8R\xda\x17\xb7\x1c\xf0\x85\xe3\x96\x18\xe4\xa3=\xd1O\t\x04\xd9S P\x7f[\xd3\xb4\xc8\xba\\U\xda\xefu\xabG\x96\xecC\x9e\x8c(uGC\x0f\xc9\tR\xb7\xc5\xf9\xd1V\x1c\x89O\xe3\xb6\xff\x82\x84\xfc\xb670\xef\x17j\x1e_\x14\x1c\x16\xec\xe50\x01\x13A\x19y\xe0\xe3\xf9\x89V\xdc`2\xcd\xbadIY\x08\xa1\xe2\xcatw\xa5R\xd3\xba+\xa7\x81\xbc%\x90\x02S\x8c\x90\xbb\xfe\x96pU4m+\xe9\xed\x8f\xf16\\\xd3\xbe\x85\xd7\xebF\'\xfc~\x05\x99\xd8"\xfew\xdbC\xa3yr>\xf2$F\xc2\xd2\xc6\xddk\xe8H\xa6\x08/o\xdfn \x8c\xb3\x9d\xad\x04\x0c`\x88\xf1f\x80(oi\n\x1f\xa2K\x14\xf2;\xeft*\xf5)m\xed\xb2G\xdc\xed\xf69yx\x9ccV\xceC8\x06Y\x04\xe7\xc2\x13\x99\x94\xfe\x8e\x16\xa9\xd9R\xd9\xd9[\xec\xc2E\xad*\xc2\x9dLp\xac\x1d\n\x9b=SVCN\xeb\x16\x05\xb5{\xee\xea\xd2\xa7G\xca\t\x00\x8b\xd14\xbc\xcf\x7f$P\x8a$\xcc\xcb\x8f\xab@L\x898\xdf3T\x92\n\xef\xe5\xae\xf6\xa2P\xbf*6[Z\xcf\x89/GB\xb9\xb4(\xbeI\xc6K\xa2Q\xcfq\xd0\xf6\xf5O\xf5H\x15r\x08)]3\xcc\x9d%\xbe\xee[T\xd7\xb6\xbb(5j\xf0V@\xfe\xe1\x90\xc0v\x0bxl\x92\xab\xf0\xa7\xa6F\x98\x8e:\x12\xb0N\xba\xbc\xbf\xf2stI\xfc\x90\xdb\xa6\x8e?\x91`\xee\t\xc2\xd6\xd8\x1d\x8e2\xe8\x7f.\xfb\x80\xc5\xe8\xd0r8\xca|\xaf\x18\xd3ZnYZ`\xd4\xaa\x91\xed50\xfb\xa0\x8e\x0b\x84\xf1q\x11\xa8\x1c\xde\x9b\x93\xcd\xfc\x1e{".\xc8\x85\x0fcx\x97\xb6`\xc8\x9f\x96\xd1\xc2\xcc\x14\xda\xb6"S1\xc6\x10Su\xf8\xe8\xf8|\xecN\x84"\x83f\xba\xe7\x0c.\x02\x81c\xe0\xab\xe0mv#\n\xe9\xcc\x9ciH\x13Qr;\xffD2\x90\xf3\xc3\xaa\x07\xccS\x0ed\x07\xe8\x15\xf4R\x1e\x1f|\xd2o\xfd\x8a%,\x8dz\xdb\xcd\xc3\x8a&\x17\xd6V\x90\xe7\x95e\x13*X\xf1=\xa1l\xb9\xaax\x04\xef\xa3\xd8t\x03(\xa0^m\xd47\x02n\xf6\t\xd2\x1bZQ\x9c\xd3Sy\xef,\xef%\xe9\xda\xb9\xf4&1E\xbf-l\x10^\xf7\xe2E\x1b\xe1\x9f@!yjI\x869Y\xac\x87e\xce\x84\xc0\xb2\xe5\xaee\xdb\x13\xf8\xad!\xc6\x82\x18\xda)\xc3\x98\xe7\x1a\xe1\xab`9,\xad\r\xce&\xca\xcd\xa6\x82\x9a\xd8U+\xa9\x16\xb6*\x85\xd4\xbdP<\xb3\x9b\xb6\x91#\xa2\x86\x8dC\xda(\xd7JI\x1c\x88\x1e\xa7\xa6\xe5\x1e\xbb\x9dM\x04\xebO\xc6\xce$\x1a\xc7\xfct*$\xe7\xc5y\x0f\x8bbu\xcd\xc2\xc9\x18\x11\xd3Aa\xbe\xf8yo\xf3\xf0\x9d\xda\xe8\xceC\x8b\xa78>\xde\x88\xd5g\x81\\\xb3S%m\x17\xf4\x94\xd5K!~\xb9\x97\xae\xf2Qt=\xfc;\xcc\x00p"\x17\xeaSHd\xdf\xed_@;r\xeb)j\xe3:\xd2S\xce\t\xa2\x9fX1.b\xf5\x1aL\xcf\xf6@\xd18Z\xb269\xaa\xfb\x8cZ\xbb\xf7\xc85\xbaW\xbf4\xbd7l\x8b\xd7\x8e^\x18o\x8e\xc1\x0e\xc1\xc8\xdf6\x0e\xab\xa9\xf8\xfe\xdc\xdb\xed\xd9\xe6\x14l\x0c7\xa2\x8aj\x07P]%\xb4\xe6;\xd6\xf7\x15?h\xf2\x9f\xb2un{\xd6\x89\xc7\x96\xae\xa4\x02\xb5\xdarB-$\xd1_A\xae\xcb\x9e\x9eb9IsS\xffU\xfdj2r>\x8e\x90\t"\x89\x84k\xff\xce\x8c\xe0\xccE\xd7\x8b\xc5\x0b\xb2\x17t=\xb2\xb4\xf1V9\x06\x10\xb3\x00L\xbae\xd4N{\xa0G\xe9\xa6a\xa1\xcbl\x02\x9a_\x829\xbc\x0bF\xbd\xa9\xcb\xbf\xcd\x0e!\xc7;\xb1a\x18\x1d\xd1\x16\xec=\x91\x93$x\x80i\xbb\xda\x83\n\xfa\x85\x13.|\x94\x1c\xf6\x1e\xdeH\xe6b~\xe6q~.1[\xcf\x9d\xb4N\x05\xbf\xcb\x9f\xd86L\x07\xbb\x8f\xff\x8b\x1f\x07\x032\xcf\x9d\xe5]\xb1\x8dx\xb0i\xcf\xcc\x80\x9a\x84)\xd2\x82\xa0\'\x8d%\x1aE\x83\x96\xcb9{\xc5\xd4I\x88\xad\xb5\xd9\xa5@\xec\xf6\x0f\xe1\xbd\xa2~}\x1a\xc8M\xefI\x92A\xbc\xdd\xf8YW\xc1\xe3\xd4-\xf4s^Z\x97\x061YP:\xa7\x17&\x8e\xf2x\x9f\xb3\x9aT\x9c\xcaQf\xbb\x8d\xa5\x11@\xd8\xb6D\xc8\x1bW\x85>\x0e\x0b\x81\xaf\xedP\xfa\x9b\xc4\xdbOL_>#\xf6\xe9q\x01"\xef\xc0J$QFb\xe5\xbd;\x92\xc9\xb5\xa7\x9e\x0fP\x88\xb1cR\xef\xd8\xcf;H\xe1\xfc\xcdY>y\x05\xe3Z|>\\G\xa6\xc2h\x17fLqg\xb6\x9b\xe13\xfb@\x88\xf2)\x18\x8e\xac?~\xbd\x18\xdfw\xe3\xf3\x8bUh\x1dw;\xf3\xe9\xf3\xa0\xe5\xab\xfb:\x8b\xbct\x8a}\x1c,a\xb3\x18\x12[_ce?t\x8b\x8a\x97u\xdf\xa0/\x80&\xad\xe0Av\xf8\xfd\x1e\xecs\x06\xc6\x91M\\\xa0\x01\xf2\xf5\xfe\x96v\xe6!\x84\xa7\xe7kYGn+\x94\xc2\xd9GH\xf3z\xa4\x14\x0c\xe2\xd8m{\x89p\x85\xed\xe9\xcfX\x80\x9c&\xcf7c\x82\x97\x18\xa3\xb9\xe3f\xbe\x8fN\x95\x95\xe5^\x95\x9c_O\x07U%\n\xb55\xb2[\xeaY:\x0b\x9a\x1d\xfb\xda\x7fP\x02\x8c\x90\x1b-)\xb8%\xc7.\xe2Q\xac2o\x08\xef4\xd8\xb3&\x87q\xe7Sz\x136\x8c\xa4\xe4R\x92\xfc\x99\xf0\xe08\xc0\x9d\x7f\xa6H\x90\x88\x07\xd1\x16\x1f\x87\xcaM\'z\x16z\x93\xf5\xd9\x06\xb1\xd13\xe5a\x9d\xb4\xd4\xc9\x95\xc6D\x87\xcc\xd6jWsP\xaa\x93x$\xc2\xc19\xacw\xd0Y\x15\xdd\xeb%2\xf62\x11\xfd\x07\\\x158l`\xc1t{.\x8f8\x8a\x87h\x08\xc6\x7fnsC\x0c\x979\xc0\xdft\nIts\x06P\x11\xe1\x83\xa0\xed\xb4^\xbb\xf20.\\\x04)\r[T|G\xdf\xb6)W\xcf\x0f5\x02\x92\xea\xfdCL\x86\xc4\xf1h\x0cM\x1dG\xff\xd2\xeb\xa2\xa1z\x9a\x9b8{D\xe7\xd0\xbd\xedg\x95\xe8f\xc5\x16\x93:\xd5%\x9c,\x95\xbd?\xef~\x19\xd5\xab\x8b)\xf7* 0\xdb\x02\xf1\x936\xa7\xe7\xf0b\xc3\xf8nj\x9a\xa6\x18\x15\xe1b\xeb\xc7J\'\xd2\xe7|y\xf4\x11\xb8\x0fU\x8b\xd4\xe6\xb7\xfb\xaa\xf2\x8f\xea\xc8x(\xfeF\xa8N\x1cR\t\xbdj\xf3\x96\xcb\x8f\x96\xbf f\xf8\xd1\xc1\xe2\x9a\x05H\xads\xe4\x1b\xf3.\xef\xa3\xc2\xc8\xc3\xb0\xafy\xd4\xef\xfb\xdeZ\xd1\xaf=_{\xffK\xaa\x8f \xee:{*\xdf`\x8a\xb9/\x99\x17\x1b\xd0\xc0\x90\xdc\xdfs\xc6\xaf>f\xc5\x07\x19\xcc9\x1e\xc7\xca\xadn\x19L\xc8\xcd\xf1\xbdv\xea\x0c\x1a=\x1a(\x8d\x8c\x18\xb7\xca\x98e\x8e\x01\xa7\xb6\x1d\xe4~\xf5|:T\xd5U\x0c(4\xaf[\x89\x9d`E\x8b\t\xd8\xba\x98\x08[|/"\xe7\xe6\x80\xee\x99\xecr\x06T\xfa\xdbS3\xcc\xca\xc0\x0b\x82\xdb\xff\\\x98\\\x9e\x85\xb2:@\xbaebL\x7f\xf7\xa9!\x00\xbbe\x82\xea\xfc\xa5\x99\xed5\x17\xcf\xdbL\xd5\xec\xa3R\x9c_\xaa\xc2\x1aLc$\x11;\xce\xe5\xd0 \xe6\xcfd\xe9(\xbe\xb1%@\x8d{\xa2->\xb3\xef\x1a\x9a\\\xcc\x9f\xd9\x7f%\x97\xb6+&\xf5$\xfdJT\xd5\xdd\xf1\xf7S?pJ\xd55\xa5\xb6\xb6i\x97\xbb\xa8\x00\xc2\x9f\x93\x98.\x9fc\x86\xbf\xc7^\xed\xe7F\xf0:\xcd\x8d\x01Oc\x81\x86X:\x9a\xa6j\xc4\xf6Q\xed\xb8@C\xed\xd9\xa0W0\xf5\x13\xaf?\xfb\xfb\xbf\x01\x01o\xc4L~^\\\xc4(9w\xe4QE\x03v\xd8\xe7\tJ\x0c\xbf\xbd;F\xd0\xac,\x0f\x17\xf2cpBKf\xed\xd1\x86\xf1\xd4\xf5u\x83\x05:\xdd\xdd\x84K\x15D\x00E \xa3E"^a\xa3\xaa\xe6\x996\x93\xf2-\x9c\xf2\x12\x8ej\x16\xbb\xe9R=X\x14VX\xc2\x9fE-d\x03y\xf5\xa9\xd3  <\x96*\xdb\xff\x1crA\x97\x04\x15$\xb5\xech\x1bd.!\xace\x06p\xb4m\xe65mw\x0bu\xd6\x81h\xeb\xd9v\x08=\xc3\x170\x14\'_\x07\xd5\xd8\xa1\x18\x1fxn\xf9\xa6\x83%\xac\xba\xe8\x19&\x8bJ\xed\x93?\xbc\xb3Ay\x98\xfc\xd7\x97x\xb8\x99e#\xccly\xf4\xbfA\xdf\x00\x8f\x00lL\x8bjb\xa4\x89t\xe4 0P\xe7\xc3`\x05\x9c\xf5\xd9\xb5u|\xe8\xacI%\x06\xf5\xf2\x84M\x14\xf0\xd4=-\x13\x9c\xe3,\xaa\xe54\x06\xbcG\\>\x15A\xf2\x1d\x1d\xdehYL\xa9\xbeb\xc5\xf2\x9f\x8c3\xb0\xb8\x99\xc4\xf6+\xb7\'2Qq\xfe\x06{\x13\x7f\x8f?e\xea\xb8\xaf\x96\xf6\x16\x08n\x95\xc6\xed\xa5Sf\x8a5d\\q8.\xcf\xe7\xa7\x07\xf3b\xe7@\x12u\x18\xff\x82)\xecm\xed\xd4\x15\x0b\xd5r\xaee\xb2\xcbE\x1f\x99\xa7q\xec8\xe6\xf1\xce\xa0\xa0\x08\xf7\\\xe7\xc4\xfd\xc4\xee(\xdbZ\xa4|\xed\x1e\xee0c\xd1\x07\xc8\xd6\xadY\xb4%\x0b\xedr\xc0\x8e\xcc_\xc4\xf3\x90\\\xb8\x80"\x87\xbf\x9bB{\xb0\xc9\x83^\x0fBT\xcf\xf6\xad1\xe7\xd1\xa7*\xaf\x17\x80\xa9\xbfb\x08\x1f\xaa@\xc5F\xaa\xa3\x12]H\x88\x14!t)D\x9e\xbcF\xae$L\xdc\x9cy\xc6\xf6\x14&+\t\xe1>\xa0s\x9bP\xb8Y%=5\xb6\x90\xcaW\x84@#vg\xdd\xfe\x9ab\xf9\xba\x1a\xc6\xc4\xac\xc9\x84MlY`\xdbo\xfd\x9d\xdf."\xfb\xb6\xf8\x94\x02\xa8Z\xbd\xc6G\xbd#\x12\xdc\xff\xc2\xaf\xf5e\xf2\xc1#\xb2/Q\x106\x19X\x840tL\x05\x12\\\xd8\xce\xcf\xca>\xe4l\xe8KC\xd7BO\xe3d\xe5@o!\xfa\t_\xfb\xf7\ns\x1e\xae\x06\xa8L\x05\x9c{qs\xe9\xba\xd3lD\x0c\xe0<\x89^\x0b\xb8\xf2\x18rw\x92\xb1b\xd55:>0\xd7\xd5k=\xf9\x14\xde\x9d\x9e&\x0c\xa8%b6H\x173^|\x8a\x15p\xbbRF\xcb\xd0\x15\xbb\x84<Ep2\xeb&Y\xc8\xafE\xf6n)\xda\x1c\x90\x13\x15;\xb3\x84\xb8\x19\x9d\xd5iF\x8b\xf6\x13\xd2\x05\x93s\x18/\xd9\x9b \xda\xb7\xac\x92;\xe4WS~\x11MW\xde\xaf\xeb\xd7\x80\xe7\xf6\xa9E{\xa9\x13\xca\xea\x88\xab\x07\xc6\xd0\xe9z\xa5\x8f\xa2}\xb6\xc9yy%\xd4\xb7\xcf\xc0=\x8d\xffj\x04\x9a\x90&\t*p\xeb\xff\x19\xc4\xf0j\xbbqzI\xa9\xe0kT*\xcfp\t!N\x9a\xb1c\xb0Eg\x8b\xa3?\x93\x16\xd8\nT\x9bU\xe5\xbay\xac\xfb\x9a$7\xa0\xde\xf2\xe4\x1a\xe4qE\xfa+\xd2\xdf\xf3b*\xe1?\xf7\xaf\x03\x99fpv\xd3#V\xc3\x94\xb3\xa0\xe5]\xb4\xe3\x0b\x83$u\xbb\x96\xb5\xc8\xc1\xb52\xc5\x0b\xfd/D@\x82\xe3\xa9`\r\xdb\x07\x88*\x990p\x88~\xa1\xad\xbc\xdc\xbb\xc3\x04u\x82C\xa4ZeJ\xec\xe2U\x9a\x05\x99\xc4\x0e\x01]Q5\xf6\xe8\x9f=<\x87\xd2\xd32jz\xaeM/\x90\\!\xa3O\xdd\xe7\xa58Gg\xe2\xf3]\xb1[\xd3Rty\xb2\x8f^&\xa9\xb3\xabQ>Z3\xef?$\xf8EF\x98\x87\x89A\x188\t\x1c@\xfb\x93\x12\x8d\xbc\x86\xd9\x9b\xba-\xd7\xafs\xbb&MyM\x96\xbf]\x13^\t\x08Iy1\xd0\x8a\xa3\x06\xc9\xb0D$\xe3\xb7\xb0\x91yEcn\xf8R1\xa0J\xe6\xdf-\xc8\x1a\xf1\xd093\xf6\xff\xbc13\xdb\n\xf4\x19\xe2\xdb,*\xfeT\x0fe\x1c\xc7p\x83\x119\r\xde\x88o\x03\xb7x\xae\x02>\xc3(\x85\x13\x06\xa5\xc4\xa5\xad\xe9\xbd\x15T\xb7|\xf6\xb6V(Zjr3[v\xf1\xb8S\xbf`\xb3|\x96\xd7\xb6\x94\xecO\xf3\x85\xae\xb98l\x9d.\x83\xb9 \xe2\x15\x9f\xd8\xeb\xb8\x1d{\xd49\xc6{\xb6d@\x9b\xf0\xb3d^\xe2j7\xb5\xa0<\xd6\x85\x90\xc4\xcb{\x10P\xab<\x1d\x10\x97`\xa8c\xfc)_\xc8\xa4H\xd5:v\xb2\x04H*X\x94\xa8\xe9\x91\xa3\xf94\x04\xd1H+\xf2\xe1\x07\\\xbe\xedPLw\xa5i?^\xcd$\x1c\xf4\x9dxrc.\xf8F4V?\x14m\x01\xb5\xa6H\x97CS;\x84\x1d\x98\xdb\x8f\xfd\xbb\xc4|~Rv\xde\x02\x9d\xaf\xff\x92z\xa20\xd1\xc9=yR\xcc\x93\xdf\xb0\x15\x7f\x82\x89o"\x82-\xadM\xc615\x996\x97\xc8j\x87\x8e\x8cjn\x9a>\xdd\x00\x8fS\x98S\xf9,\xa2K\xdd\xa0\x05d\xa7\x11o\xa2\x89\xc0nz\xfcT\xf1F\x1bS\xaa\xabV\xbe\x9f\x10\xe8\xfa\xf6,\xb3A\x19\xaet\x08fa)\xd7\x19\xd9\x0c\xd8?1H]gX\x0c\xa2\xd5\x9b\xcf`bW\xf3v\x8d\x9aV\xac\xcd\xfc\xe0\x11\x0f\xd5T]ts\x9f9y\xe9DT@\x13W??rX\xbc\x0e\xf1\xf1\x11\xfe8\xe1\x1c\x9b>EY\x1d\xbaN\x17\x1dY\xb9\xb9\xdbx\xb1\x01aer\x06q`\xd7bA\xe6\xe3\x82]\xfd&\xdc\x8da\x91\xb0\xc9\x87a\xab\x88\xc3/\xd4\x1d\xf2\xa8`S\xc8\x88\xaf\xaao\x0f\xe4\xf9\xc1\xbb6\x8b\xf5T\x9f\xcd\xb7\x0e\xe5\xda\n\xb5\xc90\xfe\x9el\x18\xa0\xc2\xf6\xa8\xfb\x0f\x1f\xbf&\xec\x0euw\x10m!\x05\xf4\xa5\xd2\xe8U\',\x14\x1d3\xdev_psR\xf0\xcc|~i\x15\xc8\x0b\x1d{\xa7\x1d\x00\x19\xa13\x87\x19G\x15]\x9a\x8b\x88r\xdaF\x7f~~\x81\xe70\xaavz\x82D5\xee\x1b\x06-\x9f\xe0F\xaa\x8e\xda\xec\x91\x8d\x0f\xe5\xf0\xc7%\x98\xff\xa6J-\xc1V\xe9\x1dN\x88\xa0a\xe1X\x82\xb3!^\xf6\x8e\x13d\xf1\x08\xd9\xab\x08g,\xd1\xbdM\x89\xe4\xd8\x9bj\xa1\xba\xa3\xf4\xc6]\xc8,[\x06 <E9\x94X*_\x80BN\xb5s>\xe3q\x00F\x8di\xadyI\xb4\xd7=Z\x84T\x1e\xe64!\xb7F\xf1_am\x82\n\x9b\x92\xef\xf6\xd3\x01\x1c\x9b\xf5\xd3!z\xfe\x98)\xf2\xf6XYu&\xf8\xd0\x98f\x96\xdf\x80\x7f\x94J|%\x07\xc4,\xf77\xfdU\xb3\xc8y\x87\x1b)}\\\xa3?\xe2\xd6\xbd\x8a\xd9Qqh\xfc\xceV\xd9v\x17\xd0\xd43\xcc\xbd,\xdfr\x1e}\x0b(\x13e\x1f\x8c\xeb9d\x8b\xfe\x0c\xe8\x8c\xbb\x06(\xf5n\x1a\xdd)\x8b\xda\xce4F|\xcd\x83\xe7\x96\x19}PN\xbd,]\xa5V\x00\xb5aZ\xe8j\xb6\x96Y\x06,x] \xca\xf5$\x15\x13\xb6\x86\xe8\xd6rU\xbd,\xe1\'\xb6k\xe0\xaf\xcb\x0e\x9bc\xe2\x1b\x82\xbcV\x03\x92q\xc5\xf1\xbe?"\xdf3\\g}\xe7.\xb8\xa9\xddf\x8f9\xed\xc9\xf7\xcay\xa6h\x83\xb1+\x93\xd3\xbe\xd8\xd0\xba\x9c\xe0o\x84\x02\xfd&\xe5\x96\xachGZ\x85!\xb2jG`\xb4\x1b\xb1\x9b\x98\x89{\x94\x07\x0e\xd6\xe3Q\x9a\xa7\xc6\xb6\xbe"\x19\x8a{\xf7W\xf9)\xde\x92\x8b\xd6\x10g\xa2\xe5\x03\xe9\xb6B\xd2~\xa0\xb4A\x10i\n/\xc8\xffD\xb6\x1fg\xe9\xdcwd\xd3\xac\x03\x89\x83\x17\x9b\xea\x03\xd4\x9c\xa7R\x19\nr\xdeQX4\xa4\xad\xd3 \xf9R\xc8\x05\xfa)\x0c\xe3\xaa\xef\xad\x0b\xd7\xf4\xbc\x18\x9f\xe0_S(\x13\xc4w\xb3\xe2\xda\xd4\xa9\x8d\x92\xd9a\x91-!\xafP\xf0\xee\xae}\xa9g\x80\x83"\xfb\xf4)\x12\xe7\x15\xf9\x13\xa1\x14f\xb1t\x97%?\xa5\xd9\xc7Iv\xff\xba=\x19\x8d\x17\x13\xd4\x10\xc4U\xc07\x9f+\xa9\xe2\x8a\x99\xb0/\xdd\xa6\xe0\x0f\x9e\x8ag\xb2\xd3%\xea\xac\xac\x02\xadj\x1b\xcfkmcD\x8a\xe4\x8a\xad\x829\xcb9\xe9-\xbe\xf8\x04\x17Lx\xa6kY\x11\xd1\xb2\xf8\x10\xb6Z%\x95f\xce\x1c\x18!\xf4\xc9\xd4\x06\xd5k\xde#\xe0#\x9e\x1b\x01\xcd\xea\x18]L\x17\xaa\x1f\xeb\x0e\x95\xd2L\xd0q+=\xb7R\x86\x19\xe5\xe0\xcb\xe7L\x9a\xba\xcf\x8c\xd5fQ\xb3\x95O3I\x9c\x0bL0\xf9\xf4"di\xa2\xca[\xf3\xa8s\xea\xdel(`\xa1\x14\xcb\xa3\x95y@\xfd\xd0\xb0_%\xfb\xc3\x91\xfe\x8f\x94\x11>\xda\xd4\x01sa\xf5\xdd\xd2\x9a\xb6\xdb\xaeJ\xea\x18\x0e\xe1\x9a\x84(-\xadv\xeb\x9c\xd1^7\x9b\x96\xd7|\xfc\xf7b\xccT\x9b\xb3\xe4\xf2\xd5\xf5q\x1d4/\x94\xe2\xfb\x94\x0cQU/*\x86\xfeZ\x83\x1f\x1e\xeb\xca\xa0\xe3\x10Bp\xd3=?\xacgb3@\x94\xac\x99\x9ff@\x07\xf1\xbe\xcc\x89\xe7k\x0b[\x06\xb3\xd3\x84\x85\x82ei0\xd3NK\'yM-\x93\x91\x9a\x05Z\xe8V\xc1\xf3<ln\xb1*vT\x1f\xcb\xe2\xa7\x08z\x04\x1b\x1a^\xe2\xfaUDh\x03$\xc2\x98Ld\xd2\x91\x91\xe6\x11\xcdrM\xc1\x84}\x947\x95\x9bx0\xa3\x01\xc8%\xf07\x1e\x9c\x00\xfbuG\x82\xda\xbc\x8e\xd3RO^\xa9]\x15j\x0e7\x01\x13\t\xd8\x92\x0b\x1b^=\x8d\xcf[H\x15\x07\xed\x98\x03\xfdzh~ \r\xdf<\x10D\x1b\xef\x81o\xf6]\x80\xb9\xb9\xcfa\x1f\n\x99RV\xda\xbb\xdee.\x18g\x8e@\x8a\xfe6\xf1\xa3\x16\x0f\x7f\xea\xa3+\xbf\x19\xa9\x82\xc5\'\xda\x91\xcf\x98w\x9b\x0fG\xe2\x86/"\xd1\xa8e\xac5\xef\xafG\xe3K\xc7N\x91\xa8\xa9z\x98\xca\xf0.\xdd\xa6\xe9\x89\x82\x0c\xf0\xc0\xa9e\xf0\x86\xc1c\x12\xef\xdd\xebq}\x7f\xd5\x80\xa8\x8c\xd6\x9c\xf2\xf4\\\xa6\x80\x9a\xed\x8f3\x0cToj#\xae\x92\xe8\x1e0:PVF\xab\xab\x02\x17\xdbQ)\xe1\x1e\x1a)\xfc\x93\\ch\x13\x82\x8e\xca%\xda|\x99\xbe\t\x84\xbaP\x03\t\x95\xbb\xa9\xf9M\x002\x9777\x9frCY0\xf3n\xa8#x\xa77b2T\xd6\x07V\xbd\x7fe\xab\xacn\xd1\x8a6\x97\x9bwG\x0c\x9b\xad\xf5\x04\\\xe9.9\x15\xc1\xc5\xef\xbb\xf3\xcd\x15\xebe\x02N\x9b\x8c%\xf2F?\x8c5\'/\xc1\xec\x90\x19f\x8fK\x1c\xedO\xfb3f\x9a\xc8\x0e\xb5\x00cP\xb2\x02\xd6[\r0\xe0 "\xf6r\xf8q\xa9\x8b-GM\xf7\t\xf4I\xc4\xc3\xe6L\x7f\xb1K\xf03\xe5\x9b-\xb6\xdc\xdf\xe8\xbf\xc2\xd9\xe2bC\xe5\x91\x03\xd1\t\xd6K\xdf\xfbL\xa8\x1c\x86o\x99\x1a5\x1d\x9a\xffZK8\xe8\xb3\xe0\x94\x12\xf3\xe9\xeb\x1a\x02\xa7\xcdo\xd3\x86\x14l\x896\xe2\xc0*q\x12\xe6\xa2 \xe2\xd6\xb0\xc7\xee\xd7\xab\xd4\x96u\xca\x1d9\xe0\xb6\xe6\xa5\xcb\\Q\xba\t\x1f\x98P\xcdaYfr=\x15%`M\xb94\x04\x10\xdf!\xed\xc0\xc2TU\xaf\xe6\x82\xce\xe6z\xb9\x01+\xa5>\x81\xf8W-\xe0\xce\xb0\xe8\xda\xfd\xcd\xa7\x9c^<\x9b\x1d]X\x19\x137\x1a\xd9Epl\xb0\xad6C\xc0U\x1b`\x12M\xe0\xca8\xc58\xf4\x02\xb1\xbf\x1c\xc8\x08j\xd90\xd7_B\x96\x07\x8c\x8c\x92\xde\x9e\xb9\x80\xd5\x85\xce\x0f\x8e\x00\x14\xf1a\x15M\xbe\xd2\xa4\x123\x16t\x8a\x9f+\xb2u\x97\xf8\xael\x87nx%}1\xb6\x9f\x080$A\x9b\xaf\xe5\xbd\xcc?\xe4\xe3>/hd\xcc_\xdd\'\x93rA\xd4\xc1t\xb8\x9c\x13m[\xd4\x88:\x9fe[\xd8\xfeT\x01a\xa8:\x84\xb4*W@\x9e\xe7\xb8\xfa\x07D\xbaL\x011|\xfa)\xc4\x8em\xac\xd0\x9b\x97\x8a\x106-z\x19\xcb$\xff)\xb0D\xdb\xb4\xe0VW\x07\x9c7ed\xf7\t@\xe0\xd23P\x7f\x92)\x1f"2\xba\xa2\xb7`\xfa]n~v\xf8i\r\xf3\xae0\xd5\xe3\xc1\xc1\x03\x86X\x1d\xdd.\xa7i\x0f\xf4\xff\x06x\xc2\xa4\xf8m\xa7\x14\xdd]\n\xe9L\x8b\x1a;oy\xf5RK\x1f\xec#51\\\x85\xdd\xc4\xe36\x90\xa4\xaa\xac\x0eY\xc6\xb8\xf8\x89n\xde&e\xd9\xe3cDF\xd6\xc7a\x8c\xa8\x88\xf2\x01\xb9\x02\x0f\x06h[H\xda\x16\xb0;\xc2\x13f"K\xe0&\x94\xafkW\xa3\xed\xe9\x14\xe8\xd4M\x14\x8a\x97\x12\x9b\xf1\xbd\xea\xce\xa4\\\xb7\xb9\xcd\xddW\xf1D*\xceC%\xb7\xfe\xd8e>n3Q\x0c\xd6\x0e.1n\xa7\xe0\xfd\xd7\xb4\xf7 \x06L\x04\x11\x84\x10\xba^\xb9\xc5]d\x81|BW\x85:f\xce\xd2\xda{I\x06\xb9Nl\xb6\x8eDm[\x10\xd7#"K#\x99a\xb7j9\xfa\xe9\x15^\xbd\xdf\xde\xf3xR9\xe2\x13\xf4\xa2.\xb8\x14$\xb2<\xba\x83;\xce\xe7g\x9ab\xacx\xdd@}\xc0\xa8\xc2\x9b\x9c\n=?\xa0S\xec\xe8\x8a(#Fs&\xd9O\xb2-\x1c\xbdJc\xa0\xc8\x94z\xd0\xd0\xae\x80W\xfb\x960\x00g\xa4\xd4h\x16\x1ai\x92\xb7\x9f\x19cN\xbc\xaf\x9a[\xdf8\xc7\x15L\x10\xb8\x86"\xc3!\xf1\xcc\x8b\xebA\xd5\x7fA\x1b\xbb\xee\x98]\xa5e\xb5\x1c\xad="\x1a\x08\xc1Q\xe6\x0f\x857\x8f]Q\x15\x97:\xf2:\x89\x9e5\x18\x81\xc7}\x95\xe3F?P.\xf94\xa6u!Z|$ge\x9bc\xa35\xbclt\xc6\x8d\x10d/8\xac]y\xdbY\x14a\x96LE\x84\xfb\xd9\x88\xc3\r\xb8\r@\xcf\x88\xa1k\xaf]\xbb4h\xfc\xa1\xa3d\xd5\xa8\x80X\xe7\xba\xa4\x7fw#kt\xce\xa6\x95\xc3\xc9/\xe0\xf8b\xddN\x16(\xc9i\xde\xff\x8f5!?{(o\xff\x00Y\r\x86\x05\'cXsR\x80\xdf\xe1\x1e2@[\xfd:\xcbb\x00\xab,\x00\xcd\x9bv3g\'\x84G\x1f\x01\xa2\xfd\xcf\x95\x19\x96_\x1802e\x14\x06\xccTH\xa2\xb4pw]"\x17~\xe2\x98V4q\x80\xac\xc7\x82\x80\xa8\xb6\x93\xab\xf0z\xbd\xeb\xbbBy$\x17\x1c\xfc\xaa\x19\x9aS\xf1)\xe1\x86\xf6\x80{A\xb9\xd1~\xfcS\xe7\xc6n\xfac\xcf\x87\x01D\x8f\x033\x06\xa8\xb4\xfc\xb6]\xcdh\xf6\xa8=\xdb\xc1\x8c\xceW_\xaa\x02Z\xccu\x13\xc5\x98\xe7\x8de\x98!\x86\x1e\x02\t\x1aB\xa1\xdf\x98\x00\xa6;RJ\x0f\x07]\xc8S\x9b\xfa%gih>\x0f\xcf\xc0^\xca\xfab|\x91[VA\xba\xe5\xc5m{#\xf7Vz\xb8^!h\x87\xbbEl\x9c^M\xaeku\x8c\x8csZ?\x80,\x1fz\x96\xd0\x9c\xfc`\xa1i\xd9\xba\x98\xb4$r1;\xf42\x02\xc1CD\xef\x0b\xa2\xca%}\x14qU\xe8gK\xc0\xc9\xd1\xbb\x91\xff\xce\xae=\x9bY\xac\xf5\xfa\xc5\x07e\x1ak\xa9\x109\xc4\rp$\xe0\x95\xb3>\xc0\x15\xa5\x04\xf8\x96\x93\x9d\xb2\xef\xd6y\xd4\x87\x84Z\x9d\x05t\xf2m\xa5\xe6\xf0\xf6d\xc5J\xd3j\xa9v\xcb\x12`\xb4\x0eb\'#}\xc7\xde\x07x\x0b9\x8c\xcc\xa1\xf6\x9e\xda\xb0\xb1\xb6h\xb3 k\x1b\xa7\xe4\xcc\x1e\x7f\xc3\xc0\xa9\xf6\x81{\xfd\xd5\x9f\x81\x92\xecp,L\xc7\xe3CN\x02\x85\x9c\xb3\xd7\xcb]\x08\xf5\x17#\x99\x7ftD0{c]E\x1e\xef\xd2U~\xa2J&\x14v\t\xa0\xc1w#!;/\xb8C>M\xff\xda5QG\xd3y\x88\xe1LG\x8c\xa3\xb9\x9e\xbe\xe8\xd2\x1dY\x02\x00x\x18\x088\x19\x8ex*\xf1\xe9\xc6\x1d(\x95j\x9b\x89\x9c\xe6\\\xd6\xb3\xd1\xf4\x15\x9d\x8f\xfb\x8d\x87\xfc\xdcz\xcd\xd3\xa3\xd5X\xcf\xf3q\xad\xc4\xd4\r\x11\xb8\xd1\xecU\xect\x93"{z\x1b\x87\xf1\xff\xbbN5\xcb+\xdbE\xe0\xcd\x98r\xf2t\xf0\x1bc[X\xb2s\xaew\x82_\x8a-"\x05?<\x98\x9c\xf5Q\xae$\x7fqT\xdd\xf3^\r\x86DP\xb1\xab\xcc\xa3$\xd3\x1c\xdc\x05{\xd3\x98vOt;<\x1b\x9c\xc9\xce\xd1\xfb\x1c\xc6\xd1\x94\xe7\\\xb7\x8e\xaf\xf5\xfd\x13X0\x9e\xf8\x8f\x08\x82\\\xb4\x8aW\xe2\xec,\xea?\x8e\xba\x95\xc2U5\xfe\nnI\xed\xca=ZQ\xecJ I\xd7\x8d\x05\x93\x89\xadH\x140\xbcB\xf1\xbc\xf0>\x15\xf3\x7f\x1d\xf1|\x15\xa4\x15\x9f\x88m\x83\x93\xea"\x9b\x0e8r\x11\xf4Ts9\xcc\x99M\xc3\xfb0\xf9b&\x12\x01\xd0\xe9\x03\x87\xd3kC\x8c\xed\xa7z\xd1\x93i\x820~\xb7z]j`K\x16\xd1DBLI\x83\x93\xabS+\x9fF\x16J\xd8/s\x93V\x92\xd0\xfe\xf3\x97\xf6\xed\x91\xfc6c\xb1\xc4\xa3\xee#\x143\x85V\xe8]\x00\xc5G\xac\xcfh\xbd`\xc0@/\xc8q\x06\x13\x12\x0fV_\xe2\x17td\xf9,K/\xd3[\xbe\x81\xc3X\xab\xb5C\x7fp|,\xdf\xf2_U\xc0\xb6\x14\x0e\n\xe5\x1f\x01Q\n\x14^C\xd0Z \x07+\x16X\x84\x8b)\x89oY\x06x\x94zx\x13H*S\xa2\xae\xecx\x83\xc7\xdf\xdb\x9e\xf2\x94E@\xbf\x14Tbol\xaa\xcf@\x0f\x02jv\x8fz\xaa\xd7wiL\x0c\xf2bd\xae\x91\xaa\xc1\x04\xe0\xac\x1f\xa0\xfa\x87\xaa\'\xd3\x87T]\xa6\xd9\xe3\xa5S$hc\xb1>\xad;4H\x90\x06\xc6\xad\xa9\xe7\xc4Z\xfe\xb9\x83\xf0pXf\x9d8l\x98\xbc\xbe\xed\xf9,\xf5\xb2\x12\xfd\xc1\xc5$\xc0(\xd1}FW\x01\x90\xc5\xaev\t\xc5e\x92\xa7J\x85\xe4\x8b\xa5\xf8\xf6\xd4\xa0\xf5\x9bkZ\x9f_\x1f\xd0O\x92\xd0\x95\xdea\xc5G=\xe5N\xbd\x88K.E\xd9\xaaM\xf6\xf2\xc9\xd6$\xa4u\xea\xe7\x17M\x91\x0c\x7f\xb2+\x82!\x91a\x97\x01\x12\x13x\xaf\x14\x05\x00\x7f\xd9!\xb7~\x96\xfbl\xeaqSX\xbdI\x1c{\xc9\xeb\xeen\x8a\xb7\xdc^\x01\xc8\xec\xda\xda\x93\x08Z\xf3\xfcs\x93k\x12 \xaeq\xc2C\xe15\x08\xf6NMxUV\x18)\x08\xf6{\xe2\xf1\x8d\xed\x9b[\xc8\xb2\xdb\x080\x92\\4-\x80\xaa\xd0\x10\xafJ"I\xadx\n\x03M\xee"/\x87\x9d,U\xcc\x0b\xbaW\x91\x07\xb0\xce\x8a\xd4#\x8d\x9a\xee\xef\x85f\x93\x86\xbes\xcd\xe0\xa6\x1e\x96\xe5a\xc4*a\x95\xd9\x9520\x1f9_\xd8\x98\xa1 l\xf8\x91\xbfN\x86\xd4\xba\xa5\x15RL\x84\xaf\x9c\xc7C\xea\\\x82\xa2\x90\x93E\xc66\xfdaa\xaf\x9c!n\xd5\x10Kw\x1f_\xe2R\xa1\xea\xed\xb3\x93\x1df\xf8C\xcd\xcb\x88\x1f\xd2\xd0\x9a\xa8\xa2\xcb\xc8\x0fh\xb4q\xc2~\xa2\xaa\x8eY\xc9\x12x\xdd2\xf3m^\x1a\t\xcc\x00w\xa7\xa0\xa3\xb2\xc8?\xdf%\xa8\x94\xd7\x07\xb7\xa1\xc03\x04!\x96\x07\x93\x02\xb4\r\x82K\xb0"~\xd8\xcb\xdb^\x14\xa0\x0f&\xc1q\x90\x9c\xbd\xb6:\xa5\xda\nA\x92\x9cc\xb20f\xac%\xc9\xde\xb9\x08\x16\xc9\xa8\x84\x04\x0e\xde\xd3G%\xab\xdd\x85`\xf5\x10\xdd\xf1\xcb\\\x9e\x84\x82\xad\xb21\xc5\x9en*\xb7\xb8\xe5P\xd1\xb3\x89\xfa\x05\x8d\x10Q\xb1\xf0=q\xea\xaf~\x93\x14\xd8t^\xde\xf3afW\xb2\xabZSl\xbei\xdd\xaf\x82\xa2*\x0f8a%\x83\xce\xf6|C\x88\xcd\xb3\xf0\xac\xd6\xd1\xdb\xb5\xf3\xd8r\xba%$D\xf6L\xc3\xa4\xa7\x16\xd0e\xf9\x99\x1c{\x0e*\x00\xe2\xbcM\xfb\xd2\xb6\x9f\x01\t\xeb\xe0A\x8b;\xf0\xfd,\x92\x964\xec(\x81rEU~~q.:\xa6,\x9b\xcd\x1c\x10\xd2\\N\x89\x00Q\xe8B\xa5u_As"M\xe6\xbf*w\x13\n\xfd\x1d\xe9\xfa\r\xbc\x91Y\xa2\x92z\'\xda\xf5\xdc\xb4\x8e\xd9\xd1\x91\x9b\'2\xcb\xb8v\xbb\r;\xaf\x9a\xc0r\xb2\xde\xe6\x85\x96\xd6\xfc`>\'\xe6\x8e*\x05\\\x07\x90{\xc9Z\xaf\xc4\x99\xf0s\xf9\xf8\xc5\xda\xcf[\xd1XpMXF\n\xafg\xb6\xee\xd2\x8ej=t\xdd\xf1\x12a\xdf,/@M\x91\x19\x89x\x7fkml\x81\xf1w:\x93I\xf0L%\x9a\xe8R\x86+\xdd\xc9\xaa\x1a\xbfr\x12\xfb\xb3\xcd\x1e\xb3\x86\xab\xafnS\xe8\xf6\xd8\x95\xbf)#L\xe5\x8b\xc6\x0fI\xabX\xa9.\xac\x8b\xfe*O\xc2\xbaj\x92\xa4\xd6\xdaWF\xa5\xe7\x83\x9c\xd4\xa7!\x0cHQ\xa2u\x9b\xb4T\xd3\xf2\x99\xa1AX\xa1\xda\tZ@\xe2k^2z\xb5\x95#\x9f\xdd\xb8\x18\x10\xf8\xc4\x9c\x9d:?\n\xa9\xd6\x19K\xb7\x8c\xf0\xad+q\xc7\xf3)\xda\xb6u\x93I\xc4\x12\x94\x83p\x98\n[V\xc7\xf8\xce-5\xeb\xeb\xd8\xf9\x0f\xee\x96\x9d\xe8\xaf\xda,yAiC\x0c\x86\xd4\xbcb\xf8\xdc\xb1wS\xd8O:!\xbcU\x1e\x93q\xeb\x94\x7f!\x99V7\x10\xf4\x863\xa6\xb7s\xf3Vd\xec[87\xecK\x04B\xe5Z9\x9a\xc4\x7fb9\xdas\xec;W\xa2\xeb\xd9\t&\x06f\xb4W\xad\x8e\x90b;\x7fC2]9\xc4\x00\xb1\x8ew\xe1E[\xfb\x8a\xbcn\xf8\xae\xae\xa6\xc3\xce\xd6nd0\x1e\x9b\xf2\xba\xe3\x02\xdeY\x11\xba\xff\x1c\x95\xd8\xe8)^\x12\xd6\x8b\xb7\x97\x1e\xdf\xcc\xcc\x0e\x98\x17b\x10\xa6\xc8$\x1c\xad\xf1\x10\xf8\n\xf3\x92j\x8cxl\x0c\x89\r\xfb\x12!;0>/\x95R\nc\x12|\x97\xd2\xa2\xb1\n\xe0,IO\xd63;\xda\x1a3l\xc4H\tj\xe0I]\tz}\xfb\xc8\xfc\x97*G\xd5\xeb\x8c\xf5Z|.m\xf7\xf5\xc8\x8ai#\xed\xfc\xb9\x13g\xda\x84S\x19\xa7eG\x88\x969\xc7KyS\n\xd1\xcc\x02\xc8=\x85\xbe\x9d\x17l\xe9\x17\x8b]\xaez\xcc\xa0\xd8b\x92k\xc2-\xf1`\xfc\xb0\x17\x1c\xe7\x8c\xbbi\x13\x9c\x9b\x18jP,\xd5\r\xb2\x95X|\x97\xd9\xbe\xc4\xed:\xdf \xc1\xafvWy\x98\x9b\xfe\xdbX\r\x8c\x11&\x1c\xd2\x02\x1b\x11O\x06\xfd2nJa=\xe7\xd8\x1a5\x85\xff\xd1\xd1)\x98g\x1b\xce\xd3#<3v\xaa\x83\xf56\xb7\xd2\x9ax\x96\x06s`]}@\x96\xa5E\xb2+&m\xeb\xd7\x1b\xf2<~\nX\xaf\xb8\xa6<\x95\xbb%n$\xccl\xe9\x1dL\xa8>\x8f?\xac\xeb\xe5\xf2\xbei\xe1\x8f\x0b}r\xc7\xea\xde\xcew\x80\xc5\xf01\xd8-b\xa1%\x1a\x9d\x80\xbb\xd93\xbe\x92\xa0)\x7f\x06\xe9\xe9<\xd6;a\xe4@\x15&6c\x02\x14\xf72z\xa5\xf5\xce\x93c\xc7A\xa1\x0f\xa4H\xbf\xc2\xd5L\xa1Q\xb8\xb9G\xce\xaa4F\xe66)\xad\x1e\x91\xd4\x05;;\x13\xf7\xe1\x9c\xc1h\x1d\xe2\x86\xea!\x1c&\xad\r]\xcd\xaaN\x13\x13|\x03\xdc\x1d)_$\x9a\xe0vAc\xecB]\xa4\xef\xd7\x94lp\xe1r\x04\xc1hg0\x17;\xb4\xe6\xb0\xcd\x90`,\xb3\xae;=\xc6\xc7_\xed\xf6\xb7\xc8c\xbaz\x1fC\xec\xf0\xe7\x81\xf5\xec\xa0\x1e\xb6C7c\x1bh\x0e\xba\x13\x14\xf0\xa3\x80\x1c\xa9,{\xb1\xa1\xec]|\x14w\xb78"\r\x8e%\xf2\x8c X\xe3\x82\xad\x08X\xa6\xb2\x82\x89\xb6\xb2] l \x97\x11\n\xf2/\x10\x84\xe1D1\x14\x1c\x96\x85\xdf\xda\x1c3\x1a<\x0e\x15\xa1\x80t\xcb\xfa\xab\xa9\xbe\xc3\xda\x19,\x08E5\xf3y\x14r\x0f\x8a,\xaf\xe7\xda$\xf7\xe9\xc2\x135\xab\xc4\x07|\x08\xdc:\xcc\x06\xae~\x05\xa4oH\xb7\x81\xe3:'
-    _fo77 = 4268863602 ^ 2137861559
-    _fp42 = 3072629929 ^ 3055852858
-    _kb66 = 9087024335178710570 ^ 1446357085441029922
-    _cm17 = 17855852449102738984 ^ 12654357526739667205
-    _ks55 = 13418927925501575531 ^ 16953055797262502910
-    _sf248 = 16034956733704878572
-    _kg10 = 17592147850483262512 ^ 7643915862134396965
-    _q133 = 8011397
-    _salt25 = _sf178 ^ _sf248
-    _n17 = len(_d56)
-    _s158 = (_salt25 * _kg10 + _n17) & 18446744073709551615
-    _s286 = (_salt25 ^ (_n17 * _ks55)) & 18446744073709551615
-    _s385 = (_s158 ^ _s286 ^ _kb66) & 18446744073709551615
-    _q243 = _s158 & 0xFF
-    _hv34 = _fo77
-    for _bi28 in _d56:
-        _hv34 = ((_hv34 ^ _bi28) * _fp42) & 0xFFFFFFFF
-    if _hv34 != 63849198:
-        _d56 = b'\x00'
-        raise RuntimeError()
-    _pm55 = list(range(_n17))
-    _st81 = _s385
-    _ic57 = (_s385 >> 32) | 1
-    for _j11 in range(_n17 - 1, 0, -1):
-        _o49 = _st81
-        _st81 = (_o49 * _cm17 + _ic57) & 18446744073709551615
-        _x18 = (((_o49 >> 18) ^ _o49) >> 27) & 0xFFFFFFFF
-        _r95 = (_o49 >> 59) & 0x1F
-        _idx43 = ((_x18 >> _r95) | (_x18 << (32 - _r95))) & 0xFFFFFFFF
-        _idx43 = _idx43 % (_j11 + 1)
-        _pm55[_j11], _pm55[_idx43] = _pm55[_idx43], _pm55[_j11]
-    _up41 = bytearray(_n17)
-    for _j11 in range(_n17):
-        _up41[_j11] = _d56[_pm55[_j11]]
-    _q349 = _pm55[0] ^ _q243
-    _out61 = bytearray(_n17)
-    _st81 = _s158
-    _ic57 = _s286 | 1
-    _pos89 = 0
-    while _pos89 < _n17:
-        _o49 = _st81
-        _st81 = (_o49 * _cm17 + _ic57) & 18446744073709551615
-        _x18 = (((_o49 >> 18) ^ _o49) >> 27) & 0xFFFFFFFF
-        _r95 = (_o49 >> 59) & 0x1F
-        _val20 = ((_x18 >> _r95) | (_x18 << (32 - _r95))) & 0xFFFFFFFF
-        for _sh39 in (0, 8, 16, 24):
-            if _pos89 >= _n17: break
-            _out61[_pos89] = _up41[_pos89] ^ ((_val20 >> _sh39) & 0xFF)
-            _pos89 += 1
-    _m = __import__(bytes([c ^ 54 for c in [91, 87, 68, 69, 94, 87, 90]]).decode())
-    _t = __import__(bytes([c ^ 68 for c in [48, 61, 52, 33, 55]]).decode())
-    _co85 = _m.loads(bytes(_out61))
-    _kw60 = {'co_filename': '<>', 'co_name': '<>'}
-    if hasattr(_co85, bytes([c ^ 84 for c in [55, 59, 11, 37, 33, 53, 56, 58, 53, 57, 49]]).decode()): _kw60[bytes([c ^ 84 for c in [55, 59, 11, 37, 33, 53, 56, 58, 53, 57, 49]]).decode()] = '<>'
-    _co85 = _co85.replace(**_kw60)
-    _f67 = getattr(_t, bytes([c ^ 123 for c in [61, 14, 21, 24, 15, 18, 20, 21, 47, 2, 11, 30]]).decode())(_co85, globals())
-    _q474 = _q349 + _q133
-    _d56 = b'\x00'
-    _up41 = b'\x00'
-    _out61 = b'\x00'
-    _ak39 = bytes([c ^ 73 for c in [22, 22, 42, 38, 45, 44, 22, 22]]).decode()
-    setattr(X2, _ak39, getattr(_f67, _ak39))
-    _ak39 = bytes([c ^ 169 for c in [246, 246, 205, 204, 207, 200, 220, 197, 221, 218, 246, 246]]).decode()
-    setattr(X2, _ak39, getattr(_f67, _ak39))
-    _ak39 = bytes([c ^ 18 for c in [77, 77, 121, 101, 118, 119, 116, 115, 103, 126, 102, 97, 77, 77]]).decode()
-    setattr(X2, _ak39, getattr(_f67, _ak39))
-    _q510 = _q474 ^ len(_ak39)
-    return _f67(*_a, **_k)
+    if getattr(__import__(bytes([c ^ 113 for c in [2, 8, 2]]).decode()), bytes([c ^ 251 for c in [156, 158, 143, 143, 137, 154, 152, 158]]).decode())() or getattr(__import__(bytes([c ^ 113 for c in [2, 8, 2]]).decode()), bytes([c ^ 16 for c in [119, 117, 100, 96, 98, 127, 118, 121, 124, 117]]).decode())(): raise OSError()
+    _cm20 = 7073806661691746024 ^ 4213893171143825861
+    _fo62 = 3244668107 ^ 1081682190
+    _sf242 = 13584067031432235545
+    _ks23 = 1241649598064615713 ^ 4631943473187515316
+    _d61 = b'!\x01\'\x96\xbde\xb3\xcd\xda8Q\xb1\x0et\x08[L\xfd\xe8\xa0\xf8\xee\xc4\x848\xe7\xd7\t\xe2\x80\x9b\xd0\xf4\x11\xd5b\xe4W\r \xd7\xe7\xde\x97}\xd1\x16\x10)T\xc9\xc4\x0c_\x16\x98\xf6\xee\xe6\xfa\xf2h\x86\x0b\xa8;U\x8f\x93\x8d \xb2\xf9\x88\x90\x07\xaf\x93\x88\x14\x19\x0c\xedmp^\xdfg\xfc\x89\xdc\xa4\xee\x15\xea\x84[L[>"\xd5\xaa!\xcb\x05>\xd6\\\xecr\xc8\xf5-\x91\xdc\x11\xa0\xdc\x1c\x1dy\x1em\x04\x8a>\xd9\xcf\xef9\x11\xaf\x05_j3\xf4\x87k\xd2\xec\xa1:g\x1a\xf6]\x0f\xae\xe2!T\xe9dK@T\x17\r\x9a\xeb\xc0\x96\x87\x9dB\x82\xa1\x08h\xc1\xe2\x1e\x8b\xfe\x05\'\xaa\x8a\xd8\x1a\x03"\x84\xd7\xc9\xe7\x9ee\xca\xdb\xf7=E\xc4\xc0\xa0\xbc\xb4\xe3&E2o\x1f\xdf\x1d\xee\x16\xa1&%=*\x83\xad\xa5\xc6\xed\xdf|\xf8Ve\x8c.\xd5\xf0\xe9\xd5ny\xd5J\xe9\xe1\xf9\x82\xc26O\xd7\x93bQ\x1b\xd7\xae\xdf\xdc\x18\x9f\x9a\xd2\x8cso"\xf2\xc2\x94\x85\x06\x81-7\x8buFS\t\xc2\xb3\x18D\x8d\x14\xd8Q\xda|\xae\xef{'
+    _kb10 = 3055636995408659889 ^ 4642696436513557689
+    _sf172 = 1535369551969400144
+    _fp71 = 2406833088 ^ 2390055507
+    _kg50 = 17570905613675910764 ^ 7921581291619461753
+    _q125 = 13708136
+    _salt60 = _sf172 ^ _sf242
+    _n75 = len(_d61)
+    _s144 = (_salt60 * _kg50 + _n75) & 18446744073709551615
+    _s293 = (_salt60 ^ (_n75 * _ks23)) & 18446744073709551615
+    _s347 = (_s144 ^ _s293 ^ _kb10) & 18446744073709551615
+    _q237 = _s144 & 0xFF
+    _hv74 = _fo62
+    for _bi94 in _d61:
+        _hv74 = ((_hv74 ^ _bi94) * _fp71) & 0xFFFFFFFF
+    if _hv74 != 4236533091:
+        _d61 = b'\x00'
+        raise OSError()
+    _pm67 = list(range(_n75))
+    _st89 = _s347
+    _ic91 = (_s347 >> 32) | 1
+    for _j15 in range(_n75 - 1, 0, -1):
+        _o85 = _st89
+        _st89 = (_o85 * _cm20 + _ic91) & 18446744073709551615
+        _x68 = (((_o85 >> 18) ^ _o85) >> 27) & 0xFFFFFFFF
+        _r50 = (_o85 >> 59) & 0x1F
+        _idx89 = ((_x68 >> _r50) | (_x68 << (32 - _r50))) & 0xFFFFFFFF
+        _idx89 = _idx89 % (_j15 + 1)
+        _pm67[_j15], _pm67[_idx89] = _pm67[_idx89], _pm67[_j15]
+    _up89 = bytearray(_n75)
+    for _j15 in range(_n75):
+        _up89[_j15] = _d61[_pm67[_j15]]
+    _q340 = _pm67[0] ^ _q237
+    _out50 = bytearray(_n75)
+    _st89 = _s144
+    _ic91 = _s293 | 1
+    for _pos15 in range(0, _n75, 4):
+        _o85 = _st89
+        _st89 = (_o85 * _cm20 + _ic91) & 18446744073709551615
+        _x68 = (((_o85 >> 18) ^ _o85) >> 27) & 0xFFFFFFFF
+        _r50 = (_o85 >> 59) & 0x1F
+        _val96 = ((_x68 >> _r50) | (_x68 << (32 - _r50))) & 0xFFFFFFFF
+        for _sh28 in range(min(4, _n75 - _pos15)):
+            _out50[_pos15 + _sh28] = _up89[_pos15 + _sh28] ^ ((_val96 >> (_sh28 * 8)) & 0xFF)
+    _m = __import__(bytes([c ^ 85 for c in [56, 52, 39, 38, 61, 52, 57]]).decode())
+    _t = __import__(bytes([c ^ 139 for c in [255, 242, 251, 238, 248]]).decode())
+    _co63 = _m.loads(bytes(_out50))
+    _kw36 = {'co_filename': '<>', 'co_name': '<>'}
+    if hasattr(_co63, bytes([c ^ 249 for c in [154, 150, 166, 136, 140, 152, 149, 151, 152, 148, 156]]).decode()): _kw36[bytes([c ^ 249 for c in [154, 150, 166, 136, 140, 152, 149, 151, 152, 148, 156]]).decode()] = '<>'
+    _co63 = _co63.replace(**_kw36)
+    _f26 = getattr(_t, bytes([c ^ 9 for c in [79, 124, 103, 106, 125, 96, 102, 103, 93, 112, 121, 108]]).decode())(_co63, globals(), None, None)
+    _f26.__kwdefaults__ = None
+    _q426 = _q340 + _q125
+    _d61 = b'\x00'
+    _up89 = b'\x00'
+    _out50 = b'\x00'
+    _ak69 = bytes([c ^ 109 for c in [50, 50, 14, 2, 9, 8, 50, 50]]).decode()
+    setattr(X2, _ak69, getattr(_f26, _ak69))
+    _ak69 = bytes([c ^ 210 for c in [141, 141, 182, 183, 180, 179, 167, 190, 166, 161, 141, 141]]).decode()
+    setattr(X2, _ak69, getattr(_f26, _ak69))
+    _ak69 = bytes([c ^ 123 for c in [36, 36, 16, 12, 31, 30, 29, 26, 14, 23, 15, 8, 36, 36]]).decode()
+    setattr(X2, _ak69, getattr(_f26, _ak69))
+    _q514 = _q426 ^ len(_ak69)
+    return _f26(*_a, **_k)
+from random import randint as X3, shuffle as X1
+def _xn6350(_cs68):
+    _r55 = (((((_cs68[1] * 5) & 0xFFFFFFFFFFFFFFFF) << 7 | ((_cs68[1] * 5) & 0xFFFFFFFFFFFFFFFF) >> 57) & 0xFFFFFFFFFFFFFFFF) * 9) & 0xFFFFFFFFFFFFFFFF
+    _tmp21 = (_cs68[1] << 17) & 0xFFFFFFFFFFFFFFFF
+    _cs68[2] ^= _cs68[0]; _cs68[3] ^= _cs68[1]; _cs68[1] ^= _cs68[2]; _cs68[0] ^= _cs68[3]
+    _cs68[2] ^= _tmp21; _cs68[3] = ((_cs68[3] << 45) | (_cs68[3] >> 19)) & 0xFFFFFFFFFFFFFFFF
+    return _r55
+def _xd6350(_v058, _v127, _k57):
+    _delta28 = 0x9E3779B9; _s23 = (_delta28 * 32) & 0xFFFFFFFF
+    for _ in range(32):
+        _v127 = (_v127 - ((((_v058 << 4) ^ (_v058 >> 5)) + _v058) ^ (_s23 + _k57[(_s23 >> 11) & 3]))) & 0xFFFFFFFF
+        _s23 = (_s23 - _delta28) & 0xFFFFFFFF
+        _v058 = (_v058 - ((((_v127 << 4) ^ (_v127 >> 5)) + _v127) ^ (_s23 + _k57[_s23 & 3]))) & 0xFFFFFFFF
+    return _v058, _v127
+def _sh6350(_k57, _code53):
+    _sv42 = [int.from_bytes(_k57[:8], 'little') ^ 0x736f6d6570736575, int.from_bytes(_k57[8:], 'little') ^ 0x646f72616e646f6d, int.from_bytes(_k57[:8], 'little') ^ 0x6c7967656e657261, int.from_bytes(_k57[8:], 'little') ^ 0x7465646279746573]
+    def _sr():
+        _sv42[0] = (_sv42[0] + _sv42[1]) & 0xFFFFFFFFFFFFFFFF; _sv42[1] = ((_sv42[1] << 13) | (_sv42[1] >> 51)) & 0xFFFFFFFFFFFFFFFF ^ _sv42[0]; _sv42[0] = ((_sv42[0] << 32) | (_sv42[0] >> 32)) & 0xFFFFFFFFFFFFFFFF
+        _sv42[2] = (_sv42[2] + _sv42[3]) & 0xFFFFFFFFFFFFFFFF; _sv42[3] = ((_sv42[3] << 16) | (_sv42[3] >> 48)) & 0xFFFFFFFFFFFFFFFF ^ _sv42[2]
+        _sv42[0] = (_sv42[0] + _sv42[3]) & 0xFFFFFFFFFFFFFFFF; _sv42[3] = ((_sv42[3] << 21) | (_sv42[3] >> 43)) & 0xFFFFFFFFFFFFFFFF ^ _sv42[0]
+        _sv42[2] = (_sv42[2] + _sv42[1]) & 0xFFFFFFFFFFFFFFFF; _sv42[1] = ((_sv42[1] << 17) | (_sv42[1] >> 47)) & 0xFFFFFFFFFFFFFFFF ^ _sv42[2]; _sv42[2] = ((_sv42[2] << 32) | (_sv42[2] >> 32)) & 0xFFFFFFFFFFFFFFFF
+    for _bi73 in range(0, len(_code53) - 7, 8):
+        _tmp21 = int.from_bytes(_code53[_bi73:_bi73+8], 'little'); _sv42[3] ^= _tmp21; _sr(); _sr(); _sv42[0] ^= _tmp21
+    _tmp21 = 0
+    for _bi73 in range(len(_code53) & ~7, len(_code53)): _tmp21 |= _code53[_bi73] << (8 * (_bi73 & 7))
+    _tmp21 |= (len(_code53) & 0xFF) << 56; _sv42[3] ^= _tmp21; _sr(); _sr(); _sv42[0] ^= _tmp21; _sv42[2] ^= 0xFF; _sr(); _sr(); _sr(); _sr()
+    return (_sv42[0] ^ _sv42[1] ^ _sv42[2] ^ _sv42[3]) & 0xFFFFFFFFFFFFFFFF
+def _vm6350(*_a36):
+    _c2 = bytearray()
+    _ek2 = (851607646, 1565384098, 1077742902, 3238107261)
+    _ed2 = [200, 44, 210, 243, 143, 14, 15, 191]
+    for _bi73 in range(0, len(_ed2), 8):
+        _v058 = (_ed2[_bi73]<<24)|(_ed2[_bi73+1]<<16)|(_ed2[_bi73+2]<<8)|_ed2[_bi73+3]
+        _v127 = (_ed2[_bi73+4]<<24)|(_ed2[_bi73+5]<<16)|(_ed2[_bi73+6]<<8)|_ed2[_bi73+7]
+        _v058,_v127 = _xd6350(_v058,_v127,_ek2)
+        _c2.extend([(_v058>>24)&0xFF,(_v058>>16)&0xFF,(_v058>>8)&0xFF,_v058&0xFF,(_v127>>24)&0xFF,(_v127>>16)&0xFF,(_v127>>8)&0xFF,_v127&0xFF])
+    _c2 = _c2[:1]
+    if _sh6350(b'\xd9\xdb\xe0\xb3\xb5\xf5\x0e\x84\xda$$\xb6K5\xb57', bytes(_c2)) != 13584922737768274984: raise MemoryError()
+    _cs2 = [3140551570436569214, 1477486633861299551, 16418265883953158941, 2691736851804241512]
+    for _bi73 in range(len(_c2)): _c2[_bi73] ^= _xn6350(_cs2) & 0xFF
+    _c3 = bytearray()
+    _ek3 = (3751108119, 798660615, 506220949, 4001065496)
+    _ed3 = [195, 130, 97, 151, 80, 182, 15, 198]
+    for _bi73 in range(0, len(_ed3), 8):
+        _v058 = (_ed3[_bi73]<<24)|(_ed3[_bi73+1]<<16)|(_ed3[_bi73+2]<<8)|_ed3[_bi73+3]
+        _v127 = (_ed3[_bi73+4]<<24)|(_ed3[_bi73+5]<<16)|(_ed3[_bi73+6]<<8)|_ed3[_bi73+7]
+        _v058,_v127 = _xd6350(_v058,_v127,_ek3)
+        _c3.extend([(_v058>>24)&0xFF,(_v058>>16)&0xFF,(_v058>>8)&0xFF,_v058&0xFF,(_v127>>24)&0xFF,(_v127>>16)&0xFF,(_v127>>8)&0xFF,_v127&0xFF])
+    _c3 = _c3[:1]
+    if _sh6350(b'\xd9\xdb\xe0\xb3\xb5\xf5\x0e\x84\xda$$\xb6K5\xb57', bytes(_c3)) != 9431533597818147087: raise MemoryError()
+    _cs3 = [15489111780022218411, 7038664357335056353, 6031639016974095021, 3909163412693084593]
+    for _bi73 in range(len(_c3)): _c3[_bi73] ^= _xn6350(_cs3) & 0xFF
+    _c5 = bytearray()
+    _ek5 = (1352357846, 1079954474, 465160583, 1413449577)
+    _ed5 = [203, 52, 173, 67, 88, 171, 69, 225, 46, 84, 71, 126, 25, 131, 193, 53, 19, 128, 98, 226, 22, 27, 37, 105]
+    for _bi73 in range(0, len(_ed5), 8):
+        _v058 = (_ed5[_bi73]<<24)|(_ed5[_bi73+1]<<16)|(_ed5[_bi73+2]<<8)|_ed5[_bi73+3]
+        _v127 = (_ed5[_bi73+4]<<24)|(_ed5[_bi73+5]<<16)|(_ed5[_bi73+6]<<8)|_ed5[_bi73+7]
+        _v058,_v127 = _xd6350(_v058,_v127,_ek5)
+        _c5.extend([(_v058>>24)&0xFF,(_v058>>16)&0xFF,(_v058>>8)&0xFF,_v058&0xFF,(_v127>>24)&0xFF,(_v127>>16)&0xFF,(_v127>>8)&0xFF,_v127&0xFF])
+    _c4 = bytearray()
+    _ek4 = (3699668757, 1289144780, 2105461774, 2231725966)
+    _ed4 = [16, 29, 159, 21, 98, 216, 200, 118]
+    for _bi73 in range(0, len(_ed4), 8):
+        _v058 = (_ed4[_bi73]<<24)|(_ed4[_bi73+1]<<16)|(_ed4[_bi73+2]<<8)|_ed4[_bi73+3]
+        _v127 = (_ed4[_bi73+4]<<24)|(_ed4[_bi73+5]<<16)|(_ed4[_bi73+6]<<8)|_ed4[_bi73+7]
+        _v058,_v127 = _xd6350(_v058,_v127,_ek4)
+        _c4.extend([(_v058>>24)&0xFF,(_v058>>16)&0xFF,(_v058>>8)&0xFF,_v058&0xFF,(_v127>>24)&0xFF,(_v127>>16)&0xFF,(_v127>>8)&0xFF,_v127&0xFF])
+    _c4 = _c4[:1]
+    if _sh6350(b'\xd9\xdb\xe0\xb3\xb5\xf5\x0e\x84\xda$$\xb6K5\xb57', bytes(_c4)) != 1842537558379082740: raise MemoryError()
+    _cs4 = [7282802159113192359, 15821667142500889321, 9464409837358789291, 7892178398078392258]
+    for _bi73 in range(len(_c4)): _c4[_bi73] ^= _xn6350(_cs4) & 0xFF
+    _c0 = bytearray()
+    _ek0 = (4166113734, 519562148, 274753375, 1651180162)
+    _ed0 = [53, 176, 182, 113, 30, 208, 81, 253, 153, 211, 254, 212, 70, 200, 184, 240, 123, 120, 140, 10, 29, 238, 41, 90, 24, 246, 39, 128, 197, 143, 204, 53, 197, 133, 224, 249, 44, 222, 215, 32, 247, 153, 118, 235, 99, 36, 162, 216, 20, 217, 191, 250, 38, 215, 232, 76, 157, 44, 43, 244, 75, 111, 103, 180, 87, 168, 61, 38, 32, 36, 141, 253, 21, 172, 221, 109, 221, 131, 243, 147, 101, 42, 135, 17, 120, 111, 154, 137, 127, 153, 137, 51, 208, 5, 31, 44, 112, 24, 241, 29, 14, 252, 174, 186, 56, 172, 57, 50, 120, 153, 3, 84, 7, 127, 7, 213, 147, 183, 187, 235]
+    for _bi73 in range(0, len(_ed0), 8):
+        _v058 = (_ed0[_bi73]<<24)|(_ed0[_bi73+1]<<16)|(_ed0[_bi73+2]<<8)|_ed0[_bi73+3]
+        _v127 = (_ed0[_bi73+4]<<24)|(_ed0[_bi73+5]<<16)|(_ed0[_bi73+6]<<8)|_ed0[_bi73+7]
+        _v058,_v127 = _xd6350(_v058,_v127,_ek0)
+        _c0.extend([(_v058>>24)&0xFF,(_v058>>16)&0xFF,(_v058>>8)&0xFF,_v058&0xFF,(_v127>>24)&0xFF,(_v127>>16)&0xFF,(_v127>>8)&0xFF,_v127&0xFF])
+    _c0 = _c0[:114]
+    if _sh6350(b'\xd9\xdb\xe0\xb3\xb5\xf5\x0e\x84\xda$$\xb6K5\xb57', bytes(_c0)) != 2628646167345244061: raise MemoryError()
+    _cs0 = [9804925231039394794, 16963062385523225173, 7879610095024827928, 12032730449943140167]
+    for _bi73 in range(len(_c0)): _c0[_bi73] ^= _xn6350(_cs0) & 0xFF
+    _c1 = bytearray()
+    _ek1 = (532509026, 3193801116, 4046898708, 1034417785)
+    _ed1 = [14, 222, 66, 136, 136, 28, 42, 167]
+    for _bi73 in range(0, len(_ed1), 8):
+        _v058 = (_ed1[_bi73]<<24)|(_ed1[_bi73+1]<<16)|(_ed1[_bi73+2]<<8)|_ed1[_bi73+3]
+        _v127 = (_ed1[_bi73+4]<<24)|(_ed1[_bi73+5]<<16)|(_ed1[_bi73+6]<<8)|_ed1[_bi73+7]
+        _v058,_v127 = _xd6350(_v058,_v127,_ek1)
+        _c1.extend([(_v058>>24)&0xFF,(_v058>>16)&0xFF,(_v058>>8)&0xFF,_v058&0xFF,(_v127>>24)&0xFF,(_v127>>16)&0xFF,(_v127>>8)&0xFF,_v127&0xFF])
+    _c1 = _c1[:1]
+    if _sh6350(b'\xd9\xdb\xe0\xb3\xb5\xf5\x0e\x84\xda$$\xb6K5\xb57', bytes(_c1)) != 8799916865539842757: raise MemoryError()
+    _cs1 = [12145077996862748267, 17795456826291094792, 4256920665589255654, 14989440682170549563]
+    for _bi73 in range(len(_c1)): _c1[_bi73] ^= _xn6350(_cs1) & 0xFF
+    _shared57 = [[] for _ in range(4)]
+    _gregs61 = [None] * 4
+    _loc10 = list(_a36[:2]) + [None] * 3
+    _consts19 = [0, 5, 1, 10, 8625390, 2, 3]
+    _names38 = ['X3', 'X1']
+    _gl57 = globals()
+    _gl57.update(__builtins__ if isinstance(__builtins__, dict) else vars(__builtins__))
+    _ot0 = [97, 152, 37, 218, 10, 58, 103, 49, 74, 128, 88, 114, 149, 8, 168, 83, 13, 50, 138, 44, 19, 230, 16, 139, 99, 45, 183, 100, 130, 166, 165, 170, 246, 63, 61, 78, 82, 20, 226, 24, 67, 242, 46, 221, 175, 2, 38, 255, 39, 60, 102, 9, 223, 182, 94, 169, 81, 32, 155, 179, 105, 176, 124, 95, 72, 171, 17, 201, 26, 18, 0, 210, 141, 64, 52, 235, 73, 35, 85, 137, 1, 243, 123, 96, 12, 76, 28, 104, 55, 192, 34, 71, 93, 118, 199, 231, 234, 177, 172, 53, 43, 247, 163, 136, 245, 57, 133, 204, 90, 178, 153, 89, 125, 194, 222, 238, 77, 69, 173, 224, 147, 156, 180, 151, 140, 113, 186, 188, 189, 109, 249, 239, 122, 62, 66, 51, 98, 41, 216, 217, 144, 132, 54, 181, 159, 225, 236, 120, 164, 126, 84, 5, 200, 40, 31, 110, 241, 3, 127, 206, 27, 134, 86, 47, 184, 237, 48, 4, 23, 252, 33, 240, 115, 248, 203, 174, 193, 229, 101, 228, 161, 129, 162, 92, 108, 251, 211, 107, 209, 7, 202, 131, 253, 158, 15, 198, 56, 112, 154, 254, 87, 167, 68, 59, 195, 65, 70, 208, 233, 14, 232, 142, 21, 190, 106, 220, 207, 22, 227, 160, 135, 111, 157, 36, 80, 185, 250, 42, 187, 25, 191, 91, 75, 6, 145, 197, 215, 29, 143, 214, 213, 117, 79, 119, 121, 11, 196, 244, 146, 116, 30, 150, 212, 148, 205, 219]
+    _stk0 = []
+    _pc0 = 0
+    _regs0 = [None] * 8
+    _eh0 = []
+    _ns0 = {}
+    exec(bytes(b^73 for b in [45, 44, 47, 105, 22, 33, 47, 121, 22, 121, 97, 58, 101, 37, 101, 42, 101, 39, 101, 46, 101, 45, 101, 57, 101, 59, 101, 33, 101, 49, 96, 115, 67, 105, 43, 116, 58, 103, 57, 38, 57, 97, 96, 114, 40, 116, 58, 103, 57, 38, 57, 97, 96, 114, 58, 103, 40, 57, 57, 44, 39, 45, 97, 40, 53, 43, 96, 114, 59, 44, 61, 60, 59, 39, 105, 57, 98, 120, 67, 45, 44, 47, 105, 22, 33, 47, 121, 22, 120, 97, 58, 101, 37, 101, 42, 101, 39, 101, 46, 101, 45, 101, 57, 101, 59, 101, 33, 101, 49, 96, 115, 67, 105, 43, 116, 58, 103, 57, 38, 57, 97, 96, 114, 40, 116, 58, 103, 57, 38, 57, 97, 96, 114, 58, 103, 40, 57, 57, 44, 39, 45, 97, 40, 23, 43, 96, 114, 59, 44, 61, 60, 59, 39, 105, 57, 98, 120, 67, 45, 44, 47, 105, 22, 33, 47, 121, 22, 123, 97, 58, 101, 37, 101, 42, 101, 39, 101, 46, 101, 45, 101, 57, 101, 59, 101, 33, 101, 49, 96, 115, 67, 105, 43, 116, 58, 103, 57, 38, 57, 97, 96, 114, 40, 116, 58, 103, 57, 38, 57, 97, 96, 114, 58, 103, 40, 57, 57, 44, 39, 45, 97, 40, 117, 116, 43, 96, 114, 59, 44, 61, 60, 59, 39, 105, 57, 98, 120, 67, 45, 44, 47, 105, 22, 33, 47, 121, 22, 122, 97, 58, 101, 37, 101, 42, 101, 39, 101, 46, 101, 45, 101, 57, 101, 59, 101, 33, 101, 49, 96, 115, 67, 105, 58, 103, 40, 57, 57, 44, 39, 45, 97, 46, 18, 39, 18, 45, 18, 57, 98, 120, 20, 20, 20, 96, 114, 59, 44, 61, 60, 59, 39, 105, 57, 98, 123, 67, 45, 44, 47, 105, 22, 33, 47, 121, 22, 125, 97, 58, 101, 37, 101, 42, 101, 39, 101, 46, 101, 45, 101, 57, 101, 59, 101, 33, 101, 49, 96, 115, 67, 105, 58, 103, 40, 57, 57, 44, 39, 45, 97, 37, 18, 45, 18, 57, 98, 120, 20, 20, 96, 114, 59, 44, 61, 60, 59, 39, 105, 57, 98, 123, 67, 45, 44, 47, 105, 22, 33, 47, 121, 22, 124, 97, 58, 101, 37, 101, 42, 101, 39, 101, 46, 101, 45, 101, 57, 101, 59, 101, 33, 101, 49, 96, 115, 67, 105, 58, 103, 40, 57, 57, 44, 39, 45, 97, 42, 18, 45, 18, 57, 98, 120, 20, 20, 96, 114, 59, 44, 61, 60, 59, 39, 105, 57, 98, 123, 67]).decode(),_ns0)
+    _dh0 = {24: _ns0['_hf0_0'], 22: _ns0['_hf0_1'], 52: _ns0['_hf0_2'], 4: _ns0['_hf0_3'], 2: _ns0['_hf0_4'], 1: _ns0['_hf0_5']}
+    _ot1 = [106, 219, 36, 153, 109, 243, 113, 188, 0, 238, 232, 80, 54, 235, 64, 210, 75, 25, 82, 70, 207, 120, 209, 141, 239, 30, 250, 149, 205, 4, 90, 46, 132, 199, 10, 6, 32, 102, 240, 2, 163, 121, 169, 192, 15, 108, 68, 56, 183, 77, 130, 174, 134, 98, 58, 179, 236, 66, 8, 223, 137, 40, 103, 171, 142, 31, 165, 194, 131, 156, 254, 242, 39, 5, 196, 117, 193, 220, 76, 203, 197, 249, 245, 216, 234, 147, 204, 180, 160, 127, 96, 241, 101, 85, 253, 206, 212, 48, 17, 187, 55, 52, 112, 221, 41, 217, 86, 107, 47, 35, 252, 158, 225, 128, 190, 33, 191, 7, 123, 218, 20, 93, 211, 65, 23, 119, 233, 125, 246, 185, 201, 172, 12, 61, 168, 173, 251, 111, 73, 222, 53, 178, 100, 181, 57, 208, 170, 150, 84, 176, 92, 51, 214, 122, 50, 116, 29, 152, 115, 231, 34, 154, 49, 126, 200, 74, 148, 124, 28, 143, 189, 215, 198, 164, 136, 247, 145, 230, 43, 166, 37, 110, 26, 248, 62, 195, 67, 167, 21, 140, 151, 133, 228, 97, 146, 95, 227, 244, 22, 202, 226, 44, 87, 83, 59, 3, 184, 19, 177, 224, 11, 213, 175, 91, 71, 16, 114, 27, 186, 63, 9, 182, 69, 105, 79, 155, 38, 157, 237, 161, 88, 129, 13, 144, 45, 14, 78, 139, 42, 60, 89, 94, 18, 24, 159, 135, 118, 162, 72, 104, 1, 138, 255, 81, 99, 229]
+    _stk1 = []
+    _pc1 = 0
+    _regs1 = [None] * 8
+    _eh1 = []
+    _dh1 = {}
+    _ot2 = [149, 237, 249, 67, 145, 23, 81, 222, 137, 251, 200, 38, 86, 166, 172, 212, 178, 224, 1, 101, 173, 198, 182, 171, 124, 229, 180, 219, 221, 87, 250, 73, 214, 71, 246, 202, 55, 169, 65, 119, 174, 107, 53, 144, 26, 130, 135, 21, 185, 52, 3, 19, 108, 128, 46, 148, 243, 0, 206, 64, 99, 37, 238, 167, 151, 22, 36, 35, 111, 78, 69, 33, 253, 48, 235, 97, 177, 228, 9, 187, 158, 95, 20, 120, 156, 121, 50, 233, 100, 60, 242, 153, 143, 106, 82, 72, 8, 76, 94, 129, 227, 225, 63, 7, 30, 254, 201, 62, 223, 244, 29, 170, 45, 152, 184, 98, 104, 208, 25, 241, 113, 57, 61, 163, 252, 74, 154, 195, 240, 93, 84, 190, 80, 51, 39, 110, 125, 139, 118, 27, 230, 162, 218, 189, 112, 96, 236, 122, 197, 157, 216, 68, 47, 147, 168, 192, 11, 77, 40, 255, 24, 16, 226, 28, 127, 199, 142, 207, 179, 247, 18, 204, 70, 136, 85, 159, 234, 109, 54, 88, 175, 205, 92, 75, 146, 186, 59, 12, 196, 14, 42, 183, 160, 116, 155, 245, 79, 5, 102, 13, 91, 117, 215, 210, 114, 83, 164, 150, 43, 176, 231, 211, 66, 15, 140, 4, 131, 10, 103, 193, 134, 239, 203, 165, 217, 49, 209, 126, 89, 2, 58, 105, 115, 161, 44, 191, 194, 141, 17, 213, 181, 32, 90, 132, 248, 220, 56, 138, 123, 6, 232, 133, 34, 41, 31, 188]
+    _stk2 = []
+    _pc2 = 0
+    _regs2 = [None] * 8
+    _eh2 = []
+    _dh2 = {}
+    _ot3 = [156, 217, 164, 44, 162, 128, 166, 96, 116, 245, 60, 71, 200, 176, 167, 47, 151, 14, 107, 146, 148, 31, 23, 57, 169, 102, 140, 243, 89, 247, 215, 242, 251, 188, 1, 173, 28, 192, 69, 228, 99, 183, 131, 177, 118, 236, 27, 248, 61, 226, 199, 22, 134, 39, 101, 225, 115, 206, 108, 150, 142, 234, 79, 100, 229, 82, 40, 93, 212, 124, 62, 171, 74, 29, 141, 70, 184, 16, 130, 72, 211, 196, 114, 120, 127, 6, 144, 222, 231, 153, 104, 160, 12, 81, 187, 254, 235, 84, 18, 168, 112, 111, 19, 203, 175, 34, 165, 0, 204, 209, 221, 75, 238, 193, 117, 13, 95, 219, 181, 220, 149, 182, 17, 38, 138, 255, 253, 191, 139, 132, 155, 2, 119, 83, 239, 85, 214, 154, 26, 249, 15, 56, 103, 25, 186, 66, 133, 224, 63, 98, 77, 86, 145, 32, 80, 179, 36, 129, 227, 30, 190, 94, 87, 51, 157, 43, 58, 11, 232, 152, 64, 123, 172, 97, 218, 230, 105, 68, 163, 53, 252, 170, 8, 106, 180, 65, 67, 55, 3, 7, 49, 121, 110, 45, 41, 207, 21, 52, 92, 122, 46, 208, 189, 4, 10, 197, 54, 135, 244, 233, 194, 90, 174, 178, 246, 50, 201, 91, 250, 73, 9, 88, 202, 159, 195, 59, 210, 76, 240, 126, 185, 35, 24, 37, 20, 198, 42, 109, 136, 237, 241, 33, 205, 113, 78, 147, 137, 143, 125, 158, 213, 161, 216, 5, 223, 48]
+    _stk3 = []
+    _pc3 = 0
+    _regs3 = [None] * 8
+    _eh3 = []
+    _dh3 = {}
+    _ot4 = [194, 86, 76, 32, 154, 11, 233, 15, 236, 168, 219, 192, 212, 93, 134, 5, 251, 153, 81, 200, 237, 121, 14, 12, 226, 221, 250, 178, 34, 247, 94, 85, 84, 38, 39, 22, 46, 3, 202, 230, 249, 71, 235, 23, 167, 135, 143, 96, 59, 73, 72, 0, 201, 149, 204, 70, 27, 241, 60, 213, 232, 26, 238, 163, 157, 140, 208, 95, 148, 50, 18, 13, 171, 147, 164, 83, 137, 55, 189, 195, 107, 65, 47, 125, 215, 110, 206, 113, 28, 180, 161, 111, 68, 175, 225, 44, 105, 231, 196, 179, 123, 162, 97, 188, 239, 91, 33, 57, 48, 216, 242, 254, 223, 92, 124, 49, 36, 30, 19, 126, 106, 31, 145, 174, 119, 116, 102, 90, 139, 209, 190, 220, 146, 193, 128, 115, 172, 21, 199, 24, 234, 99, 10, 141, 217, 6, 177, 187, 78, 103, 132, 229, 240, 77, 104, 20, 79, 129, 101, 98, 53, 248, 160, 54, 43, 159, 165, 42, 133, 136, 228, 69, 52, 207, 37, 176, 4, 158, 222, 130, 75, 245, 205, 80, 252, 35, 224, 246, 41, 108, 191, 169, 122, 114, 244, 56, 170, 61, 88, 118, 62, 120, 198, 87, 109, 17, 218, 63, 211, 64, 16, 131, 8, 156, 227, 112, 214, 45, 183, 186, 1, 253, 197, 150, 82, 127, 152, 89, 210, 182, 29, 9, 51, 185, 138, 173, 151, 74, 144, 40, 181, 100, 166, 155, 66, 67, 184, 58, 142, 255, 2, 117, 7, 243, 203, 25]
+    _stk4 = []
+    _pc4 = 0
+    _regs4 = [None] * 8
+    _eh4 = []
+    _dh4 = {}
+    _tc17 = __import__('time').perf_counter_ns
+    _segs = [(0, 4)]
+    _tprev = _tc17()
+    _ck20 = [57]
+    _si67 = 0
+    for _seg_vm81, _seg_n71 in _segs:
+        _td10 = _tc17() - _tprev
+        if _td10 > 5000000000: return None
+        _tprev = _tc17()
+        if _seg_vm81 == 0:
+            _ic0 = 0
+            while _pc0 < len(_c0):
+              try:
+                _ic0 += 1
+                _op20 = _ot0[_c0[_pc0] & 0xFF]
+                if _op20 in _dh0:
+                    _pc0 = _dh0[_op20](_stk0, _loc10, _consts19, _names38, _gl57, _c0, _pc0, _regs0, _shared57, _gregs61)
+                    continue
+                _dt058 = {3: 0, 5: 1, 6: 2, 7: 3, 8: 4, 16: 5, 17: 6, 18: 7, 19: 8, 20: 9, 21: 10, 23: 11, 25: 12, 26: 13, 32: 14, 33: 15, 34: 16, 48: 17, 49: 18, 50: 19, 51: 20, 53: 21, 54: 22, 55: 23, 56: 24, 64: 25, 65: 26, 66: 27, 80: 28, 81: 29, 82: 30, 83: 31, 84: 32, 85: 33, 86: 34, 87: 35, 88: 36, 89: 37, 90: 38, 96: 39, 97: 40, 112: 41, 120: 42, 121: 43, 122: 44, 128: 45, 129: 46, 130: 47, 131: 48, 132: 49, 133: 50, 134: 51, 144: 52, 145: 53, 146: 54, 147: 55, 148: 56, 160: 57, 161: 58, 254: 59, 255: 60}
+                _hi057 = _dt058.get(_op20, -1)
+                if _hi057 == 0:
+                    _loc10[_c0[_pc0+1]] = _stk0.pop(); _pc0 += 2
+                elif _hi057 == 1:
+                    _gl57[_names38[_c0[_pc0+1]]] = _stk0.pop(); _pc0 += 2
+                elif _hi057 == 2:
+                    _stk0.append(_stk0[-1]); _pc0 += 1
+                elif _hi057 == 3:
+                    _stk0.pop(); _pc0 += 1
+                elif _hi057 == 4:
+                    _stk0[-1], _stk0[-2] = _stk0[-2], _stk0[-1]; _pc0 += 1
+                elif _hi057 == 5:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 + _b15); _pc0 += 1
+                elif _hi057 == 6:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 - _b15); _pc0 += 1
+                elif _hi057 == 7:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 * _b15); _pc0 += 1
+                elif _hi057 == 8:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 % _b15); _pc0 += 1
+                elif _hi057 == 9:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 // _b15); _pc0 += 1
+                elif _hi057 == 10:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 ** _b15); _pc0 += 1
+                elif _hi057 == 11:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 & _b15); _pc0 += 1
+                elif _hi057 == 12:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 << _b15); _pc0 += 1
+                elif _hi057 == 13:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 >> _b15); _pc0 += 1
+                elif _hi057 == 14:
+                    _stk0.append(-_stk0.pop()); _pc0 += 1
+                elif _hi057 == 15:
+                    _stk0.append(~_stk0.pop()); _pc0 += 1
+                elif _hi057 == 16:
+                    _stk0.append(not _stk0.pop()); _pc0 += 1
+                elif _hi057 == 17:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 == _b15); _pc0 += 1
+                elif _hi057 == 18:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 != _b15); _pc0 += 1
+                elif _hi057 == 19:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 < _b15); _pc0 += 1
+                elif _hi057 == 20:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 > _b15); _pc0 += 1
+                elif _hi057 == 21:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 >= _b15); _pc0 += 1
+                elif _hi057 == 22:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 is _b15); _pc0 += 1
+                elif _hi057 == 23:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 is not _b15); _pc0 += 1
+                elif _hi057 == 24:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 in _b15); _pc0 += 1
+                elif _hi057 == 25:
+                    _pc0 = (_c0[_pc0+1] | (_c0[_pc0+2] << 8))
+                elif _hi057 == 26:
+                    _pc0 = (_c0[_pc0+1] | (_c0[_pc0+2] << 8)) if _stk0.pop() else _pc0 + 3
+                elif _hi057 == 27:
+                    _pc0 = (_c0[_pc0+1] | (_c0[_pc0+2] << 8)) if not _stk0.pop() else _pc0 + 3
+                elif _hi057 == 28:
+                    _tmp21 = _c0[_pc0+1]
+                    if _tmp21: _val55 = _stk0[-_tmp21:]; del _stk0[-_tmp21:]
+                    else: _val55 = []
+                    _stk0.append(_stk0.pop()(*_val55)); _pc0 += 2
+                elif _hi057 == 29:
+                    _stk0.append(getattr(_stk0.pop(), _names38[_c0[_pc0+1]])); _pc0 += 2
+                elif _hi057 == 30:
+                    _val55 = _stk0.pop(); setattr(_stk0.pop(), _names38[_c0[_pc0+1]], _val55); _pc0 += 2
+                elif _hi057 == 31:
+                    _tmp21 = _c0[_pc0+2]
+                    _val55 = [_stk0.pop() for _ in range(_tmp21)][::-1]
+                    _stk0.append(getattr(_stk0.pop(), _names38[_c0[_pc0+1]])(*_val55)); _pc0 += 3
+                elif _hi057 == 32:
+                    _tmp21 = _c0[_pc0+1]
+                    if _tmp21: _val55 = _stk0[-_tmp21:]; del _stk0[-_tmp21:]
+                    else: _val55 = []
+                    _stk0.append(_val55); _pc0 += 2
+                elif _hi057 == 33:
+                    _tmp21 = _c0[_pc0+1]
+                    if _tmp21: _val55 = tuple(_stk0[-_tmp21:]); del _stk0[-_tmp21:]
+                    else: _val55 = ()
+                    _stk0.append(_val55); _pc0 += 2
+                elif _hi057 == 34:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36[_b15]); _pc0 += 1
+                elif _hi057 == 35:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _val55 = _stk0.pop(); _a36[_b15] = _val55; _pc0 += 1
+                elif _hi057 == 36:
+                    _val55 = list(_stk0.pop())[:_c0[_pc0+1]]; _stk0.extend(reversed(_val55)); _pc0 += 2
+                elif _hi057 == 37:
+                    _tmp21 = _c0[_pc0+1]; _val55 = {}
+                    for _ in range(_tmp21): _b15 = _stk0.pop(); _a36 = _stk0.pop(); _val55[_a36] = _b15
+                    _stk0.append(_val55); _pc0 += 2
+                elif _hi057 == 38:
+                    _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(slice(_a36, _b15)); _pc0 += 1
+                elif _hi057 == 39:
+                    _stk0.append(iter(_stk0.pop())); _pc0 += 1
+                elif _hi057 == 40:
+                    _val55 = next(_stk0[-1], None)
+                    if _val55 is None: _stk0.pop(); _pc0 = (_c0[_pc0+1] | (_c0[_pc0+2] << 8))
+                    else: _stk0.append(_val55); _pc0 += 3
+                elif _hi057 == 41:
+                    return _stk0.pop()
+                elif _hi057 == 42:
+                    _eh0.append(_c0[_pc0+1] | (_c0[_pc0+2] << 8)); _pc0 += 3
+                elif _hi057 == 43:
+                    _eh0.pop(); _pc0 += 1
+                elif _hi057 == 44:
+                    _tmp21 = _c0[_pc0+1] | (_c0[_pc0+2] << 8); _c0[_tmp21] ^= _c0[_pc0+3]; _pc0 += 4
+                elif _hi057 == 45:
+                    _regs0[_c0[_pc0+1]] = _loc10[_c0[_pc0+2]]; _pc0 += 3
+                elif _hi057 == 46:
+                    _loc10[_c0[_pc0+2]] = _regs0[_c0[_pc0+1]]; _pc0 += 3
+                elif _hi057 == 47:
+                    _stk0.append(_regs0[_c0[_pc0+1]]); _pc0 += 2
+                elif _hi057 == 48:
+                    _regs0[_c0[_pc0+1]] = _stk0.pop(); _pc0 += 2
+                elif _hi057 == 49:
+                    _regs0[_c0[_pc0+1]] = _regs0[_c0[_pc0+2]]; _pc0 += 3
+                elif _hi057 == 50:
+                    _regs0[_c0[_pc0+1]] = _regs0[_c0[_pc0+1]] + _regs0[_c0[_pc0+2]]; _pc0 += 3
+                elif _hi057 == 51:
+                    _regs0[_c0[_pc0+1]] = _regs0[_c0[_pc0+1]] - _regs0[_c0[_pc0+2]]; _pc0 += 3
+                elif _hi057 == 52:
+                    _shared57[_c0[_pc0+1]].append(_stk0.pop()); _pc0 += 2
+                elif _hi057 == 53:
+                    _stk0.append(_shared57[_c0[_pc0+1]].pop()); _pc0 += 2
+                elif _hi057 == 54:
+                    _gregs61[_c0[_pc0+1]] = _stk0.pop(); _pc0 += 2
+                elif _hi057 == 55:
+                    _stk0.append(_gregs61[_c0[_pc0+1]]); _pc0 += 2
+                elif _hi057 == 56:
+                    _pc0 += 1; break
+                elif _hi057 == 57:
+                    _stk0.append(_loc10[_c0[_pc0+1]]); _b15 = _stk0.pop(); _a36 = _stk0.pop(); _stk0.append(_a36 + _b15); _pc0 += 2
+                elif _hi057 == 58:
+                    _stk0.append(_stk0[-1]); _loc10[_c0[_pc0+1]] = _stk0.pop(); _pc0 += 2
+                elif _hi057 == 59:
+                    _pc0 += 1
+                elif _hi057 == 60:
+                    return _stk0[-1] if _stk0 else None
+                else: _pc0 += 1
+              except Exception as _exc:
+                if _eh0: _pc0 = _eh0.pop(); _stk0.append(_exc)
+                else: raise
+        elif _seg_vm81 == 1:
+            _ic1 = 0
+            while _pc1 < len(_c1):
+              try:
+                _ic1 += 1
+                _op20 = _ot1[_c1[_pc1] & 0xFF]
+                if _op20 < 66:
+                    if _op20 < 24:
+                        if _op20 < 16:
+                            if _op20 < 5:
+                                if _op20 < 3:
+                                    if _op20 < 2:
+                                        if _op20 == 1:
+                                            _stk1.append(_consts19[_c1[_pc1+1]]); _pc1 += 2
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 2:
+                                            _stk1.append(_loc10[_c1[_pc1+1]]); _pc1 += 2
+                                        else: _pc1 += 1
+                                else:
+                                    if _op20 < 4:
+                                        if _op20 == 3:
+                                            _loc10[_c1[_pc1+1]] = _stk1.pop(); _pc1 += 2
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 4:
+                                            _stk1.append(_gl57[_names38[_c1[_pc1+1]]]); _pc1 += 2
+                                        else: _pc1 += 1
+                            else:
+                                if _op20 < 7:
+                                    if _op20 < 6:
+                                        if _op20 == 5:
+                                            _gl57[_names38[_c1[_pc1+1]]] = _stk1.pop(); _pc1 += 2
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 6:
+                                            _stk1.append(_stk1[-1]); _pc1 += 1
+                                        else: _pc1 += 1
+                                else:
+                                    if _op20 < 8:
+                                        if _op20 == 7:
+                                            _stk1.pop(); _pc1 += 1
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 8:
+                                            _stk1[-1], _stk1[-2] = _stk1[-2], _stk1[-1]; _pc1 += 1
+                                        else: _pc1 += 1
+                        else:
+                            if _op20 < 20:
+                                if _op20 < 18:
+                                    if _op20 < 17:
+                                        if _op20 == 16:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 + _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 17:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 - _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                                else:
+                                    if _op20 < 19:
+                                        if _op20 == 18:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 * _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 19:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 % _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                            else:
+                                if _op20 < 22:
+                                    if _op20 < 21:
+                                        if _op20 == 20:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 // _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 21:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 ** _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                                else:
+                                    if _op20 < 23:
+                                        if _op20 == 22:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 ^ _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 23:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 & _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                    else:
+                        if _op20 < 50:
+                            if _op20 < 33:
+                                if _op20 < 26:
+                                    if _op20 < 25:
+                                        if _op20 == 24:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 | _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 25:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 << _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                                else:
+                                    if _op20 < 32:
+                                        if _op20 == 26:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 >> _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 32:
+                                            _stk1.append(-_stk1.pop()); _pc1 += 1
+                                        else: _pc1 += 1
+                            else:
+                                if _op20 < 48:
+                                    if _op20 < 34:
+                                        if _op20 == 33:
+                                            _stk1.append(~_stk1.pop()); _pc1 += 1
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 34:
+                                            _stk1.append(not _stk1.pop()); _pc1 += 1
+                                        else: _pc1 += 1
+                                else:
+                                    if _op20 < 49:
+                                        if _op20 == 48:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 == _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 49:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 != _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                        else:
+                            if _op20 < 54:
+                                if _op20 < 52:
+                                    if _op20 < 51:
+                                        if _op20 == 50:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 < _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 51:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 > _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                                else:
+                                    if _op20 < 53:
+                                        if _op20 == 52:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 <= _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 53:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 >= _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                            else:
+                                if _op20 < 56:
+                                    if _op20 < 55:
+                                        if _op20 == 54:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 is _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 55:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 is not _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                                else:
+                                    if _op20 < 64:
+                                        if _op20 == 56:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 in _b15); _pc1 += 1
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 < 65:
+                                            if _op20 == 64:
+                                                _pc1 = (_c1[_pc1+1] | (_c1[_pc1+2] << 8))
+                                            else: _pc1 += 1
+                                        else:
+                                            if _op20 == 65:
+                                                _pc1 = (_c1[_pc1+1] | (_c1[_pc1+2] << 8)) if _stk1.pop() else _pc1 + 3
+                                            else: _pc1 += 1
+                else:
+                    if _op20 < 122:
+                        if _op20 < 87:
+                            if _op20 < 83:
+                                if _op20 < 81:
+                                    if _op20 < 80:
+                                        if _op20 == 66:
+                                            _pc1 = (_c1[_pc1+1] | (_c1[_pc1+2] << 8)) if not _stk1.pop() else _pc1 + 3
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 80:
+                                            _tmp21 = _c1[_pc1+1]
+                                            if _tmp21: _val55 = _stk1[-_tmp21:]; del _stk1[-_tmp21:]
+                                            else: _val55 = []
+                                            _stk1.append(_stk1.pop()(*_val55)); _pc1 += 2
+                                        else: _pc1 += 1
+                                else:
+                                    if _op20 < 82:
+                                        if _op20 == 81:
+                                            _stk1.append(getattr(_stk1.pop(), _names38[_c1[_pc1+1]])); _pc1 += 2
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 82:
+                                            _val55 = _stk1.pop(); setattr(_stk1.pop(), _names38[_c1[_pc1+1]], _val55); _pc1 += 2
+                                        else: _pc1 += 1
+                            else:
+                                if _op20 < 85:
+                                    if _op20 < 84:
+                                        if _op20 == 83:
+                                            _tmp21 = _c1[_pc1+2]
+                                            _val55 = [_stk1.pop() for _ in range(_tmp21)][::-1]
+                                            _stk1.append(getattr(_stk1.pop(), _names38[_c1[_pc1+1]])(*_val55)); _pc1 += 3
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 84:
+                                            _tmp21 = _c1[_pc1+1]
+                                            if _tmp21: _val55 = _stk1[-_tmp21:]; del _stk1[-_tmp21:]
+                                            else: _val55 = []
+                                            _stk1.append(_val55); _pc1 += 2
+                                        else: _pc1 += 1
+                                else:
+                                    if _op20 < 86:
+                                        if _op20 == 85:
+                                            _tmp21 = _c1[_pc1+1]
+                                            if _tmp21: _val55 = tuple(_stk1[-_tmp21:]); del _stk1[-_tmp21:]
+                                            else: _val55 = ()
+                                            _stk1.append(_val55); _pc1 += 2
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 86:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36[_b15]); _pc1 += 1
+                                        else: _pc1 += 1
+                        else:
+                            if _op20 < 96:
+                                if _op20 < 89:
+                                    if _op20 < 88:
+                                        if _op20 == 87:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _val55 = _stk1.pop(); _a36[_b15] = _val55; _pc1 += 1
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 88:
+                                            _val55 = list(_stk1.pop())[:_c1[_pc1+1]]; _stk1.extend(reversed(_val55)); _pc1 += 2
+                                        else: _pc1 += 1
+                                else:
+                                    if _op20 < 90:
+                                        if _op20 == 89:
+                                            _tmp21 = _c1[_pc1+1]; _val55 = {}
+                                            for _ in range(_tmp21): _b15 = _stk1.pop(); _a36 = _stk1.pop(); _val55[_a36] = _b15
+                                            _stk1.append(_val55); _pc1 += 2
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 90:
+                                            _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(slice(_a36, _b15)); _pc1 += 1
+                                        else: _pc1 += 1
+                            else:
+                                if _op20 < 112:
+                                    if _op20 < 97:
+                                        if _op20 == 96:
+                                            _stk1.append(iter(_stk1.pop())); _pc1 += 1
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 97:
+                                            _val55 = next(_stk1[-1], None)
+                                            if _val55 is None: _stk1.pop(); _pc1 = (_c1[_pc1+1] | (_c1[_pc1+2] << 8))
+                                            else: _stk1.append(_val55); _pc1 += 3
+                                        else: _pc1 += 1
+                                else:
+                                    if _op20 < 120:
+                                        if _op20 == 112:
+                                            return _stk1.pop()
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 < 121:
+                                            if _op20 == 120:
+                                                _eh1.append(_c1[_pc1+1] | (_c1[_pc1+2] << 8)); _pc1 += 3
+                                            else: _pc1 += 1
+                                        else:
+                                            if _op20 == 121:
+                                                _eh1.pop(); _pc1 += 1
+                                            else: _pc1 += 1
+                    else:
+                        if _op20 < 144:
+                            if _op20 < 131:
+                                if _op20 < 129:
+                                    if _op20 < 128:
+                                        if _op20 == 122:
+                                            _tmp21 = _c1[_pc1+1] | (_c1[_pc1+2] << 8); _c1[_tmp21] ^= _c1[_pc1+3]; _pc1 += 4
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 128:
+                                            _regs1[_c1[_pc1+1]] = _loc10[_c1[_pc1+2]]; _pc1 += 3
+                                        else: _pc1 += 1
+                                else:
+                                    if _op20 < 130:
+                                        if _op20 == 129:
+                                            _loc10[_c1[_pc1+2]] = _regs1[_c1[_pc1+1]]; _pc1 += 3
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 130:
+                                            _stk1.append(_regs1[_c1[_pc1+1]]); _pc1 += 2
+                                        else: _pc1 += 1
+                            else:
+                                if _op20 < 133:
+                                    if _op20 < 132:
+                                        if _op20 == 131:
+                                            _regs1[_c1[_pc1+1]] = _stk1.pop(); _pc1 += 2
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 132:
+                                            _regs1[_c1[_pc1+1]] = _regs1[_c1[_pc1+2]]; _pc1 += 3
+                                        else: _pc1 += 1
+                                else:
+                                    if _op20 < 134:
+                                        if _op20 == 133:
+                                            _regs1[_c1[_pc1+1]] = _regs1[_c1[_pc1+1]] + _regs1[_c1[_pc1+2]]; _pc1 += 3
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 134:
+                                            _regs1[_c1[_pc1+1]] = _regs1[_c1[_pc1+1]] - _regs1[_c1[_pc1+2]]; _pc1 += 3
+                                        else: _pc1 += 1
+                        else:
+                            if _op20 < 148:
+                                if _op20 < 146:
+                                    if _op20 < 145:
+                                        if _op20 == 144:
+                                            _shared57[_c1[_pc1+1]].append(_stk1.pop()); _pc1 += 2
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 145:
+                                            _stk1.append(_shared57[_c1[_pc1+1]].pop()); _pc1 += 2
+                                        else: _pc1 += 1
+                                else:
+                                    if _op20 < 147:
+                                        if _op20 == 146:
+                                            _gregs61[_c1[_pc1+1]] = _stk1.pop(); _pc1 += 2
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 147:
+                                            _stk1.append(_gregs61[_c1[_pc1+1]]); _pc1 += 2
+                                        else: _pc1 += 1
+                            else:
+                                if _op20 < 161:
+                                    if _op20 < 160:
+                                        if _op20 == 148:
+                                            _pc1 += 1; break
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 == 160:
+                                            _stk1.append(_loc10[_c1[_pc1+1]]); _b15 = _stk1.pop(); _a36 = _stk1.pop(); _stk1.append(_a36 + _b15); _pc1 += 2
+                                        else: _pc1 += 1
+                                else:
+                                    if _op20 < 254:
+                                        if _op20 == 161:
+                                            _stk1.append(_stk1[-1]); _loc10[_c1[_pc1+1]] = _stk1.pop(); _pc1 += 2
+                                        else: _pc1 += 1
+                                    else:
+                                        if _op20 < 255:
+                                            if _op20 == 254:
+                                                _pc1 += 1
+                                            else: _pc1 += 1
+                                        else:
+                                            if _op20 == 255:
+                                                return _stk1[-1] if _stk1 else None
+                                            else: _pc1 += 1
+              except Exception as _exc:
+                if _eh1: _pc1 = _eh1.pop(); _stk1.append(_exc)
+                else: raise
+        elif _seg_vm81 == 2:
+            _ic2 = 0
+            while _pc2 < len(_c2):
+              try:
+                _ic2 += 1
+                _op20 = _ot2[_c2[_pc2] & 0xFF]
+                _ha212 = [255, 0, 1, 2, 3, 4, 5, 6, 7, 255, 255, 255, 255, 255, 255, 255, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 255, 255, 255, 255, 255, 19, 20, 21, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 22, 23, 24, 25, 26, 27, 28, 29, 30, 255, 255, 255, 255, 255, 255, 255, 31, 32, 33, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 255, 255, 255, 255, 255, 45, 46, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 47, 255, 255, 255, 255, 255, 255, 255, 48, 49, 50, 255, 255, 255, 255, 255, 51, 52, 53, 54, 55, 56, 57, 255, 255, 255, 255, 255, 255, 255, 255, 255, 58, 59, 60, 61, 62, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 63, 64, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 65, 66]
+                _ai287 = _ha212[_op20]
+                if _ai287 == 0:
+                    _stk2.append(_consts19[_c2[_pc2+1]]); _pc2 += 2
+                elif _ai287 == 1:
+                    _stk2.append(_loc10[_c2[_pc2+1]]); _pc2 += 2
+                elif _ai287 == 2:
+                    _loc10[_c2[_pc2+1]] = _stk2.pop(); _pc2 += 2
+                elif _ai287 == 3:
+                    _stk2.append(_gl57[_names38[_c2[_pc2+1]]]); _pc2 += 2
+                elif _ai287 == 4:
+                    _gl57[_names38[_c2[_pc2+1]]] = _stk2.pop(); _pc2 += 2
+                elif _ai287 == 5:
+                    _stk2.append(_stk2[-1]); _pc2 += 1
+                elif _ai287 == 6:
+                    _stk2.pop(); _pc2 += 1
+                elif _ai287 == 7:
+                    _stk2[-1], _stk2[-2] = _stk2[-2], _stk2[-1]; _pc2 += 1
+                elif _ai287 == 8:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 + _b15); _pc2 += 1
+                elif _ai287 == 9:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 - _b15); _pc2 += 1
+                elif _ai287 == 10:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 * _b15); _pc2 += 1
+                elif _ai287 == 11:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 % _b15); _pc2 += 1
+                elif _ai287 == 12:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 // _b15); _pc2 += 1
+                elif _ai287 == 13:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 ** _b15); _pc2 += 1
+                elif _ai287 == 14:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 ^ _b15); _pc2 += 1
+                elif _ai287 == 15:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 & _b15); _pc2 += 1
+                elif _ai287 == 16:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 | _b15); _pc2 += 1
+                elif _ai287 == 17:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 << _b15); _pc2 += 1
+                elif _ai287 == 18:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 >> _b15); _pc2 += 1
+                elif _ai287 == 19:
+                    _stk2.append(-_stk2.pop()); _pc2 += 1
+                elif _ai287 == 20:
+                    _stk2.append(~_stk2.pop()); _pc2 += 1
+                elif _ai287 == 21:
+                    _stk2.append(not _stk2.pop()); _pc2 += 1
+                elif _ai287 == 22:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 == _b15); _pc2 += 1
+                elif _ai287 == 23:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 != _b15); _pc2 += 1
+                elif _ai287 == 24:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 < _b15); _pc2 += 1
+                elif _ai287 == 25:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 > _b15); _pc2 += 1
+                elif _ai287 == 26:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 <= _b15); _pc2 += 1
+                elif _ai287 == 27:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 >= _b15); _pc2 += 1
+                elif _ai287 == 28:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 is _b15); _pc2 += 1
+                elif _ai287 == 29:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 is not _b15); _pc2 += 1
+                elif _ai287 == 30:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 in _b15); _pc2 += 1
+                elif _ai287 == 31:
+                    _pc2 = (_c2[_pc2+1] | (_c2[_pc2+2] << 8))
+                elif _ai287 == 32:
+                    _pc2 = (_c2[_pc2+1] | (_c2[_pc2+2] << 8)) if _stk2.pop() else _pc2 + 3
+                elif _ai287 == 33:
+                    _pc2 = (_c2[_pc2+1] | (_c2[_pc2+2] << 8)) if not _stk2.pop() else _pc2 + 3
+                elif _ai287 == 34:
+                    _tmp21 = _c2[_pc2+1]
+                    if _tmp21: _val55 = _stk2[-_tmp21:]; del _stk2[-_tmp21:]
+                    else: _val55 = []
+                    _stk2.append(_stk2.pop()(*_val55)); _pc2 += 2
+                elif _ai287 == 35:
+                    _stk2.append(getattr(_stk2.pop(), _names38[_c2[_pc2+1]])); _pc2 += 2
+                elif _ai287 == 36:
+                    _val55 = _stk2.pop(); setattr(_stk2.pop(), _names38[_c2[_pc2+1]], _val55); _pc2 += 2
+                elif _ai287 == 37:
+                    _tmp21 = _c2[_pc2+2]
+                    _val55 = [_stk2.pop() for _ in range(_tmp21)][::-1]
+                    _stk2.append(getattr(_stk2.pop(), _names38[_c2[_pc2+1]])(*_val55)); _pc2 += 3
+                elif _ai287 == 38:
+                    _tmp21 = _c2[_pc2+1]
+                    if _tmp21: _val55 = _stk2[-_tmp21:]; del _stk2[-_tmp21:]
+                    else: _val55 = []
+                    _stk2.append(_val55); _pc2 += 2
+                elif _ai287 == 39:
+                    _tmp21 = _c2[_pc2+1]
+                    if _tmp21: _val55 = tuple(_stk2[-_tmp21:]); del _stk2[-_tmp21:]
+                    else: _val55 = ()
+                    _stk2.append(_val55); _pc2 += 2
+                elif _ai287 == 40:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36[_b15]); _pc2 += 1
+                elif _ai287 == 41:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _val55 = _stk2.pop(); _a36[_b15] = _val55; _pc2 += 1
+                elif _ai287 == 42:
+                    _val55 = list(_stk2.pop())[:_c2[_pc2+1]]; _stk2.extend(reversed(_val55)); _pc2 += 2
+                elif _ai287 == 43:
+                    _tmp21 = _c2[_pc2+1]; _val55 = {}
+                    for _ in range(_tmp21): _b15 = _stk2.pop(); _a36 = _stk2.pop(); _val55[_a36] = _b15
+                    _stk2.append(_val55); _pc2 += 2
+                elif _ai287 == 44:
+                    _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(slice(_a36, _b15)); _pc2 += 1
+                elif _ai287 == 45:
+                    _stk2.append(iter(_stk2.pop())); _pc2 += 1
+                elif _ai287 == 46:
+                    _val55 = next(_stk2[-1], None)
+                    if _val55 is None: _stk2.pop(); _pc2 = (_c2[_pc2+1] | (_c2[_pc2+2] << 8))
+                    else: _stk2.append(_val55); _pc2 += 3
+                elif _ai287 == 47:
+                    return _stk2.pop()
+                elif _ai287 == 48:
+                    _eh2.append(_c2[_pc2+1] | (_c2[_pc2+2] << 8)); _pc2 += 3
+                elif _ai287 == 49:
+                    _eh2.pop(); _pc2 += 1
+                elif _ai287 == 50:
+                    _tmp21 = _c2[_pc2+1] | (_c2[_pc2+2] << 8); _c2[_tmp21] ^= _c2[_pc2+3]; _pc2 += 4
+                elif _ai287 == 51:
+                    _regs2[_c2[_pc2+1]] = _loc10[_c2[_pc2+2]]; _pc2 += 3
+                elif _ai287 == 52:
+                    _loc10[_c2[_pc2+2]] = _regs2[_c2[_pc2+1]]; _pc2 += 3
+                elif _ai287 == 53:
+                    _stk2.append(_regs2[_c2[_pc2+1]]); _pc2 += 2
+                elif _ai287 == 54:
+                    _regs2[_c2[_pc2+1]] = _stk2.pop(); _pc2 += 2
+                elif _ai287 == 55:
+                    _regs2[_c2[_pc2+1]] = _regs2[_c2[_pc2+2]]; _pc2 += 3
+                elif _ai287 == 56:
+                    _regs2[_c2[_pc2+1]] = _regs2[_c2[_pc2+1]] + _regs2[_c2[_pc2+2]]; _pc2 += 3
+                elif _ai287 == 57:
+                    _regs2[_c2[_pc2+1]] = _regs2[_c2[_pc2+1]] - _regs2[_c2[_pc2+2]]; _pc2 += 3
+                elif _ai287 == 58:
+                    _shared57[_c2[_pc2+1]].append(_stk2.pop()); _pc2 += 2
+                elif _ai287 == 59:
+                    _stk2.append(_shared57[_c2[_pc2+1]].pop()); _pc2 += 2
+                elif _ai287 == 60:
+                    _gregs61[_c2[_pc2+1]] = _stk2.pop(); _pc2 += 2
+                elif _ai287 == 61:
+                    _stk2.append(_gregs61[_c2[_pc2+1]]); _pc2 += 2
+                elif _ai287 == 62:
+                    _pc2 += 1; break
+                elif _ai287 == 63:
+                    _stk2.append(_loc10[_c2[_pc2+1]]); _b15 = _stk2.pop(); _a36 = _stk2.pop(); _stk2.append(_a36 + _b15); _pc2 += 2
+                elif _ai287 == 64:
+                    _stk2.append(_stk2[-1]); _loc10[_c2[_pc2+1]] = _stk2.pop(); _pc2 += 2
+                elif _ai287 == 65:
+                    _pc2 += 1
+                elif _ai287 == 66:
+                    return _stk2[-1] if _stk2 else None
+                else: _pc2 += 1
+              except Exception as _exc:
+                if _eh2: _pc2 = _eh2.pop(); _stk2.append(_exc)
+                else: raise
+        elif _seg_vm81 == 3:
+            _ic3 = 0
+            while _pc3 < len(_c3):
+              try:
+                _ic3 += 1
+                _op20 = _ot3[_c3[_pc3] & 0xFF]
+                _dt345 = {1: 0, 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 7, 16: 8, 17: 9, 18: 10, 19: 11, 20: 12, 21: 13, 22: 14, 23: 15, 24: 16, 25: 17, 26: 18, 32: 19, 33: 20, 34: 21, 48: 22, 49: 23, 50: 24, 51: 25, 52: 26, 53: 27, 54: 28, 55: 29, 56: 30, 64: 31, 65: 32, 66: 33, 80: 34, 81: 35, 82: 36, 83: 37, 84: 38, 85: 39, 86: 40, 87: 41, 88: 42, 89: 43, 90: 44, 96: 45, 97: 46, 112: 47, 120: 48, 121: 49, 122: 50, 128: 51, 129: 52, 130: 53, 131: 54, 132: 55, 133: 56, 134: 57, 144: 58, 145: 59, 146: 60, 147: 61, 148: 62, 160: 63, 161: 64, 254: 65, 255: 66}
+                _hi317 = _dt345.get(_op20, -1)
+                if _hi317 == 0:
+                    _stk3.append(_consts19[_c3[_pc3+1]]); _pc3 += 2
+                elif _hi317 == 1:
+                    _stk3.append(_loc10[_c3[_pc3+1]]); _pc3 += 2
+                elif _hi317 == 2:
+                    _loc10[_c3[_pc3+1]] = _stk3.pop(); _pc3 += 2
+                elif _hi317 == 3:
+                    _stk3.append(_gl57[_names38[_c3[_pc3+1]]]); _pc3 += 2
+                elif _hi317 == 4:
+                    _gl57[_names38[_c3[_pc3+1]]] = _stk3.pop(); _pc3 += 2
+                elif _hi317 == 5:
+                    _stk3.append(_stk3[-1]); _pc3 += 1
+                elif _hi317 == 6:
+                    _stk3.pop(); _pc3 += 1
+                elif _hi317 == 7:
+                    _stk3[-1], _stk3[-2] = _stk3[-2], _stk3[-1]; _pc3 += 1
+                elif _hi317 == 8:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 + _b15); _pc3 += 1
+                elif _hi317 == 9:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 - _b15); _pc3 += 1
+                elif _hi317 == 10:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 * _b15); _pc3 += 1
+                elif _hi317 == 11:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 % _b15); _pc3 += 1
+                elif _hi317 == 12:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 // _b15); _pc3 += 1
+                elif _hi317 == 13:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 ** _b15); _pc3 += 1
+                elif _hi317 == 14:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 ^ _b15); _pc3 += 1
+                elif _hi317 == 15:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 & _b15); _pc3 += 1
+                elif _hi317 == 16:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 | _b15); _pc3 += 1
+                elif _hi317 == 17:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 << _b15); _pc3 += 1
+                elif _hi317 == 18:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 >> _b15); _pc3 += 1
+                elif _hi317 == 19:
+                    _stk3.append(-_stk3.pop()); _pc3 += 1
+                elif _hi317 == 20:
+                    _stk3.append(~_stk3.pop()); _pc3 += 1
+                elif _hi317 == 21:
+                    _stk3.append(not _stk3.pop()); _pc3 += 1
+                elif _hi317 == 22:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 == _b15); _pc3 += 1
+                elif _hi317 == 23:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 != _b15); _pc3 += 1
+                elif _hi317 == 24:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 < _b15); _pc3 += 1
+                elif _hi317 == 25:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 > _b15); _pc3 += 1
+                elif _hi317 == 26:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 <= _b15); _pc3 += 1
+                elif _hi317 == 27:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 >= _b15); _pc3 += 1
+                elif _hi317 == 28:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 is _b15); _pc3 += 1
+                elif _hi317 == 29:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 is not _b15); _pc3 += 1
+                elif _hi317 == 30:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 in _b15); _pc3 += 1
+                elif _hi317 == 31:
+                    _pc3 = (_c3[_pc3+1] | (_c3[_pc3+2] << 8))
+                elif _hi317 == 32:
+                    _pc3 = (_c3[_pc3+1] | (_c3[_pc3+2] << 8)) if _stk3.pop() else _pc3 + 3
+                elif _hi317 == 33:
+                    _pc3 = (_c3[_pc3+1] | (_c3[_pc3+2] << 8)) if not _stk3.pop() else _pc3 + 3
+                elif _hi317 == 34:
+                    _tmp21 = _c3[_pc3+1]
+                    if _tmp21: _val55 = _stk3[-_tmp21:]; del _stk3[-_tmp21:]
+                    else: _val55 = []
+                    _stk3.append(_stk3.pop()(*_val55)); _pc3 += 2
+                elif _hi317 == 35:
+                    _stk3.append(getattr(_stk3.pop(), _names38[_c3[_pc3+1]])); _pc3 += 2
+                elif _hi317 == 36:
+                    _val55 = _stk3.pop(); setattr(_stk3.pop(), _names38[_c3[_pc3+1]], _val55); _pc3 += 2
+                elif _hi317 == 37:
+                    _tmp21 = _c3[_pc3+2]
+                    _val55 = [_stk3.pop() for _ in range(_tmp21)][::-1]
+                    _stk3.append(getattr(_stk3.pop(), _names38[_c3[_pc3+1]])(*_val55)); _pc3 += 3
+                elif _hi317 == 38:
+                    _tmp21 = _c3[_pc3+1]
+                    if _tmp21: _val55 = _stk3[-_tmp21:]; del _stk3[-_tmp21:]
+                    else: _val55 = []
+                    _stk3.append(_val55); _pc3 += 2
+                elif _hi317 == 39:
+                    _tmp21 = _c3[_pc3+1]
+                    if _tmp21: _val55 = tuple(_stk3[-_tmp21:]); del _stk3[-_tmp21:]
+                    else: _val55 = ()
+                    _stk3.append(_val55); _pc3 += 2
+                elif _hi317 == 40:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36[_b15]); _pc3 += 1
+                elif _hi317 == 41:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _val55 = _stk3.pop(); _a36[_b15] = _val55; _pc3 += 1
+                elif _hi317 == 42:
+                    _val55 = list(_stk3.pop())[:_c3[_pc3+1]]; _stk3.extend(reversed(_val55)); _pc3 += 2
+                elif _hi317 == 43:
+                    _tmp21 = _c3[_pc3+1]; _val55 = {}
+                    for _ in range(_tmp21): _b15 = _stk3.pop(); _a36 = _stk3.pop(); _val55[_a36] = _b15
+                    _stk3.append(_val55); _pc3 += 2
+                elif _hi317 == 44:
+                    _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(slice(_a36, _b15)); _pc3 += 1
+                elif _hi317 == 45:
+                    _stk3.append(iter(_stk3.pop())); _pc3 += 1
+                elif _hi317 == 46:
+                    _val55 = next(_stk3[-1], None)
+                    if _val55 is None: _stk3.pop(); _pc3 = (_c3[_pc3+1] | (_c3[_pc3+2] << 8))
+                    else: _stk3.append(_val55); _pc3 += 3
+                elif _hi317 == 47:
+                    return _stk3.pop()
+                elif _hi317 == 48:
+                    _eh3.append(_c3[_pc3+1] | (_c3[_pc3+2] << 8)); _pc3 += 3
+                elif _hi317 == 49:
+                    _eh3.pop(); _pc3 += 1
+                elif _hi317 == 50:
+                    _tmp21 = _c3[_pc3+1] | (_c3[_pc3+2] << 8); _c3[_tmp21] ^= _c3[_pc3+3]; _pc3 += 4
+                elif _hi317 == 51:
+                    _regs3[_c3[_pc3+1]] = _loc10[_c3[_pc3+2]]; _pc3 += 3
+                elif _hi317 == 52:
+                    _loc10[_c3[_pc3+2]] = _regs3[_c3[_pc3+1]]; _pc3 += 3
+                elif _hi317 == 53:
+                    _stk3.append(_regs3[_c3[_pc3+1]]); _pc3 += 2
+                elif _hi317 == 54:
+                    _regs3[_c3[_pc3+1]] = _stk3.pop(); _pc3 += 2
+                elif _hi317 == 55:
+                    _regs3[_c3[_pc3+1]] = _regs3[_c3[_pc3+2]]; _pc3 += 3
+                elif _hi317 == 56:
+                    _regs3[_c3[_pc3+1]] = _regs3[_c3[_pc3+1]] + _regs3[_c3[_pc3+2]]; _pc3 += 3
+                elif _hi317 == 57:
+                    _regs3[_c3[_pc3+1]] = _regs3[_c3[_pc3+1]] - _regs3[_c3[_pc3+2]]; _pc3 += 3
+                elif _hi317 == 58:
+                    _shared57[_c3[_pc3+1]].append(_stk3.pop()); _pc3 += 2
+                elif _hi317 == 59:
+                    _stk3.append(_shared57[_c3[_pc3+1]].pop()); _pc3 += 2
+                elif _hi317 == 60:
+                    _gregs61[_c3[_pc3+1]] = _stk3.pop(); _pc3 += 2
+                elif _hi317 == 61:
+                    _stk3.append(_gregs61[_c3[_pc3+1]]); _pc3 += 2
+                elif _hi317 == 62:
+                    _pc3 += 1; break
+                elif _hi317 == 63:
+                    _stk3.append(_loc10[_c3[_pc3+1]]); _b15 = _stk3.pop(); _a36 = _stk3.pop(); _stk3.append(_a36 + _b15); _pc3 += 2
+                elif _hi317 == 64:
+                    _stk3.append(_stk3[-1]); _loc10[_c3[_pc3+1]] = _stk3.pop(); _pc3 += 2
+                elif _hi317 == 65:
+                    _pc3 += 1
+                elif _hi317 == 66:
+                    return _stk3[-1] if _stk3 else None
+                else: _pc3 += 1
+              except Exception as _exc:
+                if _eh3: _pc3 = _eh3.pop(); _stk3.append(_exc)
+                else: raise
+        elif _seg_vm81 == 4:
+            _ic4 = 0
+            while _pc4 < len(_c4):
+              try:
+                _ic4 += 1
+                _op20 = _ot4[_c4[_pc4] & 0xFF]
+                _ha477 = [255, 0, 1, 2, 3, 4, 5, 6, 7, 255, 255, 255, 255, 255, 255, 255, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 255, 255, 255, 255, 255, 19, 20, 21, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 22, 23, 24, 25, 26, 27, 28, 29, 30, 255, 255, 255, 255, 255, 255, 255, 31, 32, 33, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 255, 255, 255, 255, 255, 45, 46, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 47, 255, 255, 255, 255, 255, 255, 255, 48, 49, 50, 255, 255, 255, 255, 255, 51, 52, 53, 54, 55, 56, 57, 255, 255, 255, 255, 255, 255, 255, 255, 255, 58, 59, 60, 61, 62, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 63, 64, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 65, 66]
+                _ai469 = _ha477[_op20]
+                if _ai469 == 0:
+                    _stk4.append(_consts19[_c4[_pc4+1]]); _pc4 += 2
+                elif _ai469 == 1:
+                    _stk4.append(_loc10[_c4[_pc4+1]]); _pc4 += 2
+                elif _ai469 == 2:
+                    _loc10[_c4[_pc4+1]] = _stk4.pop(); _pc4 += 2
+                elif _ai469 == 3:
+                    _stk4.append(_gl57[_names38[_c4[_pc4+1]]]); _pc4 += 2
+                elif _ai469 == 4:
+                    _gl57[_names38[_c4[_pc4+1]]] = _stk4.pop(); _pc4 += 2
+                elif _ai469 == 5:
+                    _stk4.append(_stk4[-1]); _pc4 += 1
+                elif _ai469 == 6:
+                    _stk4.pop(); _pc4 += 1
+                elif _ai469 == 7:
+                    _stk4[-1], _stk4[-2] = _stk4[-2], _stk4[-1]; _pc4 += 1
+                elif _ai469 == 8:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 + _b15); _pc4 += 1
+                elif _ai469 == 9:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 - _b15); _pc4 += 1
+                elif _ai469 == 10:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 * _b15); _pc4 += 1
+                elif _ai469 == 11:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 % _b15); _pc4 += 1
+                elif _ai469 == 12:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 // _b15); _pc4 += 1
+                elif _ai469 == 13:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 ** _b15); _pc4 += 1
+                elif _ai469 == 14:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 ^ _b15); _pc4 += 1
+                elif _ai469 == 15:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 & _b15); _pc4 += 1
+                elif _ai469 == 16:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 | _b15); _pc4 += 1
+                elif _ai469 == 17:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 << _b15); _pc4 += 1
+                elif _ai469 == 18:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 >> _b15); _pc4 += 1
+                elif _ai469 == 19:
+                    _stk4.append(-_stk4.pop()); _pc4 += 1
+                elif _ai469 == 20:
+                    _stk4.append(~_stk4.pop()); _pc4 += 1
+                elif _ai469 == 21:
+                    _stk4.append(not _stk4.pop()); _pc4 += 1
+                elif _ai469 == 22:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 == _b15); _pc4 += 1
+                elif _ai469 == 23:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 != _b15); _pc4 += 1
+                elif _ai469 == 24:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 < _b15); _pc4 += 1
+                elif _ai469 == 25:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 > _b15); _pc4 += 1
+                elif _ai469 == 26:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 <= _b15); _pc4 += 1
+                elif _ai469 == 27:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 >= _b15); _pc4 += 1
+                elif _ai469 == 28:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 is _b15); _pc4 += 1
+                elif _ai469 == 29:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 is not _b15); _pc4 += 1
+                elif _ai469 == 30:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 in _b15); _pc4 += 1
+                elif _ai469 == 31:
+                    _pc4 = (_c4[_pc4+1] | (_c4[_pc4+2] << 8))
+                elif _ai469 == 32:
+                    _pc4 = (_c4[_pc4+1] | (_c4[_pc4+2] << 8)) if _stk4.pop() else _pc4 + 3
+                elif _ai469 == 33:
+                    _pc4 = (_c4[_pc4+1] | (_c4[_pc4+2] << 8)) if not _stk4.pop() else _pc4 + 3
+                elif _ai469 == 34:
+                    _tmp21 = _c4[_pc4+1]
+                    if _tmp21: _val55 = _stk4[-_tmp21:]; del _stk4[-_tmp21:]
+                    else: _val55 = []
+                    _stk4.append(_stk4.pop()(*_val55)); _pc4 += 2
+                elif _ai469 == 35:
+                    _stk4.append(getattr(_stk4.pop(), _names38[_c4[_pc4+1]])); _pc4 += 2
+                elif _ai469 == 36:
+                    _val55 = _stk4.pop(); setattr(_stk4.pop(), _names38[_c4[_pc4+1]], _val55); _pc4 += 2
+                elif _ai469 == 37:
+                    _tmp21 = _c4[_pc4+2]
+                    _val55 = [_stk4.pop() for _ in range(_tmp21)][::-1]
+                    _stk4.append(getattr(_stk4.pop(), _names38[_c4[_pc4+1]])(*_val55)); _pc4 += 3
+                elif _ai469 == 38:
+                    _tmp21 = _c4[_pc4+1]
+                    if _tmp21: _val55 = _stk4[-_tmp21:]; del _stk4[-_tmp21:]
+                    else: _val55 = []
+                    _stk4.append(_val55); _pc4 += 2
+                elif _ai469 == 39:
+                    _tmp21 = _c4[_pc4+1]
+                    if _tmp21: _val55 = tuple(_stk4[-_tmp21:]); del _stk4[-_tmp21:]
+                    else: _val55 = ()
+                    _stk4.append(_val55); _pc4 += 2
+                elif _ai469 == 40:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36[_b15]); _pc4 += 1
+                elif _ai469 == 41:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _val55 = _stk4.pop(); _a36[_b15] = _val55; _pc4 += 1
+                elif _ai469 == 42:
+                    _val55 = list(_stk4.pop())[:_c4[_pc4+1]]; _stk4.extend(reversed(_val55)); _pc4 += 2
+                elif _ai469 == 43:
+                    _tmp21 = _c4[_pc4+1]; _val55 = {}
+                    for _ in range(_tmp21): _b15 = _stk4.pop(); _a36 = _stk4.pop(); _val55[_a36] = _b15
+                    _stk4.append(_val55); _pc4 += 2
+                elif _ai469 == 44:
+                    _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(slice(_a36, _b15)); _pc4 += 1
+                elif _ai469 == 45:
+                    _stk4.append(iter(_stk4.pop())); _pc4 += 1
+                elif _ai469 == 46:
+                    _val55 = next(_stk4[-1], None)
+                    if _val55 is None: _stk4.pop(); _pc4 = (_c4[_pc4+1] | (_c4[_pc4+2] << 8))
+                    else: _stk4.append(_val55); _pc4 += 3
+                elif _ai469 == 47:
+                    return _stk4.pop()
+                elif _ai469 == 48:
+                    _eh4.append(_c4[_pc4+1] | (_c4[_pc4+2] << 8)); _pc4 += 3
+                elif _ai469 == 49:
+                    _eh4.pop(); _pc4 += 1
+                elif _ai469 == 50:
+                    _tmp21 = _c4[_pc4+1] | (_c4[_pc4+2] << 8); _c4[_tmp21] ^= _c4[_pc4+3]; _pc4 += 4
+                elif _ai469 == 51:
+                    _regs4[_c4[_pc4+1]] = _loc10[_c4[_pc4+2]]; _pc4 += 3
+                elif _ai469 == 52:
+                    _loc10[_c4[_pc4+2]] = _regs4[_c4[_pc4+1]]; _pc4 += 3
+                elif _ai469 == 53:
+                    _stk4.append(_regs4[_c4[_pc4+1]]); _pc4 += 2
+                elif _ai469 == 54:
+                    _regs4[_c4[_pc4+1]] = _stk4.pop(); _pc4 += 2
+                elif _ai469 == 55:
+                    _regs4[_c4[_pc4+1]] = _regs4[_c4[_pc4+2]]; _pc4 += 3
+                elif _ai469 == 56:
+                    _regs4[_c4[_pc4+1]] = _regs4[_c4[_pc4+1]] + _regs4[_c4[_pc4+2]]; _pc4 += 3
+                elif _ai469 == 57:
+                    _regs4[_c4[_pc4+1]] = _regs4[_c4[_pc4+1]] - _regs4[_c4[_pc4+2]]; _pc4 += 3
+                elif _ai469 == 58:
+                    _shared57[_c4[_pc4+1]].append(_stk4.pop()); _pc4 += 2
+                elif _ai469 == 59:
+                    _stk4.append(_shared57[_c4[_pc4+1]].pop()); _pc4 += 2
+                elif _ai469 == 60:
+                    _gregs61[_c4[_pc4+1]] = _stk4.pop(); _pc4 += 2
+                elif _ai469 == 61:
+                    _stk4.append(_gregs61[_c4[_pc4+1]]); _pc4 += 2
+                elif _ai469 == 62:
+                    _pc4 += 1; break
+                elif _ai469 == 63:
+                    _stk4.append(_loc10[_c4[_pc4+1]]); _b15 = _stk4.pop(); _a36 = _stk4.pop(); _stk4.append(_a36 + _b15); _pc4 += 2
+                elif _ai469 == 64:
+                    _stk4.append(_stk4[-1]); _loc10[_c4[_pc4+1]] = _stk4.pop(); _pc4 += 2
+                elif _ai469 == 65:
+                    _pc4 += 1
+                elif _ai469 == 66:
+                    return _stk4[-1] if _stk4 else None
+                else: _pc4 += 1
+              except Exception as _exc:
+                if _eh4: _pc4 = _eh4.pop(); _stk4.append(_exc)
+                else: raise
+        _hb59 = 0
+        _hb59 = (_hb59 + len(_stk0) * 246) & 0xFFFF
+        _hb59 = (_hb59 + len(_stk1) * 148) & 0xFFFF
+        _hb59 = (_hb59 + len(_stk2) * 50) & 0xFFFF
+        _hb59 = (_hb59 + len(_stk3) * 131) & 0xFFFF
+        _hb59 = (_hb59 + len(_stk4) * 62) & 0xFFFF
+        _hb59 = (_hb59 + _pc0 * 184) & 0xFFFF
+        if len(_loc10) != 5: return None
+        _si67 += 1
+    return _stk0[-1] if _stk0 else None
+def X4(*_args, **_kwargs):
+    return _vm6350(*_args)
+
 if __name__ == '__main__':
-    a = X1(1, 10)
+    a = X3(1, 10)
     print('Hello,', end=' ')
-    print(f'the solution is {X2(X1(40, 140), X1(40, 140)) + a}.')
+    print(f'the solution is {X4(X3(40, 140), X3(40, 140)) + a}.')

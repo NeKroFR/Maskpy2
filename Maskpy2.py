@@ -12,6 +12,7 @@ if __name__ == "__main__":
     parser.add_argument("input_file", help="The Python file to obfuscate.")
     parser.add_argument("-o", "--output", help="The output file name. Defaults to input_file_obfuscated.py")
     parser.add_argument("-f", "--functions", nargs="*", help="Functions to obfuscate. Without -f, all functions are obfuscated.")
+    parser.add_argument("-v", "--vm-count", type=int, default=0, help="Number of VMs per function (default: random 3-5).")
     args = parser.parse_args()
     filename = args.input_file
     if not filename.endswith(".py"):
@@ -23,10 +24,10 @@ if __name__ == "__main__":
         obfuscated_filename = filename[:-3] + "_obfuscated.py"
     functions_to_obfuscate = args.functions or []
     try:
-        obfuscated = obfuscate(filename, functions_to_obfuscate)
+        obfuscated = obfuscate(filename, functions_to_obfuscate, vm_count=args.vm_count)
         save_file(obfuscated, obfuscated_filename)
     except FileNotFoundError:
-        print("\033[91mError: \033[0mfile doesn’t exist!")
+        print("\033[91mError: \033[0mfile doesn't exist!")
         sys.exit(1)
     except ValueError as e:
         print(f"\033[91mError: \033[0m{e}")
